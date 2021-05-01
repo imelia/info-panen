@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Tambah Data</title>
+    <!-- Load navbar in page/navbar -->
+    <?php $this->load->view('pagee/header'); ?>
+    <!-- load sidebar in page/sidebar -->
+    <?php $this->load->view('pagee/sidebar'); ?>
+    <!-- Load navbar in page/navbar -->
+    <?php $this->load->view('pagee/topbar'); ?>
+</head>
+<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+            return false;
+        return true;
+    }
+</script>
+<script>
+    function hapus_confirm() {
+        var msg;
+        msg = "Anda yakin data sudah benar ? ";
+        var agree = confirm(msg);
+        if (agree)
+            return true;
+        else
+            return false;
+    }
+</script>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="<?= base_url() ?>buah/tambah" method="post">
+                    <?php if (NULL !== $this->session->flashdata('message')) {
+                        echo $this->session->flashdata('message');
+                    } ?>
+                    <div class="card card-plain table-plain-bg">
+                        <div class="card-header ">
+                            <h4 class="card-title">FORM TAMBAH DATA</h4>
+                            <div class="pull-right">
+                                <a href="<?= site_url('buah') ?>" class="tombol"><i class="fa fa-undo"></i>KEMBALI</a>
+                            </div>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Komoditi</label>
+                                    <div class="form-group">
+                                    <select class="form-control" name="nama_tanaman" value="<?= set_value('nama_tanaman') ?>" required>
+                                            <?php foreach ($listKec as $syr) : ?>
+                                                <option value="<?= $syr['nama_tanaman']; ?>"><?= $syr['nama_tanaman']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Jumlah Tanaman (pohon)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="jumlah_tanaman" value="<?= set_value('jumlah_tanaman') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('jumlah_tanaman') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Tanaman Baru (pohon)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="tanaman_baru" value="<?= set_value('tanaman_baru') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('tanaman_baru') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Tanaman Belum Menghasilkan (pohon)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="tanaman_menghasilkan" value="<?= set_value('tanaman_menghasilkan') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('tanaman_menghasilkan') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Tanaman Produktif (pohon)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="tanaman_produktif" value="<?= set_value('tanaman_produktif') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('tanaman_produktif') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Produksi (kuintal) </label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="produksi_buah" value="<?= set_value('produksi_buah') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('produksi_buah') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Provitas (kg/ph)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="provitas" value="<?= set_value('provitas') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('provitas') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Harga (Rp/kg)</label>
+                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <div class="form-group">
+                                                <input type="text" name="harga" value="<?= set_value('harga') ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('harga') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Tahun</label>
+                                            <div class="form-group">
+                                                <input type="text" name="tahun" value="<?= set_value('tahun') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <?= form_error('tahun') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" onclick="return hapus_confirm()" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->
+<?php $this->load->view('pagee/modal'); ?>
+
+<!-- Load navbar in page/navbar -->
+<?php $this->load->view('pagee/footer'); ?>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#table-ah").dataTable();
+    });
+</script>
+
+</html>
