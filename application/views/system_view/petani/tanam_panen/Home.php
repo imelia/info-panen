@@ -74,8 +74,8 @@
                                             <td><?= $data->tanggal_tanam ?></td>
                                             <td><?= $data->tanggal_panen ?></td>
                                             <td><?= $data->status_panen ?></td>
-                                            <td><?= "" . number_format($data->hasil_panen, 0, '.', '.'). "kg";?> </td>
-                                            <td><?= "Rp" . number_format($data->harga_panen, 0, '.', '.');?></td>
+                                            <td><?= "" . number_format($data->hasil_panen, 0, '.', '.') . "kg"; ?> </td>
+                                            <td><?= "Rp" . number_format($data->harga_panen, 0, '.', '.'); ?></td>
                                             <td><?= $data->kondisi_panen ?></td>
                                             <td><?= $data->keterangan ?></td>
                                             <td><?= $data->no_briva ?></td>
@@ -96,8 +96,11 @@
             </div>
             <!-- /.container-fluid -->
         </div>
-        <!-- End of Main Content -->
-        <?php $this->load->view('pagee/modal'); ?>
-        </body>
+    </div>
+</div>
+<!-- End of Main Content -->
+<?php $this->load->view('pagee/modal'); ?>
+<?php $this->load->view('pagee/footer'); ?>
+</body>
 
 </html>

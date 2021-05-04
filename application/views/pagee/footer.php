@@ -8,6 +8,12 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets5/vendor/jquery/jquery.min.js'); ?>"></script>
+<script>
+  $('.custom-file-input').on('change', function() {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+  })
+</script>
 <script src="<?php echo base_url('assets5/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
 <!-- Core plugin JavaScript-->

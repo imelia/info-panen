@@ -1,6 +1,7 @@
-<?php 
-class Register extends CI_Controller{
-    
+<?php
+class Register extends CI_Controller
+{
+
     function __construct()
     {
         parent::__construct();
@@ -8,11 +9,11 @@ class Register extends CI_Controller{
         $this->load->library('form_validation');
     }
     public function index()
-    {   
+    {
         $data['title'] = 'Halaman Registrasi';
         $data['register'] = $this->Model_register->getAllRegister();
-        
-        $this->load->view('system_view/login/register',$data);
+
+        $this->load->view('system_view/login/register', $data);
     }
     public function proses()
     {
@@ -21,19 +22,19 @@ class Register extends CI_Controller{
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
         $this->form_validation->set_rules('id_akses', 'id_akses', 'required');
-        
+
         $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-        if ( $this->form_validation->run() == FALSE ){
-                $data['register'] = $this->Model_register->getAllRegister();
-                $data['listKec'] = $this->Model_register->getAll();
-                $this->load->view('system_view/login/registrasi');
-        }else{
+        if ($this->form_validation->run() == FALSE) {
+            $data['register'] = $this->Model_register->getAllRegister();
+            $data['listKec'] = $this->Model_register->getAll();
+            $this->load->view('system_view/login/register');
+        } else {
             $post = $this->input->post(null, TRUE);
             $this->Model_register->add($post);
-            if($this->db->affected_rows() > 0){
+            if ($this->db->affected_rows() > 0) {
                 echo "<script>alert('Data Berhasil Di Simpan');</script>";
             }
-            echo "<script>window.location='".site_url('auth')."';</script>";
+            echo "<script>window.location='" . site_url('auth') . "';</script>";
         }
     }
 }

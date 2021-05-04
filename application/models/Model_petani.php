@@ -8,8 +8,9 @@ class Model_petani extends CI_Model {
         parent::__construct();
     }
     //fungsi untuk menampilkan semua data dari tabel database untuk buku
- function get_allimage() {
+ function get_allimage($id_anggota) {
         $this->db->from($this->tabel);
+        $this->db->where('id_anggota',$id_anggota);
         $query = $this->db->get();
         return $query->result();
  }
@@ -53,5 +54,3 @@ class Model_petani extends CI_Model {
   
 
 }
-
-?>

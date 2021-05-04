@@ -17,7 +17,8 @@ class Dash_petani extends CI_Controller
 
     public function index($page = NULL, $offset = '', $key = NULL)
     {
-        $data['query'] = $this->Model_petani->get_allimage(); //query dari model
+        $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+        $data['query'] = $this->Model_petani->get_allimage($id_anggota['id_anggota']); //query dari model
 
         $this->load->view('system_view/petani/data/Home', $data); //tampilan awal ketika controller upload di akses
     }
@@ -122,6 +123,96 @@ class Dash_petani extends CI_Controller
 				</div>'
             );
             redirect(base_url('Dash_petani/rekening'), 'refresh');
+        }
+    }
+
+
+
+
+
+    public function my_profile()
+    {
+        $data['title'] = "My Profile";
+        $data['title_nav'] = "My Profile";
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->load->view('system_view/petani/profile/my_profile', $data);
+    }
+
+    public function edit_profile()
+    {
+        $data['title'] = "Edit Profile";
+        $data['title_nav'] = "Edit Profile";
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[12]', [
+            'required' => 'Kolom input tidak boleh kosong',
+            'numeric' => 'Kolom harus berisi angka !',
+            'min_length' => 'Kolom harus berisi minimal 12 karakter !',
+            'max_length' => 'Kolom harus berisi maximal 12 karakter !',
+        ]);
+        $this->form_validation->set_rules('no_rekening', 'No Rekening', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('system_view/petani/profile/edit_profile', $data);
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username')),
+                'no_telp' => htmlspecialchars($this->input->post('no_telp')),
+                'no_rekening' => htmlspecialchars($this->input->post('no_rekening')),
+                'alamat' => htmlspecialchars($this->input->post('alamat')),
+            ];
+
+            //cek jika ada gambar yang akan diupload
+
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2048';
+                $config['max_width'] = '600';
+                $config['max_height'] = '600';
+                $config['upload_path'] = './assets/img/profile/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $old_image = $data['user']['image'];
+                    if ($old_image != 'default.png') {
+                        unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                    }
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+            echo '<pre>';
+            print_r($data);
+            echo '</pre>';
+            die;
+            $where = $this->input->post('username');
+
+            $this->db->where('username', $where);
+            $this->db->update('login_anggota', $data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('Dash_petani/my_profile');
         }
     }
 }

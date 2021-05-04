@@ -18,7 +18,9 @@
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('assets5/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets5/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url('datepicker/datepicker3.css');?>"/>
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('datepicker/datepicker3.css'); ?>" />
     <style>
         thead input {
             width: 100%;
