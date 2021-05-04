@@ -164,55 +164,72 @@ class Dash_petani extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('system_view/petani/profile/edit_profile', $data);
         } else {
-            $data = [
-                'username' => htmlspecialchars($this->input->post('username')),
-                'no_telp' => htmlspecialchars($this->input->post('no_telp')),
-                'no_rekening' => htmlspecialchars($this->input->post('no_rekening')),
-                'alamat' => htmlspecialchars($this->input->post('alamat')),
-            ];
+            $id_anggota   = $this->input->post('id_anggota');
+            $no_telp = $this->input->post('no_telp');
+            $no_rekening = $this->input->post('no_rekening');
+            $alamat = $this->input->post('alamat');
 
-            //cek jika ada gambar yang akan diupload
+            $path = './assets/img/profile/';
 
-            $upload_image = $_FILES['image']['name'];
+            $where = array('id_anggota' => $id_anggota);
 
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = '2048';
-                $config['max_width'] = '600';
-                $config['max_height'] = '600';
-                $config['upload_path'] = './assets/img/profile/';
+            // get foto
+            $pict = "file_" . time();
+            $config['upload_path'] = './assets/img/profile/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '2048';  //2MB max
+            $config['max_width'] = '4480'; // pixel
+            $config['max_height'] = '4480'; // pixel
+            $config['file_name'] = $pict;
 
-                $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
+            if (!empty($_FILES['image']['name'])) {
                 if ($this->upload->do_upload('image')) {
-                    $old_image = $data['user']['image'];
-                    if ($old_image != 'default.png') {
-                        unlink(FCPATH . 'assets/img/profile/' . $old_image);
-                    }
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+                    $gambar = $this->upload->data();
+                    $data = array(
+                        'image'                 => $gambar['file_name'],
+                        'no_telp'               => $no_telp,
+                        'no_rekening'           => $no_rekening,
+                        'alamat'                => $alamat,
+                    );
+                    // print_r($data);
+                    // print_r($id);
+                    // hapus foto pada direktori
+                    @unlink($path . $this->input->post('filelama'));
+                    $this->Model_petani->updateAnggota($data, $where);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>'
+                    );
+                    redirect('Dash_petani/my_profile');
                 } else {
-                    echo $this->upload->display_errors();
+                    die("gagal update data");
                 }
+            } else {
+                $data = array(
+                    'no_telp'               => $no_telp,
+                    'no$no_rekening'        => $no_rekening,
+                    'alamat'                => $alamat,
+                );
+                // print_r($data);
+                // print_r($id);
+                // hapus foto pada direktori
+                $this->Model_petani->update2($data, $where);
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
+                redirect('Dash_petani/my_profile');
             }
-            echo '<pre>';
-            print_r($data);
-            echo '</pre>';
-            die;
-            $where = $this->input->post('username');
-
-            $this->db->where('username', $where);
-            $this->db->update('login_anggota', $data);
-
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>'
-            );
-            redirect('Dash_petani/my_profile');
         }
     }
 }

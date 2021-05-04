@@ -22,7 +22,7 @@
 
             <!-- Heading -->
             <div class="bg-primary text-white color-white pt-3">
-                <p class="text-center"><b>Hai, </b> <?= $this->fungsi->user_login()->username ?></p>
+                <p class="text-center"><b>Hai, </b> <?= $this->session->userdata('username'); ?></p>
             </div>
 
             <!-- Divider -->

@@ -54,7 +54,9 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-lg-6">
                                     <label for="username">Usename</label>
-                                    <input type="username" class="form-control" name="username" id="username" value="<?= $user['username']; ?>" readonly>
+                                    <input type="text" class="form-control" name="username" id="username" value="<?= $user['username']; ?>" readonly>
+                                    <input type="hidden" class="form-control" name="id_anggota" id="id_anggota" value="<?= $user['id_anggota']; ?>" readonly>
+                                    <input type="hidden" name="filelama" value="<?= $user['image']; ?>" readonly>
                                 </div>
                                 <div class="form-group col-md-12 col-lg-6">
                                     <label for="No Telpon">No Telpon</label>
