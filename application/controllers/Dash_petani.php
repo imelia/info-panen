@@ -49,9 +49,9 @@ class Dash_petani extends CI_Controller
             $nama_pemilik = $this->input->post('nama_pemilik');
 
             $data = array(
-                'nama_bank' => $nama_bank,
-                'nomor_rekening' => $nomor_rekening,
-                'nama_pemilik' => $nama_pemilik,
+                'nama_bank'         => $nama_bank,
+                'nomor_rekening'    => $nomor_rekening,
+                'nama_pemilik'      => $nama_pemilik,
             );
             $this->db->insert('rekening', $data);
             $this->session->set_flashdata(

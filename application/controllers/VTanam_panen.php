@@ -12,11 +12,12 @@ class VTanam_panen extends CI_Controller
         $this->load->helper(array('url')); //load helper url 
         $this->load->library('session');
         $this->load->model('Model_tanam'); //load model model_upldgbr yang berada di folder model
+        $this->load->model('Model_petani');
     }
 
     public function index($page = NULL, $offset = '', $key = NULL)
     {
-        $data['query'] = $this->Model_tanam->get_allimage(); //query dari model
+        $data['query'] = $this->Model_tanam->get_dataShop(); //query dari model
 
         $this->load->view('pembeli/tanam_panen', $data); //tampilan awal ketika controller upload di akses
     }
@@ -62,8 +63,11 @@ class VTanam_panen extends CI_Controller
     public function checkout()
     {
         if ($this->session->userdata('username')) {
-            $pembeli = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row();
-
+            $pembeli = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            // echo '<pre>';
+            // print_r($pembeli);
+            // echo '</pre>';
+            // die;
             $keranjang = $this->cart->contents();
 
             $data = array(
@@ -359,6 +363,107 @@ class VTanam_panen extends CI_Controller
             //     </div>');
             //     redirect(base_url('Vtanam_panen/konfirm_bayar'));
             // }
+        }
+    }
+    public function my_profile()
+    {
+        $data['title'] = "My Profile";
+        $data['title_nav'] = "My Profile";
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->load->view('pembeli/my_profile', $data);
+    }
+    public function edit_profile()
+    {
+        $data['title'] = "Edit Profile";
+        $data['title_nav'] = "Edit Profile";
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[12]', [
+            'required' => 'Kolom input tidak boleh kosong',
+            'numeric' => 'Kolom harus berisi angka !',
+            'min_length' => 'Kolom harus berisi minimal 12 karakter !',
+            'max_length' => 'Kolom harus berisi maximal 12 karakter !',
+        ]);
+        $this->form_validation->set_rules('no_rekening', 'No Rekening', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
+            'required' => 'Kolom %s input tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('pembeli/edit_profile', $data);
+        } else {
+            $id_anggota   = $this->input->post('id_anggota');
+            $no_telp = $this->input->post('no_telp');
+            $no_rekening = $this->input->post('no_rekening');
+            $alamat = $this->input->post('alamat');
+
+            $path = './assets/img/profile/';
+
+            $where = array('id_anggota' => $id_anggota);
+
+            // get foto
+            $pict = "file_" . time();
+            $config['upload_path'] = './assets/img/profile/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '2048';  //2MB max
+            $config['max_width'] = '4480'; // pixel
+            $config['max_height'] = '4480'; // pixel
+            $config['file_name'] = $pict;
+
+            $this->upload->initialize($config);
+
+            if (!empty($_FILES['image']['name'])) {
+                if ($this->upload->do_upload('image')) {
+                    $gambar = $this->upload->data();
+                    $data = array(
+                        'image'                 => $gambar['file_name'],
+                        'no_telp'               => $no_telp,
+                        'no_rekening'           => $no_rekening,
+                        'alamat'                => $alamat,
+                    );
+                    // print_r($data);
+                    // print_r($id);
+                    // hapus foto pada direktori
+                    @unlink($path . $this->input->post('filelama'));
+                    $this->Model_petani->updateAnggota($data, $where);
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>'
+                    );
+                    redirect('VTanam_panen/my_profile');
+                } else {
+                    die("gagal update data");
+                }
+            } else {
+                $data = array(
+                    'no_telp'               => $no_telp,
+                    'no$no_rekening'        => $no_rekening,
+                    'alamat'                => $alamat,
+                );
+                // print_r($data);
+                // print_r($id);
+                // hapus foto pada direktori
+                $this->Model_petani->update2($data, $where);
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
+                redirect('VTanam_panen/my_profile');
+            }
         }
     }
 }

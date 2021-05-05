@@ -46,6 +46,7 @@
                                         <th>Alamat Petani</th>
                                         <th>Kecamatan</th>
                                         <th>Komoditi</th>
+                                        <th>Stok</th>
                                         <th>Tanggal Tanam</th>
                                         <th>Tanggal Panen</th>
                                         <th>Status Panen</th>
@@ -71,6 +72,7 @@
                                             <td><?= $data->alamat_petani ?></td>
                                             <td><?= $data->desa ?></td>
                                             <td><?= $data->komoditi ?></td>
+                                            <td class="text-center"><?= $data->stok_tanam; ?></td>
                                             <td><?= $data->tanggal_tanam ?></td>
                                             <td><?= $data->tanggal_panen ?></td>
                                             <td><?= $data->status_panen ?></td>

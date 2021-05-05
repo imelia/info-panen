@@ -98,6 +98,18 @@
                                             Laporan
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="<?php echo base_url('auth/logout'); ?>" onclick="window.confirm()">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            Logout
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="bg-info rounded-circle ml-5" href="<?= base_url('Vtanam_panen/my_profile'); ?>">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Profile
+                                        </a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

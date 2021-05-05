@@ -27,10 +27,9 @@
                 } ?>
                 <div class="card-header ">
                     <h4 class="card-title">DATA RIWAYAT PESAN</h4>
-                    <div class="pull-right">
-                        <a href="<?= site_url('petani/add') ?>" class="btn btn-primary"> + Tambah Data</a>
-                    </div>
-
+                    <!-- <div class="pull-right">
+                        <a href="<?= site_url('Riwayat_pesan/edit') ?>" class="btn btn-primary"> + Tambah Data</a>
+                    </div> -->
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -57,7 +56,7 @@
                                             <td><?= $data->nama_produk ?></td>
                                             <td><?= "Rp " . number_format($data->jumlah_bayar, 2, ',', '.'); ?></td>
                                             <td><?= ($data->role == 3) ? 'Pembeli' : '' ?></td>
-                                            <td><?= "Rp " . number_format($data->jumlah_transaksi, 2, ',', '.');?></td>
+                                            <td><?= "Rp " . number_format($data->jumlah_transaksi, 2, ',', '.'); ?></td>
                                             <td>
                                                 <a href="<?= site_url('Riwayat_pesan/edit/' . $data->id_header_transaksi) ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Edit Data?');">Edit</a>
                                             </td>

@@ -1,7 +1,8 @@
-<?php 
-class Transaksi extends CI_Controller{
-    
-    
+<?php
+class Transaksi extends CI_Controller
+{
+
+
 
     public function __construct()
     {
@@ -15,7 +16,7 @@ class Transaksi extends CI_Controller{
     }
     public function index()
     {
-        $data['query'] = $this->Model_riwayat_pesan->id_header_transaksi(); //query dari model
+        $data['query'] = $this->Model_riwayat_pesan->getAllHeaderTransaksi(); //query dari model
 
         $this->load->view('system_view/admin/transaksi/Home', $data); //tampilan awal ketika controller upload di akses
     }

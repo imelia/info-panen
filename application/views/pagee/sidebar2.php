@@ -45,10 +45,10 @@
             </li>
 
             <!-- Nav Item - Info Berita -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('Dash_petani/rekening'); ?>">
                     <span>Rekening</span></a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Data Petani -->
             <li class="nav-item">

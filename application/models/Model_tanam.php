@@ -8,7 +8,14 @@ class Model_tanam extends CI_Model
         parent::__construct();
     }
     //fungsi untuk menampilkan semua data dari tabel database
-    function get_allimage()
+    function get_allimage($id_anggota)
+    {
+        $this->db->from($this->tabel);
+        $this->db->where('id_anggota', $id_anggota);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function get_dataShop()
     {
         $this->db->from($this->tabel);
         $query = $this->db->get();

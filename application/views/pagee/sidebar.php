@@ -18,6 +18,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            <!-- Heading -->
+            <div class="bg-primary text-white color-white pt-3">
+                <p class="text-center"><b>Hai, </b> <?= $this->session->userdata('username'); ?></p>
+            </div>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo site_url('dash'); ?>">

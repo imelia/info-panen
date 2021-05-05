@@ -80,7 +80,7 @@
                     </table>
                     <form action="<?= base_url('Vtanam_panen/checkout'); ?>" method="POST" enctype="multipart/form-data">
                         <?php foreach ($keranjang as $item) : ?>
-                            <input type="hidden" name="id_anggota[]" value="<?= $pembeli->id_anggota; ?>">
+                            <input type="hidden" name="id_anggota[]" value="<?= $pembeli['id_anggota']; ?>">
                             <input type="hidden" name="id_produk[]" value="<?= $item['id']; ?>">
                             <input type="hidden" name="nama_produk[]" value="<?= $item['name']; ?>">
                             <input type="hidden" name="qty[]" value="<?= $item['qty']; ?>">
@@ -105,7 +105,7 @@
                                         Username
                                     </th>
                                     <th style="border-top:0px solid white;">
-                                        <input type="text" name="username" class="form-control" placeholder="Username" value="<?= $pembeli->username; ?>">
+                                        <input type="text" name="username" class="form-control" placeholder="Username" value="<?= $pembeli['username']; ?>">
                                         <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                                     </th>
                                 </tr>
@@ -113,10 +113,10 @@
                                     Sebagai
                                 </td>
                                 <td style="border-top:0px solid white;">
-                                    <input type="hidden" name="id_akses" class="form-control" placeholder="id_akses" value="<?= $pembeli->id_akses ?>">
+                                    <input type="hidden" name="id_akses" class="form-control" placeholder="id_akses" value="3">
                                     <?= form_error('id_akses', '<small class="text-danger">', '</small>'); ?>
 
-                                    <input type="text" name="" class="form-control" placeholder="id_akses" value="<?= ($pembeli->id_akses == 3) ? 'Pembeli' : ''; ?>">
+                                    <input type="text" name="" class="form-control" placeholder="id_akses" value="<?= ($pembeli['id_akses'] === 'pembeli') ? (3 ? 'Pembeli' : '') : ''; ?>">
                                     <?= form_error('id_akses', '<small class="text-danger">', '</small>'); ?>
                                 </td>
                             </tbody>

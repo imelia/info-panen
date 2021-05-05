@@ -30,7 +30,8 @@ class Beranda extends CI_Controller
         $data['sayur'] = $this->mda->graph_sayuran();
         $data['show_caro'] = $this->Model_beranda->show_carousel();
         $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-        $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+        $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+        $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
         $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
         $wilayah = $this->input->post('wilayah');
@@ -58,7 +59,8 @@ class Beranda extends CI_Controller
             $data['sayur'] = $this->mda->graph_sayuran();
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+            $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');
@@ -88,7 +90,8 @@ class Beranda extends CI_Controller
             $data['sayur'] = $this->mda->graph_sayuran();
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+            $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');
@@ -119,7 +122,9 @@ class Beranda extends CI_Controller
             $data['sayur'] = $this->mda->graph_sayuran();
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+
+            $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');

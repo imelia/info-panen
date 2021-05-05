@@ -14,7 +14,8 @@ class Riwayat_pesan extends CI_Controller
     }
     public function index()
     {
-        $data['query'] = $this->Model_riwayat_pesan->id_header_transaksi(); //query dari model
+        $id_penjual = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+        $data['query'] = $this->Model_riwayat_pesan->id_header_transaksi($id_penjual['id_anggota']); //query dari model
 
         $this->load->view('system_view/petani/riwayat_pesan/Home', $data); //tampilan awal ketika controller upload di akses
     }
