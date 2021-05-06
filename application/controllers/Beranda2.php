@@ -6,6 +6,9 @@ class Beranda2 extends CI_Controller
     {
 
         parent::__construct();
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
+        }
         $this->load->model('Model_komoditas'); //load model model_upldgbr yang berada di folder model
         $this->load->model('Model_berita'); //load model model_upldgbr yang berada di folder model
         $this->load->model('Model_tanam'); //load model model_upldgbr yang berada di folder model
@@ -22,7 +25,7 @@ class Beranda2 extends CI_Controller
     {
         $data['show_caro'] = $this->Model_beranda->show_carousel();
         $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-        $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+        $data['tanam'] = $this->Model_tanam->get_dataShop(); //query dari model
         $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
         $data['bua'] = $this->Model_buah->getAllBuah();
@@ -49,7 +52,7 @@ class Beranda2 extends CI_Controller
         if ($this->form_validation->run() == true) {
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+            $data['tanam'] = $this->Model_tanam->get_dataShop(); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $data['bua'] = $this->Model_buah->getAllBuah();
@@ -78,7 +81,7 @@ class Beranda2 extends CI_Controller
         if ($this->form_validation->run() == true) {
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+            $data['tanam'] = $this->Model_tanam->get_dataShop(); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $data['bua'] = $this->Model_buah->getAllBuah();
@@ -108,9 +111,9 @@ class Beranda2 extends CI_Controller
         if ($this->form_validation->run() == true) {
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
-            $data['tanam'] = $this->Model_tanam->get_allimage(); //query dari model
+            $data['tanam'] = $this->Model_tanam->get_dataShop(); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
-            
+
             $data['bua'] = $this->Model_buah->getAllBuah();
             $data['bf'] = $this->Model_biofarmaka->getAllBiofarmaka();
             $data['pd'] = $this->Model_padi->getAllPadi();

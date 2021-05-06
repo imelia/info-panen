@@ -72,7 +72,7 @@
             <!-- Nav Item - Info Berita -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo site_url('transaksi'); ?>">
-                    <span>Laporan Transaksi Pemesanan</span></a>
+                    <span>Transaksi Petani</span></a>
             </li>
 
             <!-- Divider -->

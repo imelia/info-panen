@@ -22,6 +22,51 @@ class Model_tanam extends CI_Model
         return $query->result();
     }
 
+    function getCountPetani()
+    {
+        $query = "SELECT COUNT(login_anggota.id_akses) AS petani, DATE_FORMAT(login_anggota.date_created, '%M %Y') AS bulan
+        FROM login_anggota
+          WHERE
+            login_anggota.id_akses = 'petani'
+              
+              GROUP BY MONTH(login_anggota.id_akses)
+              HAVING COUNT(login_anggota.id_akses)
+              ORDER BY login_anggota.id_anggota ASC";
+
+        $getOrderPerMonth = $this->db->query($query)->result_array();
+        return $getOrderPerMonth;
+    }
+
+    function getCountPembeli()
+    {
+        $query = "SELECT COUNT(login_anggota.id_akses) AS pembeli, DATE_FORMAT(login_anggota.date_created, '%M %Y') AS bulan
+        FROM login_anggota
+          WHERE
+            login_anggota.id_akses = 'pembeli'
+              
+              GROUP BY MONTH(login_anggota.id_akses)
+              HAVING COUNT(login_anggota.id_akses)
+              ORDER BY login_anggota.id_anggota ASC";
+
+        $getOrderPerMonth = $this->db->query($query)->result_array();
+        return $getOrderPerMonth;
+    }
+
+    function getCountTransaksi()
+    {
+        $query = "SELECT COUNT(header_transaksi.status_bayar) AS transaksi, DATE_FORMAT(header_transaksi.tanggal_post, '%M %Y') AS bulan
+        FROM header_transaksi
+          WHERE
+            header_transaksi.status_bayar = '1'
+              
+              GROUP BY MONTH(header_transaksi.status_bayar)
+              HAVING COUNT(header_transaksi.status_bayar)
+              ORDER BY header_transaksi.id_header_transaksi ASC";
+
+        $getOrderPerMonth = $this->db->query($query)->result_array();
+        return $getOrderPerMonth;
+    }
+
     public function getFormTanam()
     {
         $query = $this->db->get('kecamatan');
@@ -146,7 +191,7 @@ class Model_tanam extends CI_Model
 
     public function getRekeningfromTanamPanen()
     {
-        $data = $this->db->query("SELECT * FROM form_tanam_panen GROUP BY nama_petani");
+        $data = $this->db->query("SELECT * FROM form_tanam_panen GROUP BY id_anggota");
         return $data->result();
     }
 

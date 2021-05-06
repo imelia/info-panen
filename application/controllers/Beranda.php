@@ -47,6 +47,10 @@ class Beranda extends CI_Controller
         $komoditi = $this->input->post('komoditi');
         $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
         $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+        $data['countPetani'] = $this->Model_tanam->getCountPetani();
+        $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+        $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
         $this->load->view('system_view/beranda', $data); //tampilan awal ketika controller upload di akses
     }
     public function komoditi_wilayah()

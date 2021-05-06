@@ -5,6 +5,9 @@ class Ppadi extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
+        }
         $this->load->model('Model_padi');
         $this->load->library('form_validation');
     }

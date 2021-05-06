@@ -56,6 +56,12 @@
                     <span>Riwayat Pesan</span></a>
             </li>
 
+            <!-- Nav Item - Data Petani -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Riwayat_pesan/laporan_transaksi'); ?>">
+                    <span>Laporan Transaksi</span></a>
+            </li>
+
             <!-- Nav Item - My Profile -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('Dash_petani/my_profile'); ?>">

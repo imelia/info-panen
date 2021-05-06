@@ -85,6 +85,7 @@
                             <input type="hidden" name="nama_produk[]" value="<?= $item['name']; ?>">
                             <input type="hidden" name="qty[]" value="<?= $item['qty']; ?>">
                             <input type="hidden" name="price[]" value="<?= $item['price']; ?>">
+                            <input type="hidden" name="id_penjual[]" value="<?= $item['id_penjual']; ?>">
                             <!-- <input type="hidden" name="subtotal" value="<?= $item['subtotal']; ?>"> -->
                             <br>
                             <input type="hidden" name="jumlah_transaksi[]" value="<?= $this->cart->total(); ?>">

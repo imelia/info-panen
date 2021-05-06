@@ -13,9 +13,13 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="card shadow mb-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <?= $this->session->flashdata('message'); ?>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <?= $this->session->flashdata('message') ?>
                                 <table class="table table-borderless table-hover" id="riwayat-pesan" width="100%" cellspacing="2">
                                     <thead class="">
                                         <tr class="d-flex align-items-center invisible" style="margin-top: -20%;">
@@ -26,6 +30,7 @@
                                             <td class="p-5 text-center">Harga</td>
                                             <td class="p-5 text-center">Subtotal</td>
                                             <td class="p-5 text-center">Status</td>
+                                            <td class="p-5 text-center">Status</td>
                                         </tr>
                                         <tr class="d-flex align-items-center invisible">
                                             <td class="p-5 text-center">No</td>
@@ -35,15 +40,13 @@
                                             <td class="p-5 text-center">Harga</td>
                                             <td class="p-5 text-center">Subtotal</td>
                                             <td class="p-5 text-center">Status</td>
+                                            <td class="p-5 text-center">Status</td>
                                         </tr>
                                     </thead>
                                     <tbody class="card p-3">
                                         <?php
                                         $no = 1;
                                         foreach ($this->cart->contents() as $items) :  ?>
-                                            <?php if (NULL !== $this->session->flashdata('message')) {
-                                                echo $this->session->flashdata('message');
-                                            } ?>
 
                                             <tr class="text-center shadow mb-5 d-flex align-items-center justify-content-between">
                                                 <td>
@@ -71,7 +74,7 @@
                                                 <td>
                                                     <div class="p-2 text-center">
                                                         <p class="card-text">
-                                                        <?= "Rp" . number_format($items['price'], 2, '.', ','); ?>
+                                                            <?= "Rp" . number_format($items['price'], 2, '.', ','); ?>
                                                         </p>
                                                     </div>
                                                 </td>
@@ -85,6 +88,13 @@
                                                 <td>
                                                     <div class="p-2">
                                                         <a href="<?= base_url('VTanam_panen/hapus/' . $items['rowid']); ?>" class="btn btn-sm btn-primary"> Hapus
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td class="invisible">
+                                                    <div class="mt-5 pt-5">
+                                                        <a href="<?= base_url('VTanam_panen/checkout'); ?>" class="btn btn-sm btn-warning" disabled>
+                                                            Checkout Panen
                                                         </a>
                                                     </div>
                                                 </td>
@@ -112,7 +122,7 @@
                                             <a href="<?= base_url('VTanam_panen'); ?>" class="btn btn-sm btn-primary">
                                                 Lanjutkan Memesan
                                             </a>
-                                            <a href="<?= base_url('VTanam_panen/checkout'); ?>" class="btn btn-sm btn-success" disabled>
+                                            <a href="<?= base_url('VTanam_panen/checkout'); ?>" class="btn btn-sm btn-warning">
                                                 Bayar Panen
                                             </a>
                                         </td>

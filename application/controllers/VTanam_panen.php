@@ -32,6 +32,7 @@ class VTanam_panen extends CI_Controller
             'price' => $tanam_panen->harga_panen,
             'name' => $tanam_panen->komoditi,
             'image' => $tanam_panen->gambar_panen,
+            'id_penjual' => $tanam_panen->id_anggota,
         );
 
         $this->cart->insert($data);
@@ -87,6 +88,7 @@ class VTanam_panen extends CI_Controller
             } else {
                 $nama_produk = $this->input->post('nama_produk');
                 $id_anggota = $this->input->post('id_anggota');
+                $id_penjual = $this->input->post('id_penjual');
                 $total = $this->input->post('jumlah_transaksi');
                 for ($i = 0; $i < count($id_anggota); $i++) {
                     $data = array(
@@ -96,7 +98,11 @@ class VTanam_panen extends CI_Controller
                         'nama_pembeli' => $this->input->post('username'),
                         'nama_produk' => $nama_produk[$i],
                         'role' => $this->input->post('id_akses'),
+                        'id_penjual' => $id_penjual[$i],
                     );
+                    // echo '<pre>';
+                    // print_r($data);
+                    // echo '</pre>';
                     $query1 = $this->db->insert('header_transaksi', $data);
                 }
 
