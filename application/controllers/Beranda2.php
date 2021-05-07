@@ -25,7 +25,12 @@ class Beranda2 extends CI_Controller
     {
         $data['show_caro'] = $this->Model_beranda->show_carousel();
         $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
+<<<<<<< Updated upstream
         $data['tanam'] = $this->Model_tanam->get_dataShop(); //query dari model
+=======
+        $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+        $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
+>>>>>>> Stashed changes
         $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
         $data['bua'] = $this->Model_buah->getAllBuah();
