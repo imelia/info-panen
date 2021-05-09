@@ -41,9 +41,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Gambar</th>
-                                        <th>Nama Petani</th>
-                                        <th>No Hp Petani</th>
-                                        <th>Alamat Petani</th>
                                         <th>Kecamatan</th>
                                         <th>Komoditi</th>
                                         <th>Stok</th>
@@ -54,9 +51,6 @@
                                         <th>Harga Panen</th>
                                         <th>Kondisi</th>
                                         <th>Keterangan</th>
-                                        <th>Nomor Briva</th>
-                                        <th>Bank</th>
-                                        <th>Sebagai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -67,9 +61,9 @@
                                             <td><?= $no++ ?></td>
                                             <td><img src="<?= base_url() ?>/uploads/panen/<?= $data->gambar_panen; ?>" width="100px" height="100px"></td>
 
-                                            <td><?= $data->atas_nama ?></td>
+                                            <!--<td><?= $data->atas_nama ?></td>
                                             <td><?= $data->no_telp ?></td>
-                                            <td><?= $data->alamat ?></td>
+                                            <td><?= $data->alamat ?></td> -->
                                             <td><?= $data->desa ?></td>
                                             <td><?= $data->komoditi ?></td>
                                             <td class="text-center"><?= $data->stok_tanam; ?></td>
@@ -80,9 +74,9 @@
                                             <td><?= "Rp" . number_format($data->harga_panen, 0, '.', '.'); ?></td>
                                             <td><?= $data->kondisi_panen ?></td>
                                             <td><?= $data->keterangan ?></td>
-                                            <td><?= $data->no_rekening ?></td>
+                                            <!--<td><?= $data->no_rekening ?></td>
                                             <td><?= $data->nama_bank ?></td>
-                                            <td><?= $data->atas_nama ?></td>
+                                            <td><?= $data->atas_nama ?></td>-->
                                             <td>
                                                 <a href="<?= site_url('tanam_panen/edit/' . $data->id_tanam_panen) ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Anda yakin ingin update data?');">Edit</a>
                                                 <a href="<?php echo site_url('tanam_panen/hapus/' . $data->id_tanam_panen); ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Anda yakin ingin menghapus data ini  <?= $data->komoditi; ?>?');">Hapus</a>
