@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Bulan Mei 2021 pada 02.18
+-- Waktu pembuatan: 09 Bulan Mei 2021 pada 20.24
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.15
 
@@ -102,7 +102,10 @@ CREATE TABLE `data_daftar_petani` (
 
 INSERT INTO `data_daftar_petani` (`id_daftar_petani`, `ktp`, `komoditas`, `luas_sawah`, `alamat_sawah`, `desa_kelurahan`, `id_anggota`) VALUES
 (5, 'file_1620155115.png', 'Jeruk', '12Ha', 'Jl Kuncingan', 'Majakencinga', 16),
-(6, 'letter_L.png', 'Buah', '144Ha', 'Jl Kemiri Sedaya', 'Kilimanuk', 17);
+(6, 'letter_L.png', 'Buah', '144Ha', 'Jl Kemiri Sedaya', 'Kilimanuk', 17),
+(7, 'letter_E.png', 'Buah', '122Ha', 'Jl Kemiri Sedaya', 'Kilimanuk', 19),
+(8, 'avatar3.png', 'Jeruk', '12Ha', 'Jl Kuncingan', 'Majakencing', 20),
+(9, 'avatar2.png', 'Buah', '144Ha', 'Jl Kemiri Sedaya', 'Kilimanuks', 21);
 
 -- --------------------------------------------------------
 
@@ -112,9 +115,6 @@ INSERT INTO `data_daftar_petani` (`id_daftar_petani`, `ktp`, `komoditas`, `luas_
 
 CREATE TABLE `form_tanam_panen` (
   `id_tanam_panen` int(5) NOT NULL,
-  `nama_petani` varchar(255) NOT NULL,
-  `no_hp_petani` varchar(255) NOT NULL,
-  `alamat_petani` varchar(255) NOT NULL,
   `desa` varchar(255) NOT NULL,
   `gambar_panen` varchar(255) NOT NULL,
   `komoditi` varchar(255) NOT NULL,
@@ -126,9 +126,6 @@ CREATE TABLE `form_tanam_panen` (
   `harga_panen` int(11) NOT NULL,
   `kondisi_panen` varchar(255) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `no_briva` varchar(255) NOT NULL,
-  `nama_bank` varchar(255) NOT NULL,
-  `sebagai` varchar(255) NOT NULL,
   `id_anggota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -136,9 +133,10 @@ CREATE TABLE `form_tanam_panen` (
 -- Dumping data untuk tabel `form_tanam_panen`
 --
 
-INSERT INTO `form_tanam_panen` (`id_tanam_panen`, `nama_petani`, `no_hp_petani`, `alamat_petani`, `desa`, `gambar_panen`, `komoditi`, `stok_tanam`, `tanggal_tanam`, `tanggal_panen`, `status_panen`, `hasil_panen`, `harga_panen`, `kondisi_panen`, `keterangan`, `no_briva`, `nama_bank`, `sebagai`, `id_anggota`) VALUES
-(13, 'Ely', '089776564123', 'Jalan Kalimantan, Kedayunan, Banyuanyar', 'Kuripan', 'letter_D.png', 'Kunyit', 6, '2021-05-05', '2021-05-08', 'Belum Panen', '1000', 1000, 'Baik', 'Baik tahan hama', '0021987654541298', 'BRI', 'Petani', 16),
-(14, 'Ely', '089776560987', 'Jalan Jawa', 'Kraksaan', 'letter_J.png', 'Biofarmaka', 5, '2021-05-05', '2021-05-08', 'Belum Panen', '1000', 1000, 'Baik', 'Baik tahan hama', '0021987654541298', 'BRI', 'Petani', 16);
+INSERT INTO `form_tanam_panen` (`id_tanam_panen`, `desa`, `gambar_panen`, `komoditi`, `stok_tanam`, `tanggal_tanam`, `tanggal_panen`, `status_panen`, `hasil_panen`, `harga_panen`, `kondisi_panen`, `keterangan`, `id_anggota`) VALUES
+(17, 'Sukapura', 'prod-1.jpg', 'Biofarmaka', 5, '2021-05-11', '2021-05-13', 'Belum Panen', '1000', 4500, 'Baik', 'Baik tahan hama', 20),
+(18, 'Sukapura', 'prod-2.jpg', 'Sayuran', 3, '2021-05-11', '2021-05-13', 'Belum Panen', '1400', 5700, 'Baik', 'Baik tahan hama', 20),
+(19, 'Sumber', 'prod-3.jpg', 'Biofarmaka', 6, '2021-05-10', '2021-05-13', 'Belum Panen', '6000', 1000, 'Baik', 'Baik tahan hama', 21);
 
 -- --------------------------------------------------------
 
@@ -195,9 +193,10 @@ CREATE TABLE `header_transaksi` (
 --
 
 INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_user`, `id_anggota`, `jumlah_transaksi`, `jumlah_bayar`, `status_bayar`, `nama_pembeli`, `nama_produk`, `role`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `tanggal_post`, `tanggal_update`, `id_penjual`, `id_rekening`, `tanggal_bayar`, `nama_bank`) VALUES
-(111, 0, 15, 24000, 24000, 0, 'viqih', 'Kunyit', 3, '0021987654541298', '0007776565441122', 'bukti_bayar1.jpg', '2021-05-05 05:37:19', '2021-05-04 22:50:23', 16, 1, '22 September 2021', 'BNI'),
-(112, 0, 15, 32000, 32000, 0, 'viqih', 'Sayur', 3, '0021987654541298', '0007776565441122', 'bukti_bayar2.jpg', '2021-05-05 05:37:19', '2021-05-04 23:15:41', 16, 1, '22 September 2021', 'BNI'),
-(116, 0, 15, 1000, 1000, 1, 'viqih', 'Biofarmaka', 3, '4545678712344432', 'Viqih Ardiansyah', 'letter_S.png', NULL, '2021-05-04 23:23:25', 0, 13, '05-05-2021', 'BANK PEMBANGUNAN DAERAH JAWA TIMUR');
+(123, 0, 15, 6700, 6700, 1, 'viqih', 'Biofarmaka', 3, '4545678712344432', 'Viqih Ardiansyah', 'icons.png', NULL, '2021-05-09 18:11:22', 21, 21, '10-05-2021', 'BANK PEMBANGUNAN DAERAH JAWA TIMUR'),
+(124, 0, 15, 6700, 0, 0, 'viqih', 'Sayuran', 3, NULL, NULL, NULL, NULL, '2021-05-09 17:31:53', 20, NULL, NULL, NULL),
+(125, 0, 18, 5500, 5500, 1, 'feri', 'Biofarmaka', 3, '0021890714517871', 'Feri Arusia', 'default-150x1501.png', NULL, '2021-05-09 18:18:17', 21, 21, '10-05-2021', 'BANK PEMBANGUNAN DAERAH JAWA TIMUR'),
+(126, 0, 18, 5500, 5500, 1, 'feri', 'Biofarmaka', 3, '0021890714517871', 'Feri Arusia', 'default-150x150.png', NULL, '2021-05-09 18:13:41', 20, 20, '10-05-2021', 'BRI');
 
 -- --------------------------------------------------------
 
@@ -271,6 +270,8 @@ CREATE TABLE `login_anggota` (
   `no_telp` varchar(14) NOT NULL,
   `alamat` varchar(256) NOT NULL,
   `no_rekening` varchar(256) NOT NULL,
+  `atas_nama` varchar(256) NOT NULL,
+  `nama_bank` varchar(128) NOT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -278,12 +279,12 @@ CREATE TABLE `login_anggota` (
 -- Dumping data untuk tabel `login_anggota`
 --
 
-INSERT INTO `login_anggota` (`id_anggota`, `id_akses`, `username`, `password`, `image`, `no_telp`, `alamat`, `no_rekening`, `date_created`) VALUES
-(1, 'admin', 'imel', '123', 'file_1620166604.png', '087566234343', 'Jalan Puyuh', '0', 0),
-(15, 'pembeli', 'viqih', '123', 'default.png', '', '', '0', 1620147938),
-(16, 'petani', 'ely', '123', 'file_1620165783.png', '087566234111', 'JL Kemuning0000', '0021987654541298', 1620147962),
-(17, 'petani', 'sagita', '123', 'file_1620165763.png', '087566234512', 'JL Kemuning2', '0007818134541312', 1620154629),
-(18, 'pembeli', 'feri', '123', 'file_1620173809.png', '087566237332', 'JL Macau Payau', '0007818134813415', 1620172239);
+INSERT INTO `login_anggota` (`id_anggota`, `id_akses`, `username`, `password`, `image`, `no_telp`, `alamat`, `no_rekening`, `atas_nama`, `nama_bank`, `date_created`) VALUES
+(1, 'admin', 'imel', '123', 'file_1620166604.png', '087566234343', 'Jalan Puyuh', '0', '', '', 0),
+(15, 'pembeli', 'viqih', '123', 'file_1620174270.png', '087566234111', 'JL Sundari RT 06', '0021987654541298', '', '', 1620147938),
+(18, 'pembeli', 'feri', '123', 'file_1620173809.png', '087566237332', 'JL Macau Payau', '0007818134813415', '', '', 1620172239),
+(20, 'petani', 'Ely99', '123', 'default.png', '087566788900', 'JL Ely segundang', '0007818134541222', 'Ely Susilowati', 'BRI', 1620579027),
+(21, 'petani', 'sagita77', '123', 'default.png', '087566909876', 'JL Sagita segundang', '0007818134813415', 'Sagita Watiasih', 'BRI', 1620580959);
 
 -- --------------------------------------------------------
 
@@ -468,18 +469,19 @@ CREATE TABLE `transaksi` (
   `nama_product` varchar(255) NOT NULL,
   `harga` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `total_harga` int(11) NOT NULL
+  `total_harga` int(11) NOT NULL,
+  `id_penjual` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_anggota`, `id_produk`, `nama_product`, `harga`, `jumlah`, `total_harga`) VALUES
-(91, 15, 13, 'Kunyit', 1000, 1, 1000),
-(92, 15, 14, 'Biofarmaka', 1000, 1, 1000),
-(93, 15, 13, 'Kunyit', 1000, 1, 1000),
-(94, 15, 14, 'Biofarmaka', 1000, 1, 1000);
+INSERT INTO `transaksi` (`id_transaksi`, `id_anggota`, `id_produk`, `nama_product`, `harga`, `jumlah`, `total_harga`, `id_penjual`) VALUES
+(101, 15, 19, 'Biofarmaka', 1000, 1, 6700, 0),
+(102, 15, 18, 'Sayuran', 5700, 1, 6700, 0),
+(103, 18, 19, 'Biofarmaka', 1000, 1, 5500, 0),
+(104, 18, 17, 'Biofarmaka', 4500, 1, 5500, 0);
 
 --
 -- Indexes for dumped tables
@@ -626,13 +628,13 @@ ALTER TABLE `daftar_pembeli`
 -- AUTO_INCREMENT untuk tabel `data_daftar_petani`
 --
 ALTER TABLE `data_daftar_petani`
-  MODIFY `id_daftar_petani` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_daftar_petani` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `form_tanam_panen`
 --
 ALTER TABLE `form_tanam_panen`
-  MODIFY `id_tanam_panen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_tanam_panen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `harga`
@@ -644,7 +646,7 @@ ALTER TABLE `harga`
 -- AUTO_INCREMENT untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
-  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT untuk tabel `kecamatan`
@@ -662,7 +664,7 @@ ALTER TABLE `komoditas`
 -- AUTO_INCREMENT untuk tabel `login_anggota`
 --
 ALTER TABLE `login_anggota`
-  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `rekening`
@@ -716,7 +718,7 @@ ALTER TABLE `tanaman_sayuran`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
