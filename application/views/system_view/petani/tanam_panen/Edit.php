@@ -61,32 +61,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Nama Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="nama_petani" value="<?= $data->nama_petani ?>" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>No Hp Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="no_hp_petani" value="<?= $data->no_hp_petani ?>" class="form-control">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Alamat Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="alamat_petani" value="<?= $data->alamat_petani ?>" class="form-control">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
                                     <label>Kecamatan</label>
                                     <div class="form-group">
                                         <input type="text" name="desa" value="<?= $data->desa ?>" class="form-control">
@@ -168,36 +142,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Nomor Briva</label>
-                                    <div class="form-group">
-                                        <input type="text" name="no_briva" value="<?= $data->no_briva ?>" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Bank</label>
-                                    <div class="form-group">
-                                        <input type="text" name="nama_bank" value="<?= $data->nama_bank ?>" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Sebagai</label>
-                                    <div class="form-group">
-                                        <input type="text" name="sebagai" value="<?= $data->sebagai ?>" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <button type="submit" onclick="return hapus_confirm()" class="btn btn-success btn-flat">Update</button>
-                                <button type="reset" class="btn btn-default">Batal</button>
+                                <a href="<?= base_url('tanam_panen'); ?>" class="btn btn-default">Batal</a>
                             </div>
                             <div class="clearfix"></div>
-
                         </form>
                     </div>
                 </div>

@@ -38,33 +38,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Nama</label>
-                                    <div class="form-group">
-                                        <input type="text" name="nama_petani" class="form-control">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Alamat</label>
-                                    <div class="form-group">
-                                        <input type="text" name="alamat_petani" class="form-control">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Nomor Hp</label>
-                                    <div class="form-group">
-                                        <input type="text" name="no_hp_petani" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Komoditas</label>

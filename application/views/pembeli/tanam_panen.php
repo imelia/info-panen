@@ -42,7 +42,7 @@
                           </div>
                         </td>
                         <td>
-                          <?= $data->nama_petani ?>
+                          <?= $data->atas_nama ?>
                         </td>
                         <td>
                           <span>Stok : <?= $data->stok_tanam . 'Kg'; ?></span>
@@ -61,15 +61,15 @@
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel"><?= $data->nama_petani ?></h5>
+                                  <h5 class="modal-title" id="exampleModalLabel"><?= $data->atas_nama ?></h5>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
                                   <div class="card card-body">
-                                    <p class="card-text">Nomer HP : <span class="text-muted"><?= $data->no_hp_petani ?></span> </p>
-                                    <p class="card-text">Alamat : <span class="text-muted"><?= $data->alamat_petani ?></span> </p>
+                                    <p class="card-text">Nomer HP : <span class="text-muted"><?= $data->no_telp ?></span> </p>
+                                    <p class="card-text">Alamat : <span class="text-muted"><?= $data->alamat ?></span> </p>
                                     <p class="card-text">Desa : <span class="text-muted"><?= $data->desa ?></span> </p>
                                     <p class="card-text">Komoditi : <span class="text-muted"><?= $data->komoditi ?></span> </p>
                                     <p class="card-text">Tanggal Tanam : <span class="text-muted"><?= $data->tanggal_tanam ?></span> </p>
@@ -99,7 +99,7 @@
 
                           <?php endif; ?>
 
-                          <a href="https://api.whatsapp.com/send?phone=<?= $data->no_hp_petani; ?>&text=Hai%20Pak%20Petani,%20saya%20ingin%20ingin%20memesan%20panen%20<?= $data->komoditi; ?>%20,%20Apakah%20masih%20ada%20?" target="_blank"><span class="btn btn-sm btn-success">Hubungi Petani !</span></a>
+                          <a href="https://api.whatsapp.com/send?phone=<?= $data->no_telp; ?>&text=Hai%20Pak%20Petani,%20saya%20ingin%20ingin%20memesan%20panen%20<?= $data->komoditi; ?>%20,%20Apakah%20masih%20ada%20?" target="_blank"><span class="btn btn-sm btn-success">Hubungi Petani !</span></a>
                         </td>
                       </tr>
                     <?php

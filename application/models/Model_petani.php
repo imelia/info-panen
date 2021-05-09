@@ -17,6 +17,14 @@ class Model_petani extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    function getDataPetaniJoinLoginAnggota($id_anggota)
+    {
+        $query = "SELECT * FROM data_daftar_petani
+                    JOIN login_anggota ON data_daftar_petani.id_anggota = login_anggota.id_anggota
+                    WHERE data_daftar_petani.id_anggota = $id_anggota
+                    GROUP BY data_daftar_petani.id_daftar_petani";
+        return $this->db->query($query)->result();
+    }
 
     public function get_del($where, $table)
     //Query mengahapus berdasarkan id pada tabel order di dabatase dan ini untuk user

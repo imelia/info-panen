@@ -32,6 +32,8 @@ class Model_register extends CI_model
         $params['no_telp'] = $post['no_telp'];
         $params['alamat'] = $post['alamat'];
         $params['no_rekening'] = $post['no_rekening'];
+        $params['nama_bank'] = $post['nama_bank'];
+        $params['atas_nama'] = $post['atas_nama'];
         $params['image'] = 'default.png';
         $params['date_created'] = time();
 

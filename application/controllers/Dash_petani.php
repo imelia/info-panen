@@ -18,8 +18,11 @@ class Dash_petani extends CI_Controller
     public function index($page = NULL, $offset = '', $key = NULL)
     {
         $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-        $data['query'] = $this->Model_petani->get_allimage($id_anggota['id_anggota']); //query dari model
-
+        $data['query'] = $this->Model_petani->getDataPetaniJoinLoginAnggota($id_anggota['id_anggota']); //query dari model
+        // echo '<pre>';
+        // print_r($data['query']);
+        // die;
+        // echo '</pre>';
         $this->load->view('system_view/petani/data/Home', $data); //tampilan awal ketika controller upload di akses
     }
 

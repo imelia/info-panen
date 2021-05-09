@@ -63,32 +63,6 @@
                         <div class="card-body table-full-width table-responsive">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label>Nama Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="nama_petani" class="form-control" placeholder="Masukkan nama">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>No Hp Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="no_hp_petani" class="form-control" onkeypress="return hanyaAngka(event)" placeholder="Diisi hanya dengan angka">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>Alamat Petani</label>
-                                    <div class="form-group">
-                                        <input type="text" name="alamat_petani" class="form-control" Placeholder="Masukkan alamat">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
                                     <label>Kecamatan</label>
                                     <div class="form-group">
                                         <?php
@@ -192,34 +166,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>Nomor Briva</label>
-                                    <div class="form-group">
-                                        <input type="text" name="no_briva" class="form-control" Placeholder="Masukkan keterangan kondisi produk">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>Bank</label>
-                                    <div class="form-group">
-                                        <input type="text" name="nama_bank" class="form-control" Placeholder="Masukkan keterangan kondisi produk">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>Sebagai</label>
-                                    <div class="form-group">
-                                        <input type="text" name="sebagai" class="form-control" Placeholder="Masukkan keterangan kondisi produk">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <button type="submit" onclick="return add_confirm()" class="btn btn-primary">Simpan</button>
                             </div>
                             <div class="clearfix"></div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

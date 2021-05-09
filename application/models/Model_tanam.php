@@ -15,11 +15,22 @@ class Model_tanam extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    function getTanamPanenJoinLoginAnggota($id_anggota)
+    {
+        $query = "SELECT * FROM form_tanam_panen
+                    JOIN login_anggota ON form_tanam_panen.id_anggota = login_anggota.id_anggota
+                    WHERE form_tanam_panen.id_anggota = $id_anggota
+                    GROUP BY form_tanam_panen.id_tanam_panen";
+        return $this->db->query($query)->result();
+    }
+
     function get_dataShop()
     {
-        $this->db->from($this->tabel);
-        $query = $this->db->get();
-        return $query->result();
+        $query = "SELECT * FROM form_tanam_panen
+        JOIN login_anggota ON form_tanam_panen.id_anggota = login_anggota.id_anggota
+        GROUP BY form_tanam_panen.id_tanam_panen";
+        return $this->db->query($query)->result();
     }
 
     function getCountPetani()
@@ -139,16 +150,21 @@ class Model_tanam extends CI_Model
 
     public function pembeli($id_anggota)
     {
-        $this->db->select('*');
-        $this->db->from('header_transaksi');
-        $this->db->where('header_transaksi.id_anggota', $id_anggota);
-        // JOIN
-        $this->db->join('transaksi', 'transaksi.id_anggota = header_transaksi.id_anggota', 'left');
-        // END JOIN
-        $this->db->group_by('header_transaksi.jumlah_transaksi');
-        $this->db->order_by('id_header_transaksi', 'desc');
-        $query = $this->db->get();
-        return $query->result_array();
+        $query = "SELECT * FROM header_transaksi  
+        WHERE header_transaksi.id_anggota = $id_anggota
+        GROUP BY header_transaksi.id_header_transaksi";
+        return $this->db->query($query)->result_array();
+
+        // $this->db->select('*');
+        // $this->db->from('header_transaksi');
+        // $this->db->where('header_transaksi.id_anggota', $id_anggota);
+        // // JOIN
+        // $this->db->join('transaksi', 'transaksi.id_anggota = header_transaksi.id_anggota', 'left');
+        // // END JOIN
+        // $this->db->group_by('header_transaksi.jumlah_transaksi');
+        // $this->db->order_by('id_header_transaksi', 'desc');
+        // $query = $this->db->get();
+        // return $query->result_array();
     }
 
     public function pembeli_t($jum_trans)
@@ -165,14 +181,23 @@ class Model_tanam extends CI_Model
         return $query->result_array();
     }
 
-    public function id_header_transaksi($id_header_transaksi)
+    public function id_header_transaksi($id_anggota)
     {
         $this->db->select('*');
         $this->db->from('header_transaksi');
-        $this->db->where('id_header_transaksi', $id_header_transaksi);
+        $this->db->where('id_penjual', $id_anggota);
         $this->db->order_by('id_header_transaksi', 'desc');
         $query = $this->db->get();
         return $query->row();
+    }
+
+    public function getRekeningPenjual($id_anggota)
+    {
+        $this->db->select('*');
+        $this->db->from('login_anggota');
+        $this->db->where('id_anggota', $id_anggota);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function getAllTransaksi($id_anggota)

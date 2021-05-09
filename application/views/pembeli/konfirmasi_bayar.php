@@ -52,12 +52,12 @@
                                             <td>Pembayaran ke Rekening</td>
                                             <td>
                                                 <select class="form-control" name="id_rekening" id="id_rekening">
-                                                    <?php foreach ($rekening as $rk) : ?>
-                                                        <option value="<?= $rk->id_tanam_panen ?>" <?php if ($header_transaksi->id_rekening == $rk->id_tanam_panen) {
-                                                                                                        echo 'selected';
-                                                                                                    } ?>>
+                                                    <?php foreach ($rekpenj as $rk) : ?>
+                                                        <option value="<?= $rk->id_anggota ?>" <?php if ($header_transaksi->id_penjual == $rk->id_anggota) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>>
                                                             <?= $rk->nama_bank; ?>
-                                                            (No. Rek: <?= $rk->no_briva; ?> a.n <?= $rk->nama_petani; ?>) - <?= $rk->sebagai; ?>
+                                                            (No. Rek: <?= $rk->no_rekening; ?> a.n <?= $rk->atas_nama; ?>)
                                                         </option>
                                                     <?php endforeach; ?>
                                                 </select>
@@ -88,7 +88,7 @@
                                         <tr>
                                             <td>Dari Bank</td>
                                             <td>
-                                                <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank" value="<?= set_value('nama_bank'); ?>">
+                                                <input type="text" class="form-control" name="nama_bank" id="nama_bank" placeholder="Nama Bank" value="<?= set_value('nama_bank'); ?>" required>
                                                 <small>Misal: Bank BCA</small>
                                                 <?= form_error('nama_bank', '<small class="text-danger">', '</small>') ?>
                                             </td>
@@ -96,7 +96,7 @@
                                         <tr>
                                             <td>Dari Rekening</td>
                                             <td>
-                                                <input type="text" class="form-control" name="rekening_pembayaran" id="rekening_pembayaran" placeholder="Nomor Rekening" value="<?= set_value('rekening_pembayaran'); ?>">
+                                                <input type="text" class="form-control" name="rekening_pembayaran" id="rekening_pembayaran" placeholder="Nomor Rekening" value="<?= set_value('rekening_pembayaran'); ?>" required>
                                                 <small>Misal: 0007-xxxx-xxxx-xxxx</small>
                                                 <?= form_error('rekening_pembayaran', '<small class="text-danger">', '</small>') ?>
                                             </td>
@@ -104,7 +104,7 @@
                                         <tr>
                                             <td>Atas Nama</td>
                                             <td>
-                                                <input type="text" class="form-control" name="rekening_pelanggan" id="rekening_pelanggan" placeholder="Atas Nama" value="<?= set_value('rekening_pelanggan'); ?>">
+                                                <input type="text" class="form-control" name="rekening_pelanggan" id="rekening_pelanggan" placeholder="Atas Nama" value="<?= set_value('rekening_pelanggan'); ?>" required>
                                                 <small>Misal: Imelda Triyanti</small>
                                                 <?= form_error('rekening_pelanggan', '<small class="text-danger">', '</small>') ?>
                                             </td>
@@ -112,7 +112,7 @@
                                         <tr>
                                             <td>Upload Bukti Bayar</td>
                                             <td>
-                                                <input type="file" class="form-control" name="bukti_bayar" id="bukti_bayar" placeholder="Upload Bukti Bayar">
+                                                <input type="file" class="form-control" name="bukti_bayar" id="bukti_bayar" placeholder="Upload Bukti Bayar" required>
                                             </td>
                                         </tr>
                                         <tr>

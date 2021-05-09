@@ -45,6 +45,10 @@
                                         <th>Luas Sawah</th>
                                         <th>Alamat Sawah</th>
                                         <th>Desa/Kelurahan</th>
+                                        <th>No HP</th>
+                                        <th>No Rekening</th>
+                                        <th>Nama Bank</th>
+                                        <th>Atas Nama</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,6 +62,10 @@
                                             <td><?= $data->luas_sawah ?></td>
                                             <td><?= $data->alamat_sawah ?></td>
                                             <td><?= $data->desa_kelurahan ?></td>
+                                            <td><?= $data->no_telp ?></td>
+                                            <td><?= $data->no_rekening ?></td>
+                                            <td><?= $data->nama_bank ?></td>
+                                            <td><?= $data->atas_nama ?></td>
                                             <td>
                                                 <a href="<?= site_url('petani/edit/' . $data->id_daftar_petani) ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Edit Data?');">Edit</a>
                                             </td>

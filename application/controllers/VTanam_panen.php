@@ -152,6 +152,10 @@ class VTanam_panen extends CI_Controller
         $data['login'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row();
 
         $header_transaksi = $this->Model_tanam->pembeli($data['login']->id_anggota);
+        // echo '<pre>';
+        // print_r($header_transaksi);
+        // die;
+        // echo '</pre>';
         $keranjang = $this->cart->contents();
 
         $data = array(
@@ -211,15 +215,15 @@ class VTanam_panen extends CI_Controller
         $this->load->view('pembeli/laporan_pembeli', $data, FALSE);
     }
 
-    public function konfirmasi($id_header_transaksi = '')
+    public function konfirmasi($id_anggota = '')
     {
-        $header_transaksi = $this->Model_tanam->id_header_transaksi($id_header_transaksi);
-        $rekening = $this->Model_tanam->getRekeningfromTanamPanen();
-        $data = array(
-            'title' => 'Konfirmasi Bayar',
-            'header_transaksi' => $header_transaksi,
-            'rekening' => $rekening,
-        );
+        $data['title'] = 'Konfirmasi Bayar';
+        $data['header_transaksi'] = $this->Model_tanam->id_header_transaksi($id_anggota);
+        $data['rekpenj'] = $this->Model_tanam->getRekeningPenjual($id_anggota);
+        // echo '<pre>';
+        // print_r($data);
+        // die;
+        // echo '</pre>';
         $this->load->view('pembeli/konfirmasi_bayar', $data, FALSE);
     }
 

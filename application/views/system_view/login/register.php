@@ -200,6 +200,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="Nama Bank">Nama Bank</label>
+                            <div class="form-group">
+                                <input type="text" name="nama_bank" value="<?= set_value('nama_bank') ?>" class="form-control" placeholder="Silahkan masukkan Nama Bank" required>
+                                <?php echo form_error('nama_bank'); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="Atas Nama">Atas Nama</label>
+                            <div class="form-group">
+                                <input type="text" name="atas_nama" value="<?= set_value('atas_nama') ?>" class="form-control" placeholder="Silahkan masukkan Rekening Atas Nama" required>
+                                <?php echo form_error('atas_nama'); ?>
+                            </div>
+                        </div>
+                    </div>
                     <br>
                     <button type="submit" class="btn btn-primary">Daftar</button> &nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="btn btn-sm btn-success btn2">Kembali</div>

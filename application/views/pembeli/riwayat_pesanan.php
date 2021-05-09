@@ -32,7 +32,7 @@
                                         <?php foreach ($header_transaksi as $ht) : ?>
                                             <tr>
                                                 <td><?= $i++; ?></td>
-                                                <td><?= $ht['nama_pembeli']; ?></td>
+                                                <td><?= $ht['nama_pembeli']; ?>
                                                 <td><?= ($ht['role'] == 3 ? 'Pembeli' : ''); ?></td>
                                                 <td><?= $ht['jumlah_transaksi']; ?></td>
                                                 <td><?= ($ht['status_bayar'] == 1) ? 'Confirmed' : 'Pending'; ?></td>
@@ -42,11 +42,11 @@
                                                             <i class="fa fa-eye"></i> Detail
                                                         </a>
                                                         <?php if ($ht['status_bayar'] == 1) : ?>
-                                                            <a href="<?= site_url('Vtanam_panen/konfirmasi/' . $ht['id_header_transaksi']); ?>" class="btn badge-primary btn-sm disabled">
+                                                            <a href="<?= site_url('Vtanam_panen/konfirmasi/' . $ht['id_penjual']); ?>" class="btn badge-primary btn-sm disabled">
                                                                 <i class="fa fa-upload"></i> Bayar
                                                             </a>
                                                         <?php else : ?>
-                                                            <a href="<?= site_url('Vtanam_panen/konfirmasi/' . $ht['id_header_transaksi']); ?>" class="btn badge-primary btn-sm">
+                                                            <a href="<?= site_url('Vtanam_panen/konfirmasi/' . $ht['id_penjual']); ?>" class="btn badge-primary btn-sm">
                                                                 <i class="fa fa-upload"></i> Bayar
                                                             </a>
                                                         <?php endif; ?>

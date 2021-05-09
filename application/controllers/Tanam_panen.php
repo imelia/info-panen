@@ -20,8 +20,11 @@ class Tanam_panen extends CI_Controller
     public function index($page = NULL, $offset = '', $key = NULL)
     {
         $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-        $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
-
+        $data['tanam'] = $this->Model_tanam->getTanamPanenJoinLoginAnggota($id_anggota['id_anggota']); //query dari model
+        // echo '<pre>';
+        // print_r($data['tanam']);
+        // die;
+        // echo '</pre>';
         $this->load->view('system_view/petani/tanam_panen/Home', $data); //tampilan awal ketika controller upload di akses
     }
 
@@ -67,9 +70,6 @@ class Tanam_panen extends CI_Controller
 
                 $data = array(
                     'gambar_panen' => $gambar['file_name'],
-                    'nama_petani' => $this->input->post('nama_petani'),
-                    'no_hp_petani' => $this->input->post('no_hp_petani'),
-                    'alamat_petani' => $this->input->post('alamat_petani'),
                     'desa' => $this->input->post('desa'),
                     'komoditi' => $this->input->post('komoditi'),
                     'stok_tanam' => $this->input->post('stok_tanam'),
@@ -80,9 +80,6 @@ class Tanam_panen extends CI_Controller
                     'harga_panen' => $this->input->post('harga_panen'),
                     'kondisi_panen' => $this->input->post('kondisi_panen'),
                     'keterangan' => $this->input->post('keterangan'),
-                    'no_briva' => $this->input->post('no_briva'),
-                    'nama_bank' => $this->input->post('nama_bank'),
-                    'sebagai' => $this->input->post('sebagai'),
                     'id_anggota' => $id_anggota['id_anggota'],
 
                 );
@@ -114,9 +111,6 @@ class Tanam_panen extends CI_Controller
     public function updatedata()
     {
         $id   = $this->input->post('id');
-        $nama_petani = $this->input->post('nama_petani');
-        $no_hp_petani = $this->input->post('no_hp_petani');
-        $alamat_petani = $this->input->post('alamat_petani');
         $desa = $this->input->post('desa');
         $komoditi = $this->input->post('komoditi');
         $stok_tanam = $this->input->post('stok_tanam');
@@ -126,10 +120,6 @@ class Tanam_panen extends CI_Controller
         $hasil_panen = $this->input->post('hasil_panen');
         $harga_panen = $this->input->post('harga_panen');
         $kondisi_panen = $this->input->post('kondisi_panen');
-        $keterangan = $this->input->post('keterangan');
-        $no_briva = $this->input->post('no_briva');
-        $nama_bank = $this->input->post('nama_bank');
-        $sebagai = $this->input->post('sebagai');
 
         $path = './uploads/panen/';
 
@@ -162,9 +152,6 @@ class Tanam_panen extends CI_Controller
                 $this->image_lib->resize();
                 $data = array(
                     'gambar_panen'               => $gambar['file_name'],
-                    'nama_petani'                => $nama_petani,
-                    'no_hp_petani'               => $no_hp_petani,
-                    'alamat_petani'              => $alamat_petani,
                     'desa'                       => $desa,
                     'komoditi'                   => $komoditi,
                     'stok_tanam'                 => $stok_tanam,
@@ -174,10 +161,6 @@ class Tanam_panen extends CI_Controller
                     'hasil_panen'                => $hasil_panen,
                     'harga_panen'                => $harga_panen,
                     'kondisi_panen'              => $kondisi_panen,
-                    'keterangan'                 => $keterangan,
-                    'no_briva'                   => $no_briva,
-                    'nama_bank'                  => $nama_bank,
-                    'sebagai'                    => $sebagai
                 );
                 // print_r($data);
                 // print_r($id);
@@ -190,9 +173,6 @@ class Tanam_panen extends CI_Controller
             }
         } else {
             $data = array(
-                'nama_petani'                => $nama_petani,
-                'no_hp_petani'               => $no_hp_petani,
-                'alamat_petani'              => $alamat_petani,
                 'desa'                       => $desa,
                 'komoditi'                   => $komoditi,
                 'stok_tanam'                 => $stok_tanam,
@@ -202,10 +182,6 @@ class Tanam_panen extends CI_Controller
                 'hasil_panen'                => $hasil_panen,
                 'harga_panen'                => $harga_panen,
                 'kondisi_panen'              => $kondisi_panen,
-                'keterangan'                 => $keterangan,
-                'no_briva'                   => $no_briva,
-                'nama_bank'                  => $nama_bank,
-                'sebagai'                    => $sebagai
 
             );
             // print_r($data);
