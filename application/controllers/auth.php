@@ -31,7 +31,7 @@ class Auth extends CI_Controller
         }
       }else{
          //pesan yang muncul jika terdapat error dimasukkan pada session flashdata
-         $data['error']='!! Password dan Username Salah !!';
+         $this->session->set_flashdata('message', 'Username dan Password anda salah'); // Buat session flashdata
         redirect('auth', $data);
       }
     }

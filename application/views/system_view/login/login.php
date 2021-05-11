@@ -76,14 +76,8 @@
         <p class="tulisan_login">dari petani untuk kita</p>
         <label></label>
         <h4 class="tulisan_login">SELAMAT DATANG</h4>
+        <?= $this->session->flashdata('message'); ?>
         <form action="<?php echo base_url('auth/ceklogin'); ?>" method="POST">
-            <?php
-            if ($this->session->flashdata('error') != '') {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo $this->session->flashdata('error');
-                echo '</div>';
-            }
-            ?>
             <div class="row">
                 <div class="col-md-12">
                     <label></label>
