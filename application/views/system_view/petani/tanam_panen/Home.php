@@ -59,8 +59,7 @@
                                     foreach ($tanam as $key => $data) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><img src="<?= base_url() ?>/uploads/panen/<?= $data->gambar_panen; ?>" width="100px" height="100px"></td>
-
+                                            <td><img src="<?= base_url() ?>uploads/panen/<?= $data->gambar_panen; ?>" width="100px" height="100px"></td>
                                             <!--<td><?= $data->atas_nama ?></td>
                                             <td><?= $data->no_telp ?></td>
                                             <td><?= $data->alamat ?></td> -->
@@ -79,7 +78,7 @@
                                             <td><?= $data->atas_nama ?></td>-->
                                             <td>
                                                 <a href="<?= site_url('tanam_panen/edit/' . $data->id_tanam_panen) ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Anda yakin ingin update data?');">Edit</a>
-                                                <a href="<?php echo site_url('tanam_panen/hapus/' . $data->id_tanam_panen); ?>" class="badge badge-primary badge-pill tampilModalUbah" onclick="return confirm('Anda yakin ingin menghapus data ini  <?= $data->komoditi; ?>?');">Hapus</a>
+                                                <a href="<?php echo site_url('tanam_panen/hapus/' . $data->id_tanam_panen); ?>" class="badge badge-danger badge-pill tampilModalUbah" onclick="return confirm('Anda yakin ingin menghapus data ini  <?= $data->komoditi; ?>?');">Hapus</a>
                                             </td>
                                         </tr>
                                     <?php

@@ -13,7 +13,7 @@
     <!-- load sidebar in page/sidebar -->
     <?php $this->load->view('pagee/sidebar'); ?>
     <!-- Load navbar in page/navbar -->
-    <?php $this->load->view('pagee/topbar'); ?>
+    <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
 		function hanyaAngka(evt) {
@@ -119,23 +119,19 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" onclick="return hapus_confirm()" class="btn btn-success btn-flat">Update</button>
-
+                                        <button type="submit" onclick="return update_confirm()" class="btn btn-success btn-flat">Update</button>
                                     </div>
-                                    <div class="clearfix"></div>
-
-                        </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- /.container-fluid -->
         </div>
-    </div>
-</div>
-</div>
-</div>
-<!-- /.container-fluid -->
-</div>
 <!-- End of Main Content -->
+<!-- Load modal-->
+
 
 <?php $this->load->view('pagee/modal'); ?>
 

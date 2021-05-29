@@ -13,7 +13,7 @@
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar'); ?>
 <!-- Load navbar in page/navbar -->
-<?php $this->load->view('pagee/topbar'); ?>
+<?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
     
@@ -94,49 +94,22 @@
                                       </div>
                                   </div> 
                                   
-                        <div class="form-group">
-                            <button type="submit" onclick="return hapus_confirm()" class="btn btn-success btn-flat">Update</button>
-                            <button type="reset" class="btn btn-default">Batal</button>
+                                  <div class="form-group">
+                                        <button type="submit" onclick="return hapus_confirm()" class="btn btn-success btn-flat">Update</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="clearfix"></div>
-                        
-                        </form>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
+            <!-- /.container-fluid -->
         </div>
-    </div>
-</div>
-<!-- /.container-fluid -->
-</div>
 <!-- End of Main Content -->
+<!-- Load modal-->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
 
-        <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-    <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Logout</a>
-    </div>
-    </div>
-  </div>
-</div>
+<?php $this->load->view('pagee/modal'); ?>
 
 <!-- Load navbar in page/navbar -->
 <?php $this->load->view('pagee/footer'); ?>

@@ -61,19 +61,32 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Kecamatan</label>
+                                <label>Kecamatan</label>
                                     <div class="form-group">
-                                        <input type="text" name="desa" value="<?= $data->desa ?>" class="form-control">
-
+                                        <?php
+                                        if (!empty($tanam)) { ?>
+                                            <input list="desa" name="desa" value="<?= $data->desa ?>"class="form-control" Placeholder="Masukkan nama kecamatan/desa">
+                                            <datalist id="desa">
+                                                <?php foreach ($tanam as $item) { ?>
+                                                    <option value="<?= $item['nama_kecamatan']; ?>"><?= $item['nama_kecamatan']; ?></option>
+                                                    <?php } ?>
+                                            </datalist>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Komoditas</label>
-                                    <div class="form-group">
-                                        <input type="text" name="komoditi" value="<?= $data->komoditi ?>" class="form-control">
-                                    </div>
+                                <label>Komoditas</label>
+                                    <?php
+                                    if (!empty($komo)) { ?>
+                                        <input list="komoditas" id="komoditas1" name="komoditi" value="<?= $data->komoditi; ?>" class="form-control" Placeholder="Masukkan komoditas" required>
+                                        <datalist id="komoditas">
+                                            <?php foreach ($komo as $itemss) { ?>
+                                                <option value="<?php echo $itemss["nama_tanaman"]; ?>">
+                                                <?php } ?>
+                                        </datalist>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="row">

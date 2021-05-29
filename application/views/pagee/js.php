@@ -8,6 +8,9 @@
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets5/js/sb-admin-2.min.js');?>"></script>
 
+<!-- Custom scripts for all pages-->
+<script src="<?php echo base_url('assets5/js/script.js');?>"></script>
+
     <!-- Page level plugins -->
     <script src="<?php echo base_url('assets5/vendor/datatables/jquery.dataTables.min.js');?>"></script>
     <script src="<?php echo base_url('assets5/vendor/datatables/dataTables.bootstrap4.min.js');?>"></script>

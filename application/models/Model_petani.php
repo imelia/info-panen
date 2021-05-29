@@ -17,6 +17,14 @@ class Model_petani extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function getAllPetani()
+    {
+        $query = "SELECT * FROM data_daftar_petani
+                    JOIN login_anggota ON data_daftar_petani.id_anggota = login_anggota.id_anggota";
+        return $this->db->query($query)->result();
+    }
+
     function getDataPetaniJoinLoginAnggota($id_anggota)
     {
         $query = "SELECT * FROM data_daftar_petani

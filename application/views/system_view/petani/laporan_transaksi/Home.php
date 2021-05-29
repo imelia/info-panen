@@ -10,7 +10,6 @@
 
     <!-- Load navbar in page/navbar -->
     <?php $this->load->view('pagee/header'); ?>
-    <title>Home - Padi</title>
 </head>
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar2'); ?>
@@ -35,12 +34,13 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pembeli</th>
                                         <th>Nama Produk Dipesan</th>
+                                        <th>Bukti Bayar</th>
                                         <th>Jumlah Bayar</th>
                                         <th>Sebagai</th>
                                         <th>Jumlah Transaksi</th>
@@ -55,6 +55,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $data->nama_pembeli ?></td>
                                             <td><?= $data->nama_produk ?></td>
+                                            <td><img src="<?= base_url() ?>/uploads/bayar/<?= $data->bukti_bayar ?>" width="300px" height="300px"></td>
                                             <td><?= "Rp " . number_format($data->jumlah_bayar, 2, ',', '.'); ?></td>
                                             <td><?= ($data->role == 3) ? 'Pembeli' : '' ?></td>
                                             <td><?= "Rp " . number_format($data->jumlah_transaksi, 2, ',', '.'); ?></td>

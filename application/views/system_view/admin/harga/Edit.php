@@ -13,7 +13,7 @@
     <!-- load sidebar in page/sidebar -->
     <?php $this->load->view('pagee/sidebar'); ?>
     <!-- Load navbar in page/navbar -->
-    <?php $this->load->view('pagee/topbar'); ?>
+    <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
 		function hanyaAngka(evt) {
@@ -56,86 +56,82 @@
                     <div class="card-body table-full-width table-responsive">
 
                         <form action="<?= base_url() ?>padi/edit" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Kecamatan</label>
-                                    <div class="form-group">
-                                        <select class="form-control" name="nama_kecamatan" value="<?= $this->input->post('nama_kecamatan') ?? $row->nama_kecamatan ?>" required>
-                                            <option value="<?= $row->nama_kecamatan ?>"><?= $row->nama_kecamatan ?></option>
-                                            <?php foreach ($listKec as $list) : ?>
-                                                <option value="<?= $list['nama_kecamatan']; ?>"><?= $list['nama_kecamatan']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="row">
+                        <div class="row">
                                         <div class="col-md-12">
-                                            <label>Tanam (Ha)</label>
+                                            <label>Harga (Rp)</label>
                                             <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                             <div class="form-group">
-                                                <input type="text" name="tanam" value="<?= $this->input->post('tanam') ?? $row->tanam ?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                                <input type="text" name="harga" value="<?= $this->input->post('harga') ?? $row->harga ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control" >
                                                 <?= form_error('tanam') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Panen (Ha)</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <label>Komoditas</label>
                                             <div class="form-group">
-                                                <input type="text" name="panen" value="<?= $this->input->post('panen') ?? $row->panen ?>" onkeypress="return hanyaAngka(event)" class="form-control">
-                                                <?= form_error('panen') ?>
+                                                <select class="form-control" name="komoditas" value="<?= $this->input->post('komoditas') ?? $row->komoditas ?>" required>
+                                                    <option value="<?= $row->komoditas ?>"><?= $row->komoditas ?></option>
+                                                    <?php foreach ($listKom as $list) : ?>
+                                                        <option value="<?= $list['nama_komoditas']; ?>"><?= $list['nama_komoditas']; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Provitas (Ton/Ha)</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <label>Pasar</label>
                                             <div class="form-group">
-                                                <input type="text" name="provitas" value="<?= $this->input->post('provitas') ?? $row->provitas ?>" onkeypress="return hanyaAngka(event)" class="form-control">
-                                                <?= form_error('provitas') ?>
+                                                <input type="text" name="pasar" value="<?= $this->input->post('pasar') ?? $row->pasar ?>" class="form-control">
+                                                <?= form_error('pasar') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Produksi (Ton GKG)</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <label>Kecamatan</label>
                                             <div class="form-group">
-                                                <input type="text" name="produksi" value="<?= $this->input->post('produksi') ?? $row->produksi ?>" onkeypress="return hanyaAngka(event)" class="form-control">
-                                                <?= form_error('produksi') ?>
+                                            <select class="form-control" name="kecamatan" value="<?= $this->input->post('kecamatan') ?? $row->kecamatan ?>" required>
+                                            <option value="<?= $row->kecamatan ?>"><?= $row->kecamatan ?></option>
+                                            <?php foreach ($listKec as $list) : ?>
+                                                <option value="<?= $list['nama_kecamatan']; ?>"><?= $list['nama_kecamatan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>Tahun</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                            <label>Keterangan</label>
                                             <div class="form-group">
-                                                <input type="text" name="tahun" value="<?= $this->input->post('tahun') ?? $row->tahun ?>" onkeypress="return hanyaAngka(event)" class="form-control">
-                                                <?= form_error('tahun') ?>
+                                                <input type="text" name="keterangan" value="<?= $this->input->post('keterangan') ?? $row->keterangan ?>" class="form-control">
+                                                <?= form_error('keterangan') ?>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Tanggal Update</label>
+                                            <div class="form-group">
+                                                <input type="date" name="tanggal_update" value="<?= $this->input->post('tanggal_update') ?? $row->tanggal_update ?>" class="form-control">
+                                                <?= form_error('tanggal_update') ?>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
-                                        <button type="submit" onclick="return hapus_confirm()" class="btn btn-success btn-flat">Update</button>
-
+                                        <button type="submit" onclick="return update_confirm()" class="btn btn-success btn-flat">Update</button>
                                     </div>
-                                    <div class="clearfix"></div>
-
-                        </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- /.container-fluid -->
         </div>
-    </div>
-</div>
-</div>
-</div>
-<!-- /.container-fluid -->
-</div>
 <!-- End of Main Content -->
+<!-- Load modal-->
 
 <?php $this->load->view('pagee/modal'); ?>
 

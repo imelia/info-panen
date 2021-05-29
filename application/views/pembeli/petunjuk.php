@@ -6,7 +6,7 @@
           <div class="col-lg-6 mb-5">
 
               <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="assets8/images/features-3.png" alt="Image" class="img-fluid"></div>
+                  <div><img src="assets7/assets/img/11.png" alt="Image" class="img-fluid"></div>
                 </div>
           </div>
           <div class="col-lg-6 ml-auto">

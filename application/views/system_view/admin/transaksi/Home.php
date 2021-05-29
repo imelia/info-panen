@@ -10,12 +10,12 @@
 
     <!-- Load navbar in page/navbar -->
     <?php $this->load->view('pagee/header'); ?>
-    <title>Home - Padi</title>
+    <title>Home</title>
 </head>
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar'); ?>
 <!-- Load navbar in page/navbar -->
-<?php $this->load->view('pagee/topbar'); ?>
+<?php $this->load->view('pagee/topbar2'); ?>
 <script>
     function hapus_confirm() {
         var msg;
@@ -53,7 +53,7 @@
                                         <th>Jumlah Bayar</th>
                                         <th>Rekening Pembayaran</th>
                                         <th>Atas Nama</th>
-                                        <th>Tanggal Pembayaran</th>
+                                        <th>Waktu Pembayaran</th>
                                         <th>Bukti Pembayaran</th>
                                         <th>Jumlah Transaksi</th>
                                     </tr>
@@ -68,8 +68,8 @@
                                             <td><?= $data->jumlah_bayar ?></td>
                                             <td><?= $data->rekening_pembayaran ?></td>
                                             <td><?= $data->rekening_pelanggan ?></td>
-                                            <td><?= $data->tanggal_bayar ?></td>
-                                            <td><?= $data->bukti_bayar ?></td>
+                                            <td><?= $data->tanggal_update ?></td>
+                                            <td><img src="<?= base_url() ?>/uploads/bayar/<?= $data->bukti_bayar ?>" width="300px" height="300px"></td>
                                             <td><?= $data->jumlah_transaksi ?></td>
                                         </tr>
                                     <?php

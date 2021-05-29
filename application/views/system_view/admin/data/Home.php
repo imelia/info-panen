@@ -10,23 +10,12 @@
 
     <!-- Load navbar in page/navbar -->
     <?php $this->load->view('pagee/header'); ?>
-    <title>Home</title>
 </head>
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar'); ?>
 <!-- Load navbar in page/navbar -->
 <?php $this->load->view('pagee/topbar2'); ?>
-<script>
-    function hapus_confirm() {
-        var msg;
-        msg = "Anda yakin hapus data ? ";
-        var agree = confirm(msg);
-        if (agree)
-            return true;
-        else
-            return false;
-    }
-</script>
+
 <!--Form Home-->
 <div class="content">
     <div class="container-fluid">
@@ -36,45 +25,49 @@
                     echo $this->session->flashdata('message');
                 } ?>
                 <div class="card-header ">
-                    <h4 class="card-title">DAFTAR HARGA</h4>
-                    <div class="pull-right">
-                        <a href="<?= site_url('Harga/tambah') ?>" class="btn btn-primary"> + Tambah Data</a>
-                    </div>
+                    <h4 class="card-title">DATA PETANI</h4>
+                    <!--<div class="pull-right">
+                        <a href="<?= site_url('petani/add') ?>" class="btn btn-primary"> + Tambah Data</a>
+                    </div>-->
 
                 </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-
-                            <table class="table table-bordered" id="harga" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Harga</th>
+                                        <th>KTP</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
                                         <th>Komoditas</th>
-                                        <th>Pasar</th>
-                                        <th>Kecamatan</th>
-                                        <th>Keterangan</th>
-                                        <th>Tanggal Update</th>
-                                        <th>Aksi</th>
+                                        <th>Luas Sawah</th>
+                                        <th>Alamat Sawah</th>
+                                        <th>Desa/Kelurahan</th>
+                                        <th>No HP</th>
+                                        <th>No Rekening</th>
+                                        <th>Nama Bank</th>
+                                        <th>Atas Nama</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($harga as $harga) { ?>
+                                    foreach ($query as $key => $data) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $harga['harga']. "/Kg"; ?></td>
-                                            <td><?= $harga['komoditas']; ?></td>
-                                            <td><?= $harga['pasar']; ?></td>
-                                            <td><?= $harga['kecamatan']; ?></td>
-                                            <td><?= $harga['keterangan']; ?></td>
-                                            <td><?= $harga['tanggal_update']; ?></td>
-                                            <td>
-                                                <a href="<?= base_url(); ?>harga/edit/<?= $harga['id_harga']; ?>" class="badge badge-primary badge-pill tampilModalUbah">Edit</a>
-                                                <a href="<?= base_url(); ?>harga/hapus/<?= $harga['id_harga']; ?>" class="badge badge-danger badge-pill" onclick="return confirm('Hapus data?');">Hapus</a>
-                                            </td>
+                                            <td><img src="<?= base_url() ?>/uploads/ktp/<?= $data->ktp; ?>" width="100px" height="100px"></td>
+                                            <td><?= $data->username ?></td>
+                                            <td><?= $data->password ?></td>
+                                            <td><?= $data->komoditas ?></td>
+                                            <td><?= $data->luas_sawah ?></td>
+                                            <td><?= $data->alamat_sawah ?></td>
+                                            <td><?= $data->desa_kelurahan ?></td>
+                                            <td><?= $data->no_telp ?></td>
+                                            <td><?= $data->no_rekening ?></td>
+                                            <td><?= $data->nama_bank ?></td>
+                                            <td><?= $data->atas_nama ?></td>
                                         </tr>
                                     <?php
                                     } ?>
@@ -83,10 +76,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
         <?php $this->load->view('pagee/modal'); ?>

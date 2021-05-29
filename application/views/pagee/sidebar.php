@@ -52,7 +52,11 @@
                     </div>
                 </div>
             </li>
-
+            <!-- Nav Item - Data Petani -->
+            <li class="nav-item active">
+                <a class="nav-link" href="<?php echo site_url('data'); ?>">
+                    <span>Data Petani</span></a>
+            </li>
             <!-- Nav Item - Komoditas -->
             <li class="nav-item active">
                 <a class="nav-link" href="<?php echo site_url('komoditas'); ?>">

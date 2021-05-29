@@ -119,7 +119,7 @@
       </header>
       <div class="site-block-wrap">
         <div class="owl-carousel with-dots">
-          <div class="site-blocks-cover overlay overlay-2" style="background-image: url(assets8/images/cobalah.jpg);" data-aos="fade" id="home-section">
+          <div class="site-blocks-cover overlay overlay-2" style="background-image: url(assets7/assets/img/icon2.png);" data-aos="fade" id="home-section">
 
 
             <div class="container">
@@ -134,7 +134,7 @@
 
           </div>
 
-          <div class="site-blocks-cover overlay overlay-2" style="background-image: url(assets8/images/coba.jpg);" data-aos="fade" id="home-section">
+          <div class="site-blocks-cover overlay overlay-2" style="background-image: url(assets7/assets/img/icon2.png);" data-aos="fade" id="home-section">
 
 
             <div class="container">

@@ -10,12 +10,11 @@
 
 <!-- Load navbar in page/navbar -->
 <?php $this->load->view('pagee/header'); ?>
-    <title>Home - Padi</title>
 </head>
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar'); ?>
 <!-- Load navbar in page/navbar -->
-<?php $this->load->view('pagee/topbar'); ?>
+<?php $this->load->view('pagee/topbar2'); ?>
 <script>
     
     function hapus_confirm(){
@@ -55,10 +54,6 @@
                                                         <td><?= $this->fungsi->user_login()->id_akses?> </td>
                                                         <td><?= $this->fungsi->user_login()->username?> </td>
                                                         <td><?= $this->fungsi->user_login()->password?> </td>
-                                                        
-                                                            <!--<a href="<?= base_url(); ?>padi/edit/<?= $padi['produksi']; ?>" class="badge badge-primary badge-pill tampilModalUbah">Edit</a>
-                                                            <a href="<?= base_url(); ?>padi/hapus/<?= $padi['id_tpadi']; ?>" class="badge badge-danger badge-pill" onclick="return confirm('Hapus data?');">Hapus</a>
-                                                        </td> -->
                                                     </tr>
                                                 </tbody>
                                             </table>

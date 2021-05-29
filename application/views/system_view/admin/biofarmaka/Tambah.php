@@ -15,7 +15,7 @@
 <!-- load sidebar in page/sidebar -->
 <?php $this->load->view('pagee/sidebar'); ?>
 <!-- Load navbar in page/navbar -->
-<?php $this->load->view('pagee/topbar'); ?>
+<?php $this->load->view('pagee/topbar2'); ?>
 <script>
     function hanyaAngka(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode

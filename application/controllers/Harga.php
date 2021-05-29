@@ -59,7 +59,8 @@ class Harga extends CI_Controller
             $query = $this->Model_harga->get($id);
             if ($query->num_rows() > 0) {
                 $data['row'] = $query->row();
-                $data['listKec'] = $this->Model_harga->listKomoditas();
+                $data['listKom'] = $this->Model_harga->listKomoditas();
+                $data['listKec'] = $this->Model_harga->listKecamatan();
                 $this->load->view('system_view/admin/harga/Edit', $data);
             } else {
                 echo "<script>alert('Data Berhasil Di Simpan');";

@@ -104,6 +104,9 @@ class Tanam_panen extends CI_Controller
         $kondisi = array('id_tanam_panen' => $id);
 
         $data['data'] = $this->Model_tanam->get_by_id($kondisi);
+
+        $data['tanam'] = $this->Model_tanam->getFormTanam(); //query dari model
+        $data['komo'] = $this->Model_tanam->getKomoditas(); //query dari model
         return $this->load->view('system_view/petani/tanam_panen/Edit', $data);
     }
 
@@ -120,6 +123,7 @@ class Tanam_panen extends CI_Controller
         $hasil_panen = $this->input->post('hasil_panen');
         $harga_panen = $this->input->post('harga_panen');
         $kondisi_panen = $this->input->post('kondisi_panen');
+        $keterangan = $this->input->post('keterangan');
 
         $path = './uploads/panen/';
 
@@ -161,6 +165,8 @@ class Tanam_panen extends CI_Controller
                     'hasil_panen'                => $hasil_panen,
                     'harga_panen'                => $harga_panen,
                     'kondisi_panen'              => $kondisi_panen,
+                    'keterangan'              => $keterangan,
+                    'id_anggota' => $id_anggota['id_anggota'],
                 );
                 // print_r($data);
                 // print_r($id);
@@ -182,6 +188,8 @@ class Tanam_panen extends CI_Controller
                 'hasil_panen'                => $hasil_panen,
                 'harga_panen'                => $harga_panen,
                 'kondisi_panen'              => $kondisi_panen,
+                'keterangan'              => $keterangan,
+                'id_anggota' => $id_anggota['id_anggota'],
 
             );
             // print_r($data);
