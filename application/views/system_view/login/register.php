@@ -128,6 +128,10 @@
                             <div class="form-group">
                                 <input type="number" name="no_rekening" value="<?= set_value('no_rekening') ?>" class="form-control" placeholder="Silahkan masukkan No Rekening">
                                 <?php echo form_error('no_rekening'); ?>
+                                <input type="number" name="nama_bank" value="<?= set_value('nama_bank') ?>" class="form-control" placeholder="Silahkan masukkan Nama Bank">
+                                <?php echo form_error('nama_bank'); ?>
+                                <input type="number" name="atas_nama" value="<?= set_value('atas_nama') ?>" class="form-control" placeholder="Silahkan masukkan No Rekening">
+                                <?php echo form_error('atas_nama'); ?>
                             </div>
                         </div>
                     </div>

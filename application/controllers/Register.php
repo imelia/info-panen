@@ -22,6 +22,9 @@ class Register extends CI_Controller
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
         $this->form_validation->set_rules('id_akses', 'id_akses', 'required');
+        $this->form_validation->set_rules('atas_nama', 'atas_nama', 'trim');
+        $this->form_validation->set_rules('no_rekening', 'no_rekening', 'trim');
+        $this->form_validation->set_rules('nama_bank', 'nama_bank', 'trim');
 
         $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
         if ($this->form_validation->run() == FALSE) {
@@ -30,6 +33,10 @@ class Register extends CI_Controller
             $this->load->view('system_view/login/register');
         } else {
             $post = $this->input->post(null, TRUE);
+            // echo '<pre>';
+            // print_r($post);
+            // die;
+            // echo '</pre>';
             $this->Model_register->add($post);
             if ($this->db->affected_rows() > 0) {
                 echo "<script>alert('Data Berhasil Di Simpan');</script>";
