@@ -47,27 +47,42 @@ class Padi extends CI_Controller
         $this->form_validation->set_rules('nama_kecamatan', 'kecamatan', 'required');
         $this->form_validation->set_rules('tanam', 'tanam', 'required');
         $this->form_validation->set_rules('panen', 'panen', 'required');
+        $this->form_validation->set_rules('provitas', 'provitas', 'required');
         $this->form_validation->set_rules('produksi', 'produksi', 'required');
         $this->form_validation->set_rules('tahun', 'tahun', 'required');
 
         $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
         if ($this->form_validation->run() == FALSE) {
             $query = $this->Model_padi->get($id);
-            if ($query->num_rows() > 0) {
-                $data['row'] = $query->row();
-                $data['listKec'] = $this->Model_padi->listKecamatan();
-                $this->load->view('system_view/admin/padi/Edit', $data);
-            } else {
-                echo "<script>alert('Data Berhasil Di Simpan');";
-                echo "window.location='" . site_url('padi') . "';</script>";
-            }
+            $data['row'] = $query->row();
+            $data['listKec'] = $this->Model_padi->listKecamatan();
+            $this->load->view('system_view/admin/padi/Edit', $data);
         } else {
-            $post = $this->input->post(null, TRUE);
-            $this->Model_padi->edit($post);
-            if ($this->db->affected_rows() > 0) {
-                echo "<script>alert('Data Berhasil Di Simpan');</script>";
-            }
-            echo "<script>window.location='" . site_url('padi') . "';</script>";
+            $where = $this->input->post('id');
+            $data = [
+                'nama_kecamatan' => $this->input->post('nama_kecamatan'),
+                'tanam' => $this->input->post('tanam'),
+                'panen' => $this->input->post('panen'),
+                'provitas' => $this->input->post('provitas'),
+                'produksi' => $this->input->post('produksi'),
+                'tahun' => $this->input->post('tahun'),
+            ];
+
+            // var_dump($where);
+            // var_dump($data);
+            // die;
+            $this->Model_padi->update_data_pad($where, $data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                    Data padi sudah terupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+            );
+            redirect('padi');
         }
     }
 

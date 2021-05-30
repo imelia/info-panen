@@ -68,4 +68,10 @@ class Model_padi extends CI_model
         $query = $this->db->get("kecamatan");
         return $query->result_array();
     }
+
+    public function update_data_pad($where, $data)
+    {
+        $this->db->where('id_tpadi', $where);
+        $this->db->update('tanaman_padi_palawija', $data);
+    }
 }

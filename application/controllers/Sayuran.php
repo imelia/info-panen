@@ -47,27 +47,18 @@ class Sayuran extends CI_Controller
         }
     }
 
-    public function edit($id_tsayur)
+    public function edit($id = '')
     {
-        $where = array('id_tsayur' => $id_tsayur);
-        $data['query'] = $this->Model_sayur->edit_data($where,'tanaman_sayuran')->result();
+        $data['query'] = $this->db->get_where('tanaman_sayuran', ['id_tsayur' => $id])->row();
         $data['listKec'] = $this->Model_sayur->listKomoditas();
         $this->load->view('system_view/admin/sayuran/Edit', $data, FALSE);
     }
-    
+
     public function update()
     {
 
-        $id_tsayur = $this->input->post('id_tsayur');
-        $komoditi = $this->input->post('komoditi');
-        $luas_tanam = $this->input->post('luas_tanam');
-        $produksi_habis_dibongkar = $this->input->post('produksi_habis_dibongkar');
-        $produksi_belum_dibongkar = $this->input->post('produksi_belum_dibongkar');
-        $total = $this->input->post('total');
-        $harga_min = $this->input->post('harga_min');
-        $harga_max = $this->input->post('harga_max');
-        $total = $this->input->post('total');
-        $data = array(
+        $where = $this->input->post('id_tsayur');
+        $data = [
             'komoditi' => $this->input->post('komoditi'),
             'luas_tanam' => $this->input->post('luas_tanam'),
             'luas_panen' => $this->input->post('luas_panen'),
@@ -76,20 +67,24 @@ class Sayuran extends CI_Controller
             'total' => $this->input->post('total'),
             'harga_min' => $this->input->post('harga_min'),
             'harga_max' => $this->input->post('harga_max'),
-            'total' => $this->input->post('total'),
-        );
-        $where = array(
-            'id_tsayur' => $id_tsayur
-        );
+            'tahun' => $this->input->post('tahun'),
+        ];
+
+        // var_dump($where);
+        // var_dump($data);
+        // die;
+        $this->Model_sayur->update_data_sayur($where, $data);
+
         $this->session->set_flashdata(
             'message',
-            '<div class="alert alert-success" role="alert"> Konfirmasi data berhasil ! 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>'
+            '<div class="alert alert-success" role="alert">
+                    Data Sayur sudah terupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
         );
-        redirect(base_url('sayuran'), 'refresh');
+        redirect('sayuran');
     }
 
     public function hapus($id)

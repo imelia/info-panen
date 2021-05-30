@@ -1,27 +1,30 @@
 <?php
 
-class Model_buah extends CI_model{
+class Model_buah extends CI_model
+{
 
-    public function getAllBuah(){
+    public function getAllBuah()
+    {
         return $this->db->get('tanaman_buah')->result_array();
     }
 
-    public function getAllBuahById($id){
-        $options=array('id_tbuah'=>$id);
-        $query = $this->db->get_where('tanaman_buah',$options);
+    public function getAllBuahById($id)
+    {
+        $options = array('id_tbuah' => $id);
+        $query = $this->db->get_where('tanaman_buah', $options);
         $ret = $query->row();
         return $ret;
     }
     public function get($id = null)
     {
         $this->db->from('tanaman_buah');
-        if($id != null) {
+        if ($id != null) {
             $this->db->where('harga', $id);
         }
         $query = $this->db->get();
         return $query;
     }
-    
+
     public function add($post)
     {
         $params['nama_tanaman'] = $post['nama_tanaman'];
@@ -37,8 +40,8 @@ class Model_buah extends CI_model{
         $this->db->insert('tanaman_buah', $params);
     }
 
-    
-        public function edit($post)
+
+    public function edit($post)
     {
         $params['nama_tanaman'] = $post['nama_tanaman'];
         $params['jumlah_tanaman'] = $post['jumlah_tanaman'];
@@ -52,18 +55,24 @@ class Model_buah extends CI_model{
         $this->db->where('harga', $post['harga']);
         $this->db->update('tanaman_buah', $params);
     }
-    
+
 
     public function hapus($id)
     {
         $this->db->where('id_tbuah', $id);
         $this->db->delete('tanaman_buah');
     }
-// ---------------- Dropdown databases KECAMATAN -----------------
-public function listKomoditas()
-{
-    $this->db->order_by("id_komoditas", "asc");
-    $query = $this->db->get("komoditas");
-    return $query->result_array();
-}
+    // ---------------- Dropdown databases KECAMATAN -----------------
+    public function listKomoditas()
+    {
+        $this->db->order_by("id_komoditas", "asc");
+        $query = $this->db->get("komoditas");
+        return $query->result_array();
+    }
+
+    public function update_data_buah($where, $data)
+    {
+        $this->db->where('id_tbuah', $where);
+        $this->db->update('tanaman_buah', $data);
+    }
 }

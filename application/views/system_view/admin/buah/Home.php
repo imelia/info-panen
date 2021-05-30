@@ -67,7 +67,7 @@
                                     foreach ($buah as $buah) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            
+
                                             <td><?= $buah['nama_tanaman']; ?></td>
                                             <td><?= "" . number_format($buah['jumlah_tanaman'], 0, ',', '.'); ?></td>
                                             <td><?= "" . number_format($buah['tanaman_baru'], 0, ',', '.'); ?></td>
@@ -78,7 +78,7 @@
                                             <td><?= $buah['harga']; ?></td>
                                             <td><?= $buah['tahun']; ?></td>
                                             <td>
-                                                <a href="<?= base_url(); ?>buah/edit/<?= $buah['harga']; ?>" class="badge badge-primary badge-pill tampilModalUbah">Edit</a>
+                                                <a href="<?= base_url(); ?>buah/edit/<?= $buah['id_tbuah']; ?>" class="badge badge-primary badge-pill">Edit</a>
                                                 <a href="<?= base_url(); ?>buah/hapus/<?= $buah['id_tbuah']; ?>" class="badge badge-danger badge-pill" onclick="return confirm('Hapus data?');">Hapus</a>
                                             </td>
                                         </tr>

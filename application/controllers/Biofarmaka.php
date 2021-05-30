@@ -67,12 +67,33 @@ class Biofarmaka extends CI_Controller
                 echo "window.location='" . site_url('biofarmaka') . "';</script>";
             }
         } else {
-            $post = $this->input->post(null, TRUE);
-            $this->Model_biofarmaka->edit($post);
-            if ($this->db->affected_rows() > 0) {
-                echo "<script>alert('Data Berhasil Di Simpan');</script>";
-            }
-            echo "<script>window.location='" . site_url('biofarmaka') . "';</script>";
+            $where = $this->input->post('id');
+            $data = [
+                'komoditi_biofarmaka' => $this->input->post('komoditi_biofarmaka'),
+                'luas_panen' => $this->input->post('luas_panen'),
+                'luas_tanam' => $this->input->post('luas_tanam'),
+                'provitas' => $this->input->post('provitas'),
+                'produksi_biofarmaka' => $this->input->post('produksi_biofarmaka'),
+                'harga_biofarmaka' => $this->input->post('harga_biofarmaka'),
+                'tahun' => $this->input->post('tahun'),
+            ];
+
+            // var_dump($where);
+            // var_dump($data);
+            // die;
+
+            $this->Model_biofarmaka->update_data_biofarmaka($where, $data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                    Data buah sudah terupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+            );
+            redirect('biofarmaka');
         }
     }
 

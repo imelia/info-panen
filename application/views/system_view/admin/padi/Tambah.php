@@ -17,19 +17,19 @@
     <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
-	</script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+            return false;
+        return true;
+    }
+</script>
 
 <script>
     function hapus_confirm() {
         var msg;
-        msg = "Anda yakin update data ? ";
+        msg = "Anda yakin simpan data ? ";
         var agree = confirm(msg);
         if (agree)
             return true;
@@ -70,7 +70,7 @@
                                             <label>Tanam (Ha)</label>
                                             <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                             <div class="form-group">
-                                                <input type="text" name="tanam" value="<?= set_value('tanam') ?>" onkeypress="return hanyaAngka(event)" class="form-control" >
+                                                <input type="text" name="tanam" value="<?= set_value('tanam') ?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                                 <?= form_error('tanam') ?>
                                             </div>
                                         </div>

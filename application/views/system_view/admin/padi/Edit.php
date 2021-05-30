@@ -16,16 +16,16 @@
     <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
-	</script>
-<script>
-<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+            return false;
+        return true;
+    }
+</script>
+
+<script script>
     function hapus_confirm() {
         var msg;
         msg = "Anda yakin data sudah benar ?? ";
@@ -57,6 +57,7 @@
 
                         <form action="<?= base_url() ?>padi/edit" method="post">
                             <div class="row">
+                                <input type="hidden" name="id" id="id" value="<?= $row->id_tpadi; ?>">
                                 <div class="col-md-12">
                                     <label>Kecamatan</label>
                                     <div class="form-group">
@@ -123,26 +124,26 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
-<!-- End of Main Content -->
-<!-- Load modal-->
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    <!-- Load modal-->
 
 
-<?php $this->load->view('pagee/modal'); ?>
+    <?php $this->load->view('pagee/modal'); ?>
 
-<!-- Load navbar in page/navbar -->
-<?php $this->load->view('pagee/footer'); ?>
+    <!-- Load navbar in page/navbar -->
+    <?php $this->load->view('pagee/footer'); ?>
 
-</body>
-<script type="text/javascript">
-    $(document).ready(function() {
+    </body>
+    < type="text/javascript">
+        $(document).ready(function() {
         $("#table-ah").dataTable();
-    });
-</script>
+        });
+    </>
 
 </html>

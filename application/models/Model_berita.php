@@ -46,12 +46,10 @@ class Model_berita extends CI_Model {
   public function delete($where)
   //Query untuk menghapus berdasarkan id 
   {
-      $this->db->where($where);
+      $this->db->where('id_berita',$where);
       $this->db->delete('berita');
       return TRUE;
   }
   
 
 }
-
-?>

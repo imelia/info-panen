@@ -46,7 +46,7 @@ class Buah extends CI_Controller
             echo "<script>window.location='" . site_url('buah') . "';</script>";
         }
     }
-    public function edit($id = null)
+    public function edit($id = '')
     {
 
         $this->form_validation->set_rules('nama_tanaman', 'nama_tanaman', 'required');
@@ -61,22 +61,38 @@ class Buah extends CI_Controller
 
         $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
         if ($this->form_validation->run() == FALSE) {
-            $query = $this->Model_buah->get($id);
-            if ($query->num_rows() > 0) {
-                $data['row'] = $query->row();
-                $data['listKom'] = $this->Model_buah->listKomoditas();
-                $this->load->view('system_view/admin/buah/Edit', $data);
-            } else {
-                echo "<script>alert('Data Berhasil Di Simpan');";
-                echo "window.location='" . site_url('buah') . "';</script>";
-            }
+            $data['row'] =  $this->db->get_where('tanaman_buah', ['id_tbuah' => $id])->row();
+            $data['listKom'] = $this->Model_buah->listKomoditas();
+            $this->load->view('system_view/admin/buah/Edit', $data);
         } else {
-            $post = $this->input->post(null, TRUE);
-            $this->Model_buah->edit($post);
-            if ($this->db->affected_rows() > 0) {
-                echo "<script>alert('Data Berhasil Di Simpan');</script>";
-            }
-            echo "<script>window.location='" . site_url('buah') . "';</script>";
+            $where = $this->input->post('id');
+            $data = [
+                'nama_tanaman' => $this->input->post('nama_tanaman'),
+                'jumlah_tanaman' => $this->input->post('jumlah_tanaman'),
+                'tanaman_baru' => $this->input->post('tanaman_baru'),
+                'tanaman_menghasilkan' => $this->input->post('tanaman_menghasilkan'),
+                'tanaman_produktif' => $this->input->post('tanaman_produktif'),
+                'provitas' => $this->input->post('provitas'),
+                'harga' => $this->input->post('harga'),
+                'tahun' => $this->input->post('tahun'),
+            ];
+
+            // var_dump($where);
+            // var_dump($data);
+            // die;
+
+            $this->Model_buah->update_data_buah($where, $data);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">
+                    Data buah sudah terupdate !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>'
+            );
+            redirect('buah');
         }
     }
 

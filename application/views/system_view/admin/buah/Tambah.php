@@ -57,12 +57,12 @@
                                 <div class="col-md-12">
                                     <label>Komoditi</label>
                                     <div class="form-group">
-                                    <select class="form-control" name="nama_tanaman" value="<?= set_value('nama_tanaman') ?>" required>
+                                        <select class="form-control" name="nama_tanaman" value="<?= set_value('nama_tanaman') ?>" required>
                                             <?php foreach ($listKec as $syr) : ?>
                                                 <option value="<?= $syr['nama_tanaman']; ?>"><?= $syr['nama_tanaman']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -148,17 +148,15 @@
                                         <button type="submit" onclick="return hapus_confirm()" class="btn btn-primary">Simpan</button>
                                     </div>
                                     <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
 <?php $this->load->view('pagee/modal'); ?>
