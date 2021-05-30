@@ -125,13 +125,10 @@
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-md-6 mt-lg-5 text-center">
-                  <h1 class="text-shadow">Info Panen</h1>
-                  <p class="mb-5 text-shadow">Info Panen merupakan sistem informasi yang menyediakan informasi untuk masyarakat dan petani tentang panen yang ada di Kabupaten Probolinggo. Info Panen ini juga memiliki fitur data panen sehingga masyarakat dapat membeli panen dari para petani di Kabupaten Probolinggo! </p>
+                  <h1 class="text-shadow">INFO PANEN</h1>
                 </div>
               </div>
             </div>
-
-
           </div>
 
           <div class="site-blocks-cover overlay overlay-2" style="background-image: url(assets7/assets/img/icon2.png);" data-aos="fade" id="home-section">
@@ -140,8 +137,7 @@
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div class="col-md-6 mt-lg-5 text-center">
-                  <h1 class="text-shadow">Info Panen</h1>
-                  <p class="mb-5 text-shadow">Info Panen menyediakan fitur Data Panen untuk para petani yang ingin mempromosikan dan menjual hasil panen raya. Info Panen hanya menyediakan form untuk para petani yang ingin menjual hasil panen raya tetapi info panen ini tidak sampai ke dalam proses pembayaran atau transaksi!</p>
+                  <p class="mb-5 text-shadow">Wadah untuk para petani yang ingin menjual hasil produk panen secara online.</p>
                 </div>
               </div>
             </div>

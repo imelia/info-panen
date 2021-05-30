@@ -14,11 +14,24 @@
                 <p class="lead">Cara untuk pemesanan sebagai berikut :</p>
 
                 <ul class="list-unstyled ul-check success">
-                  <li>1. Pilih fitur data panen</li>
-                  <li>2. Setelah memilih fitur data panen, akan ada tabel data panen yang sudah disediakan. Tabel tersebut merupakan tabel data-data panen dari petani.</li>
-                  <li>3. Klik pesan, jika sudah yakin untuk memesan. Kemudian anda harus menghubungi nomor handphone yang sudah tersedia untuk transaksi pembayarannya.</li>
-                  <li>4. Pemesanan yang sudah dilakukan akan masuk ke fitur riwayat pesan. Klik riwayat pesan untuk melihat riwayat pemesanan anda.</li>
-                  <li>5. Klik laporan jika anda ingin melihat pemesanan setiap bulannya.</li>
+                  <h3>
+                    <li>1. Login terlebih dahulu jika sudah punya akun, apabila belum memiliki akun pilih menu registrasi</li>
+                    </h1>
+                    <h3>
+                      <li>2. Pilih menu produk panen</li>
+                    </h3>
+                    <h3>
+                      <li>3. Klik menu pesan sekarang. Kemudian anda harus menghubungi nomor handphone yang sudah tersedia di menu detail menyanyakan terkait dengan transaksi pengiriman.</li>
+                    </h3>
+                    <h3>
+                      <li>4. Check Out pesanan di menu keranjang dengan klik menu bayar panen</li>
+                    </h3>
+                    <h3>
+                      <li>5. Setelah check out pesanan, klik menu riwayat pesanan untuk mengkonfirmasi pembayaran</li>
+                    </h3>
+                    <h3>
+                      <li>6. Lihat menu laporan untuk melihat riwayat pesanan dan pembayaran</li>
+                    </h3>
                 </ul>
 
                 <p><a href="<?php echo site_url('Vtanam_panen'); ?>" class="btn btn-primary mr-2 mb-2">Pesan Sekarang</a></p>

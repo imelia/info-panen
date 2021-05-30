@@ -54,7 +54,17 @@
                                 <div class="card-body table-full-width table-responsive">
                                 
                         <form action="<?=base_url()?>sayuran/edit" method="post">
-                        <div class="row">
+                                <div class="row">
+                                      <div class="col-md-12">
+                                      <label>Luas Tanam</label>
+                                      <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                          <div class="form-group">
+                                              <input type="text" name="luas_tanam" value="<?=$row->id_tsayur?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <?=form_error('luas_tanam')?>
+                                          </div>
+                                      </div>
+                                  </div>  
+                                <div class="row">
                                     <div class="col-md-12">
                                     <label>Komoditi</label>
                                     <div class="form-group">

@@ -28,7 +28,7 @@
 <script>
     function hapus_confirm() {
         var msg;
-        msg = "Anda yakin update data ? ";
+        msg = "Anda yakin simpan data ? ";
         var agree = confirm(msg);
         if (agree)
             return true;
