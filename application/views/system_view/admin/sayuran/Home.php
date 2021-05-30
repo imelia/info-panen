@@ -75,10 +75,10 @@
                                             <td><?= "" . number_format($sayur['produksi_belum_dibongkar'], 0, '.', '.') . "Kui"; ?></td>
                                             <td><?= "" . number_format($sayur['total'], 0, '.', '.') . "Kui"; ?></td>
                                             <td><?= $sayur['harga_min'];?></td>
-                                            <td><?= $sayur['harga_max']; ?></td>
+                                            <td><?= "Rp" . number_format($sayur['harga_max'], 0, '.', '.'); ?></td>
                                             <td><?= $sayur['tahun']; ?></td>
                                             <td>
-                                                <a href="<?= base_url(); ?>sayuran/edit/<?= $sayur['luas_tanam']; ?>" class="badge badge-primary badge-pill tampilModalUbah">Edit</a>
+                                                <a href="<?= base_url(); ?>sayuran/edit/<?= $sayur['id_tsayur']; ?>" class="badge badge-primary badge-pill tampilModalUbah">Edit</a>
                                                 <a href="<?= base_url(); ?>sayuran/hapus/<?= $sayur['id_tsayur']; ?>" class="badge badge-danger badge-pill" onclick="return confirm('Hapus data?');">Hapus</a>
                                             </td>
                                         </tr>

@@ -16,15 +16,27 @@ class Model_sayur extends CI_model{
     {
         $this->db->from('tanaman_sayuran');
         if($id != null) {
-            $this->db->where('luas_tanam', $id);
+            $this->db->where('id_tsayur', $id);
         }
         $query = $this->db->get();
         return $query;
     }
-    function get_sub_kecamatan($id_kecamatan){
-        $query = $this->db->get_where('kecamatan', array('id_kecamatan' => $id_kecamatan));
-        return $query;
+    public function id_header_transaksi($id_tsayur)
+    {
+        $this->db->select('*');
+        $this->db->from('tanaman_sayuran');
+        $this->db->where('id_tsayur', $id_tsayur);
+        $query = $this->db->get();
+        return $query->result();
     }
+
+    function edit_data($where,$table){		
+        return $this->db->get_where($table,$where);
+    }
+    function update_data($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}	
     public function add($post)
     {
         $params['komoditi'] = $post['komoditi'];
@@ -42,6 +54,7 @@ class Model_sayur extends CI_model{
     
         public function edit($post)
     {
+        $params['id_tsayur'] = $post['id_tsayur'];
         $params['komoditi'] = $post['komoditi'];
         $params['luas_tanam'] = $post['luas_tanam'];
         $params['luas_panen'] = $post['luas_panen'];
@@ -51,7 +64,7 @@ class Model_sayur extends CI_model{
         $params['harga_min'] = $post['harga_min'];
         $params['harga_max'] = $post['harga_max'];
         $params['tahun'] = $post['tahun'];
-        $this->db->where('luas_tanam', $post['luas_tanam']);
+        $this->db->where('id_tsayur', $id_tsayur);
         $this->db->update('tanaman_sayuran', $params);
     }
     

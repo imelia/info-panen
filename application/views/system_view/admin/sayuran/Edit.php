@@ -53,23 +53,13 @@
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                 
-                        <form action="<?=base_url()?>sayuran/edit" method="post">
-                                <div class="row">
-                                      <div class="col-md-12">
-                                      <label>Luas Tanam</label>
-                                      <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
-                                          <div class="form-group">
-                                              <input type="text" name="luas_tanam" value="<?=$row->id_tsayur?>" onkeypress="return hanyaAngka(event)" class="form-control">
-                                              <?=form_error('luas_tanam')?>
-                                          </div>
-                                      </div>
-                                  </div>  
+                        <form action="<?=base_url()?>sayuran/update" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                     <label>Komoditi</label>
                                     <div class="form-group">
-                                    <select class="form-control" name="komoditi" value="<?= $this->input->post('komoditi') ?? $row->komoditi ?>" required>
-                                            <option value="<?= $row->komoditi?>"><?= $row->komoditi?></option>
+                                    <select class="form-control" name="komoditi" value="<?= $query->komditi ?>" required>
+                                            <option value="<?= $query->komoditi?>"><?= $query->komoditi?></option>
                                             <?php foreach ($listKec as $list) : ?>
                                                 <option value="<?= $list['nama_tanaman']; ?>"><?= $list['nama_tanaman']; ?></option>
                                             <?php endforeach; ?>
@@ -80,7 +70,8 @@
                                       <label>Luas Tanam</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="luas_tanam" value="<?=$this->input->post('luas_tanam') ?? $row->luas_tanam?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="hidden" name="id_tsayur" value="<?= $query->id_tsayur ?>" class="form-control">
+                                              <input type="text" name="luas_tanam" value="<?= $query->luas_tanam?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('luas_tanam')?>
                                           </div>
                                       </div>
@@ -90,7 +81,7 @@
                                       <label>Luas Panen (Ha)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="luas_panen" value="<?=$this->input->post('luas_panen') ?? $row->luas_panen?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="luas_panen" value="<?=$query->luas_panen?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('luas_panen')?>
                                           </div>
                                       </div>
@@ -100,7 +91,7 @@
                                       <label>Produksi Habis Dibongkar (Kui)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="produksi_habis_dibongkar" value="<?=$this->input->post('produksi_habis_dibongkar') ?? $row->produksi_habis_dibongkar?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="produksi_habis_dibongkar" value="<?=$query->produksi_habis_dibongkar?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('produksi_habis_dibongkar')?>
                                           </div>
                                       </div>
@@ -110,7 +101,7 @@
                                       <label>Produksi Belum Dibongkar (Kui)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="produksi_belum_dibongkar" value="<?=$this->input->post('produksi_belum_dibongkar') ?? $row->produksi_belum_dibongkar?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="produksi_belum_dibongkar" value="<?=$query->produksi_belum_dibongkar?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('produksi_belum_dibongkar')?>
                                           </div>
                                       </div>
@@ -120,7 +111,7 @@
                                       <label>Total (Kui)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="total" value="<?=$this->input->post('total') ?? $row->total?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="total" value="<?=$query->total?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('total')?>
                                           </div>
                                       </div>
@@ -130,7 +121,7 @@
                                       <label>Harga Min (Rp/Kui)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="harga_min" value="<?=$this->input->post('harga_min') ?? $row->harga_min?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="harga_min" value="<?=$this->input->post('harga_min') ?? $query->harga_min?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('harga_min')?>
                                           </div>
                                       </div>
@@ -140,7 +131,7 @@
                                       <label>Harga Max (Rp/Kui)</label>
                                       <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                           <div class="form-group">
-                                              <input type="text" name="harga_max" value="<?=$this->input->post('harga_max') ?? $row->harga_max?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="harga_max" value="<?=$query->harga_max?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('harga_max')?>
                                           </div>
                                       </div>
@@ -149,7 +140,7 @@
                                       <div class="col-md-12">
                                       <label>Tahun</label>
                                           <div class="form-group">
-                                              <input type="text" name="tahun" value="<?=$this->input->post('tahun') ?? $row->tahun?>" onkeypress="return hanyaAngka(event)" class="form-control">
+                                              <input type="text" name="tahun" value="<?=$query->tahun?>" onkeypress="return hanyaAngka(event)" class="form-control">
                                               <?=form_error('tahun')?>
                                           </div>
                                       </div>

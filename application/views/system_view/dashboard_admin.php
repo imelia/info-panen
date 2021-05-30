@@ -36,6 +36,8 @@
     <!-- load sidebar in page/sidebar -->
     <?php $this->load->view('page/sidebar'); ?>
     <!-- Load navbar in page/navbar -->
+    <?php $this->load->view('pagee/topbar2'); ?>
+    <!-- Load navbar in page/navbar -->
     <?php $this->load->view('page/navbar'); ?>
  
     

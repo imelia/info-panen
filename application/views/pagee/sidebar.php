@@ -9,7 +9,7 @@
             <!-- Sidebar - Brand -->
             <br>
             <div class="sidebar-brand-icon justify-content-center text-center">
-                <img src="<?php echo base_url('assets7/assets/img/loog.png'); ?>" alt="Image" class="img-fluid justify-content-center text-center" style="width:80px; height:80px;">
+                <img src="<?php echo base_url('assets8/images/icon.png'); ?>" alt="Image" class="img-fluid rounded-circle  justify-content-center text-center" style="width:135px; height:135px;">
             </div>
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo site_url('dash'); ?>">
                 <div class="sidebar-brand-text mx-3">INFO PANEN<sup></sup></div>
