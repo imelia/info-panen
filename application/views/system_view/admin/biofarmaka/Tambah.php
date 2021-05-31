@@ -28,7 +28,7 @@
 <script>
     function hapus_confirm() {
         var msg;
-        msg = "Anda yakin data sudah benar ?? ";
+        msg = "Anda yakin simpan data ?? ";
         var agree = confirm(msg);
         if (agree)
             return true;
@@ -63,24 +63,7 @@
                                                 <option value="<?= $row['nama_tanaman']; ?>"><?= $row['nama_tanaman']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <!--<option value="Jahe">Jahe</option>
-                                        <option value="Lengkuas">Lengkuas</option>
-                                        <option value="Kencur">Kencur</option>
-                                        <option value="Kunyit">Kunyit</option>
-                                        <option value="Lempuyang">Lempuyang</option>
-                                        <option value="Temulawak">Temulawak</option>
-                                        <option value="Temuireng">Temuireng</option>
-                                        <option value="Temukunci">Temukunci</option>
-                                        <option value="Dlingo">Dlingo</option>
-                                        <option value="Kapulaga">Kapulaga</option>
-                                        <option value="Mengkudu">Mengkudu</option>
-                                        <option value="Mahkota Dewa">Mahkota Dewa</option>
-                                        <option value="Kejibeling">Kejibeling</option>
-                                        <option value="Sambiloto">Sambiloto</option>
-                                        <option value="Lidah Buaya">Lidah Buaya</option>-->
                                     </div>
-
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Luas Panen (m<sup>2</sup>)</label>
