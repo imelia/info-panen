@@ -1,52 +1,4 @@
-<style>
-    /* Dropdown Button */
-    .dropbtn {
-        background-color: #4CAF50;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
 
-    /* The container <div> - needed to position the dropdown content */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {
-        background-color: #f1f1f1
-    }
-
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-</style>
 
 <body>
 
@@ -54,14 +6,50 @@
 
         <div class="site-wrap">
 
-            <div class="site-mobile-menu site-navbar-target">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
-                    </div>
-                </div>
-                <div class="site-mobile-menu-body"></div>
-            </div>
+        <div class="site-mobile-menu site-navbar-target">
+      
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile">
+        <li>
+            <a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a>
+        </li>
+        <li>
+            <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+                <?php
+                $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
+                ?>
+                <?= $keranjang; ?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+                Riwayat Pesanan
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+                Laporan
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo base_url('auth/logout'); ?>" onclick="window.confirm()">
+                <i class="fas fa-sign-out-alt"></i>
+                    Logout
+            </a>
+        </li>
+        <li>
+            <a class="bg-info rounded-circle ml-5" href="<?= base_url('Vtanam_panen/my_profile'); ?>">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+            </a>
+        </li>
+      </div>
+      
+    </div>
 
 
             <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">

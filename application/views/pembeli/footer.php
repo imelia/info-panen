@@ -81,7 +81,7 @@
 
 <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a>
 
-<script src="<?php echo base_url('assets8/js/jquery-3.3.1.min.js'); ?>"></script>
+
 
 <script>
   $('.custom-file-input').on('change', function() {
@@ -90,8 +90,8 @@
   })
 </script>
 
-<script src="<?php echo base_url('assets8/js/jquery-ui.js'); ?>">
-</script>
+<script src="<?php echo base_url('assets8/js/jquery-3.3.1.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets8/js/jquery-ui.js'); ?>"></script>
 <script src="<?php echo base_url('assets8/js/popper.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets8/js/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets8/js/owl.carousel.min.js'); ?>"></script>
@@ -104,6 +104,7 @@
 
 
 <script src="<?php echo base_url('assets8/js/main.js'); ?>"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets5/vendor/jquery/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets5/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>

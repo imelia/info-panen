@@ -55,12 +55,46 @@
     <div class="site-wrap">
 
       <div class="site-mobile-menu site-navbar-target">
+      
         <div class="site-mobile-menu-header">
           <div class="site-mobile-menu-close mt-3">
             <span class="icon-close2 js-menu-toggle"></span>
           </div>
         </div>
-        <div class="site-mobile-menu-body"></div>
+        <div class="site-mobile">
+        <li><a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a></li>
+                  <li>
+                    <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+                      <?php
+                      $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
+                      ?>
+                      <?= $keranjang; ?>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+                      Riwayat Pesanan
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+                      Laporan
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo base_url('auth/logout'); ?>" onclick="window.confirm()">
+                      <i class="fas fa-sign-out-alt"></i>
+                      Logout
+                    </a>
+                  </li>
+                  <li>
+                    <a class="bg-info rounded-circle ml-5" href="<?= base_url('Vtanam_panen/my_profile'); ?>">
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Profile
+                    </a>
+                  </li>
+        </div>
+        
       </div>
 
 
