@@ -19,7 +19,7 @@
     
     function hapus_confirm(){
   var msg;
-  msg= "Anda yakin simpan data ? " ;
+  msg= "Anda yakin update data ? " ;
   var agree=confirm(msg);
   if (agree)
   return true ;
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <form action="<?=base_url()?>komoditas/insert" method="post" enctype="multipart/form-data">
-                        <?= $this->session->flashdata('message'); ?>
+                        <?=$this->session->flashdata('pesan')?>
                             <div class="card card-plain table-plain-bg">
                                 <div class="card-header ">
                                     <h4 class="card-title">FORM TAMBAH DATA</h4>
@@ -56,7 +56,7 @@
                                       <label>Nama Komoditas</label>
                                           <div class="form-group">
                                               <input type="text" name="nama_komoditas" class="form-control">
-                                              <?= form_error('nama_komoditas') ?>
+                                              
                                           </div>
                                       </div>
                                   </div>  

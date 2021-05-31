@@ -65,12 +65,12 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $data->nama_pembeli ?></td>
                                             <td><?= $data->nama_produk ?></td>
-                                            <td><?= "Rp" . number_format($data->jumlah_bayar, 0, ',', '.'); ?></td>
+                                            <td><?= $data->jumlah_bayar ?></td>
                                             <td><?= $data->rekening_pembayaran ?></td>
                                             <td><?= $data->rekening_pelanggan ?></td>
                                             <td><?= $data->tanggal_update ?></td>
                                             <td><img src="<?= base_url() ?>/uploads/bayar/<?= $data->bukti_bayar ?>" width="300px" height="300px"></td>
-                                            <td><?= "Rp" . number_format($data->jumlah_transaksi, 0, ',', '.'); ?></td>
+                                            <td><?= $data->jumlah_transaksi ?></td>
                                         </tr>
                                     <?php
                                     } ?>

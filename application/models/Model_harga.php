@@ -53,18 +53,6 @@ class Model_harga extends CI_model{
         $this->db->where('id_harga', $id);
         $this->db->delete('harga');
     }
-
-    public function update_data_harga($where, $data)
-    {
-        $this->db->where('id_harga', $where);
-        $this->db->update('harga', $data);
-    }
-
-    public function get_id_harga($id)
-    {
-        $this->db->select('harga');
-        $this->db->where('id_harga', $id);
-    }
 // ---------------- Dropdown databases KECAMATAN -----------------
 public function listKomoditas()
 {

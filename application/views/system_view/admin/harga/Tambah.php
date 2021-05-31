@@ -29,7 +29,7 @@
 <script>
     function hapus_confirm() {
         var msg;
-        msg = "Anda yakin simpan data ? ";
+        msg = "Anda yakin update data ? ";
         var agree = confirm(msg);
         if (agree)
             return true;
@@ -61,7 +61,7 @@
                                             <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                             <div class="form-group">
                                                 <input type="text" name="harga" value="<?= set_value('harga') ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control" >
-                                                <?= form_error('harga') ?>
+                                                <?= form_error('tanam') ?>
                                             </div>
                                         </div>
                                     </div>

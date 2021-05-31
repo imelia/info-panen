@@ -44,45 +44,38 @@ class Harga extends CI_Controller
             echo "<script>window.location='" . site_url('harga') . "';</script>";
         }
     }
-
-    public function edit($id = '')
+    public function edit($id = null)
     {
-        $data['query'] = $this->db->get_where('harga', ['id_harga' => $id])->row();
-        $data['listKom'] = $this->Model_harga->listKomoditas();
-        $data['listKec'] = $this->Model_harga->listKecamatan();
-        $this->load->view('system_view/admin/harga/Edit', $data, FALSE);
+
+        $this->form_validation->set_rules('harga', 'harga', 'required');
+        $this->form_validation->set_rules('komoditas', 'komoditas', 'required');
+        $this->form_validation->set_rules('pasar', 'pasar', 'required');
+        $this->form_validation->set_rules('kecamatan', 'kecamatan', 'required');
+        $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+        $this->form_validation->set_rules('tanggal_update', 'tanggal_update', 'required');
+
+        $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+        if ($this->form_validation->run() == FALSE) {
+            $query = $this->Model_harga->get($id);
+            if ($query->num_rows() > 0) {
+                $data['row'] = $query->row();
+                $data['listKom'] = $this->Model_harga->listKomoditas();
+                $data['listKec'] = $this->Model_harga->listKecamatan();
+                $this->load->view('system_view/admin/harga/Edit', $data);
+            } else {
+                echo "<script>alert('Data Berhasil Di Simpan');";
+                echo "window.location='" . site_url('harga') . "';</script>";
+            }
+        } else {
+            $post = $this->input->post(null, TRUE);
+            $this->Model_harga->edit($post);
+            if ($this->db->affected_rows() > 0) {
+                echo "<script>alert('Data Berhasil Di Simpan');</script>";
+            }
+            echo "<script>window.location='" . site_url('harga') . "';</script>";
+        }
     }
 
-    public function update()
-    {
-
-        $where = $this->input->post('id_harga');
-        $data = [
-            'harga' => $this->input->post('harga'),
-            'komoditas' => $this->input->post('komoditas'),
-            'pasar' => $this->input->post('pasar'),
-            'kecamatan' => $this->input->post('kecamatan'),
-            'keterangan' => $this->input->post('keterangan'),
-            'tanggal_update' => $this->input->post('tanggal_update'),
-        ];
-
-        // var_dump($where);
-        // var_dump($data);
-        // die;
-        $this->Model_harga->update_data_harga($where, $data);
-
-        $this->session->set_flashdata(
-            'message',
-            '<div class="alert alert-success" role="alert">
-                    Data Harga sudah terupdate !
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>'
-        );
-        redirect('harga');
-    } 
-    
 
     public function hapus($id)
     {

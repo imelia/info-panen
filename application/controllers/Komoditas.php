@@ -56,11 +56,11 @@ class Komoditas extends CI_Controller
                 $this->Model_komoditas->get_insert2($data); //akses model untuk menyimpan ke database
 
                 //pesan yang muncul jika berhasil diupload pada session flashdata
-                $data = $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Upload gambar berhasil !!</div></div>");
+                $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Upload gambar berhasil !!</div></div>");
                 redirect('komoditas'); //jika berhasil maka akan ditampilkan view upload
             } else {
                 //pesan yang muncul jika terdapat error dimasukkan pada session flashdata
-                $data = $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");
+                $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");
                 redirect('komoditas/add'); //jika gagal maka akan ditampilkan form upload
             }
         }
