@@ -34,9 +34,9 @@
                                             <tr>
                                                 <td><?= $i++; ?></td>
                                                 <td><?= $lp['nama_pembeli']; ?></td>
-                                                <td><?= $lp['nama_produk']; ?></td>
+                                                <td><?= $lp['nama_product']; ?></td>
                                                 <td><?= "Rp" . number_format($lp['harga'], 2, '.', ','); ?></td>
-                                                <td><?= "Rp" . number_format($lp['jumlah_bayar'], 2, '.', ','); ?></td>
+                                                <td><?= "Rp" . number_format($lp['total_harga'], 2, '.', ','); ?></td>
                                                 <td><?= $lp['jumlah']; ?></td>
                                                 <!-- <td><?= $lp['status_bayar']; ?></td> -->
                                                 <!-- <td class="invisible">

@@ -166,7 +166,7 @@ class Tanam_panen extends CI_Controller
                     'harga_panen'                => $harga_panen,
                     'kondisi_panen'              => $kondisi_panen,
                     'keterangan'              => $keterangan,
-                    'id_anggota' => $id_anggota['id_anggota'],
+                    // 'id_anggota' => $id_anggota['id_anggota'],
                 );
                 // print_r($data);
                 // print_r($id);
@@ -189,7 +189,7 @@ class Tanam_panen extends CI_Controller
                 'harga_panen'                => $harga_panen,
                 'kondisi_panen'              => $kondisi_panen,
                 'keterangan'              => $keterangan,
-                'id_anggota' => $id_anggota['id_anggota'],
+                // 'id_anggota' => $id_anggota['id_anggota'],
 
             );
             // print_r($data);

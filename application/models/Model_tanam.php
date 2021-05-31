@@ -167,16 +167,12 @@ class Model_tanam extends CI_Model
         // return $query->result_array();
     }
 
-    public function pembeli_t($jum_trans)
+    public function pembeli_t($id, $id_pembeli)
     {
-        $this->db->select('transaksi.*,header_transaksi.*, SUM(transaksi.harga) AS total_item');
+        $this->db->select('*');
         $this->db->from('transaksi');
-        $this->db->where('transaksi.total_harga', $jum_trans);
-        // JOIN
-        $this->db->join('header_transaksi', 'header_transaksi.id_anggota = transaksi.id_anggota');
-        // END JOIN
-        $this->db->group_by('transaksi.id_transaksi');
-        $this->db->order_by('id_transaksi', 'asc');
+        $array = array('id_header_transaksi' => $id, 'id_anggota' => $id_pembeli);
+        $this->db->where($array);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -185,7 +181,7 @@ class Model_tanam extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('header_transaksi');
-        $this->db->where('id_penjual', $id_anggota);
+        $this->db->where('id_header_transaksi', $id_anggota);
         $this->db->order_by('id_header_transaksi', 'desc');
         $query = $this->db->get();
         return $query->row();
@@ -200,16 +196,16 @@ class Model_tanam extends CI_Model
         return $query->result();
     }
 
-    public function getAllTransaksi($id_anggota)
+    public function getAllTransaksi($id_pembeli)
     {
         $this->db->select('*');
-        $this->db->from('header_transaksi');
-        $this->db->where('header_transaksi.id_anggota', $id_anggota);
+        $this->db->from('transaksi');
+        $this->db->where('transaksi.id_anggota', $id_pembeli);
         // JOIN
-        $this->db->join('transaksi', 'transaksi.id_anggota = header_transaksi.id_anggota', 'left');
+        $this->db->join('header_transaksi', 'header_transaksi.id_anggota = transaksi.id_anggota');
         // END JOIN
-        $this->db->group_by('header_transaksi.id_header_transaksi');
-        $this->db->order_by('id_header_transaksi', 'asc');
+        $this->db->group_by('transaksi.id_transaksi');
+        $this->db->order_by('transaksi.id_transaksi', 'desc');
         $query = $this->db->get();
         return $query->result_array();
     }

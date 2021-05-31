@@ -89,11 +89,11 @@ class VTanam_panen extends CI_Controller
                 $nama_produk = $this->input->post('nama_produk');
                 $id_anggota = $this->input->post('id_anggota');
                 $id_penjual = $this->input->post('id_penjual');
-                $total = $this->input->post('jumlah_transaksi');
+                $price = $this->input->post('price');
                 for ($i = 0; $i < count($id_anggota); $i++) {
                     $data = array(
                         'id_anggota' => $id_anggota[$i],
-                        'jumlah_transaksi' => $total[$i],
+                        'jumlah_transaksi' => $price[$i],
                         'status_bayar' => '',
                         'nama_pembeli' => $this->input->post('username'),
                         'nama_produk' => $nama_produk[$i],
@@ -104,6 +104,7 @@ class VTanam_panen extends CI_Controller
                     // print_r($data);
                     // echo '</pre>';
                     $query1 = $this->db->insert('header_transaksi', $data);
+                    $id_header[$i] = $this->db->insert_id();
                 }
 
 
@@ -122,6 +123,7 @@ class VTanam_panen extends CI_Controller
                             'harga' => $price[$i],
                             'jumlah' => $qty[$i],
                             'total_harga' => $total[$i],
+                            'id_header_transaksi' => $id_header[$i],
                         );
                         $this->db->insert('transaksi', $data);
                         $this->cart->destroy();
@@ -188,16 +190,17 @@ class VTanam_panen extends CI_Controller
         $this->load->view('pembeli/detail_riwayat', $data, FALSE);
     }
 
-    public function laporan($jum_trans)
+    public function laporan($id)
     {
         // take data login
         $data['login'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row();
 
-        $header_transaksi = $this->Model_tanam->pembeli_t($jum_trans);
+        $id_pembeli = $data['login']->id_anggota;
 
-        $data = array(
-            'header_transaksi' => $header_transaksi,
-        );
+        $data['transaksi'] = $this->Model_tanam->pembeli_t($id, $id_pembeli);
+
+        // print_r($data['transaksi']);
+        // die;
 
         $this->load->view('pembeli/laporan', $data, FALSE);
     }
@@ -207,6 +210,11 @@ class VTanam_panen extends CI_Controller
         $data['login'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row();
 
         $laporan = $this->Model_tanam->getAllTransaksi($data['login']->id_anggota);
+
+        // echo '<pre>';
+        // print_r($laporan);
+        // die;
+        // echo '</pre>';
 
         $data = array(
             'laporan' => $laporan,
@@ -218,8 +226,15 @@ class VTanam_panen extends CI_Controller
     public function konfirmasi($id_anggota = '')
     {
         $data['title'] = 'Konfirmasi Bayar';
+
+        $id_anggota = $this->input->post('id_header_transaksi');
+        $id_pembeli = $this->input->post('id_penjual');
+
+        // var_dump($id_anggota);
+        // var_dump($id_pembeli);
+        // die;
         $data['header_transaksi'] = $this->Model_tanam->id_header_transaksi($id_anggota);
-        $data['rekpenj'] = $this->Model_tanam->getRekeningPenjual($id_anggota);
+        $data['rekpenj'] = $this->Model_tanam->getRekeningPenjual($id_pembeli);
         // echo '<pre>';
         // print_r($data);
         // die;

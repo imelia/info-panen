@@ -15,43 +15,45 @@
                             </tr>
                         </thead>
                         <tbody class="">
-                            <?php if ($header_transaksi) { ?>
-                                <table class="table text-center table-borderless table-hover" id="laporan-pem" width="100%" cellspacing="2">
-                                    <thead class="bg-danger text-white">
+                            <table class="table text-center table-borderless table-hover" id="laporan-pem" width="100%" cellspacing="2">
+                                <thead class="bg-danger text-white">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Panen</th>
+                                        <th>Harga</th>
+                                        <th>Jumlah Bayar</th>
+                                        <th>Item</th>
+                                        <!-- <th class="invisible">Detail</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($transaksi as $ht) : ?>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama Panen</th>
-                                            <th>Jumlah Transaksi</th>
-                                            <th>Jumlah Bayar</th>
-                                            <th>Item</th>
-                                            <!-- <th class="invisible">Detail</th> -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = 1; ?>
-                                        <?php foreach ($header_transaksi as $ht) : ?>
-                                            <tr>
-                                                <td><?= $i++; ?></td>
-                                                <td><?= $ht['nama_product']; ?></td>
-                                                <td><?= "Rp" . number_format($ht['harga'], 2, '.', ','); ?></td>
-                                                <td><?= "Rp" . number_format($ht['jumlah_bayar'], 2, '.', ','); ?></td>
-                                                <td><?= $ht['jumlah']; ?></td>
-                                                <!-- <td><?= $ht['status_bayar']; ?></td> -->
-                                                <!-- <td class="invisible">
+                                            <td><?= $i++; ?></td>
+                                            <td><?= $ht['nama_product']; ?></td>
+                                            <td><?= "Rp" . number_format($ht['harga'], 2, '.', ','); ?></td>
+                                            <td><?= "Rp" . number_format($ht['harga'], 2, '.', ','); ?></td>
+                                            <td><?= $ht['jumlah']; ?></td>
+                                            <!-- <td><?= $ht['status_bayar']; ?></td> -->
+                                            <!-- <td class="invisible">
                                                     <a href="<?= base_url('Vtanam_panen/detail_riwayat/' . $ht['id_header_transaksi']); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-eye"></i> Detail
                                                     </a>
                                                 </td> -->
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        <?php $i++; ?>
-                                    </tbody>
-                                </table>
-                            <?php } else { ?>
-                                <p class="alert alert-success">
-                                    <i class="fa fa-warning"></i>Belum ada data Transaksi
-                                </p>
-                            <?php } ?>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    <?php $i++; ?>
+                                </tbody>
+                                <tr class="">
+                                    <td colspan="4"></td>
+                                    <td class="d-flex flex-row-reverse align-items-center justify-content-right">
+                                        <div class="bg-success text-white rounded p-1">
+                                            Total Pesanan : Rp. <?= number_format($ht['total_harga'], 2, ',', '.') ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </tbody>
                     </table>
                 </div>
