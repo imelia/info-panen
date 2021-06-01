@@ -62,8 +62,8 @@
           </div>
         </div>
         <div class="site-mobile">
-          <ul>
-            <li>
+          <ul class="main-menu">
+            <li class="main-menu">
               <a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a>
             </li>
             <li>
@@ -91,7 +91,7 @@
               </a>
             </li>
             <li>
-              <a class="btn bg-info ml-2 text-white" href="<?= base_url('Vtanam_panen/my_profile'); ?>">
+              <a class="btn bg-info ml-2 text-white" href="<?= base_url('Vtanam_panen/my_profile'); ?>" class="nav-link">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
               </a>
