@@ -213,69 +213,59 @@
           </h3>
         </div>
 
-        <!-- Content Row -->
-        <div class="card shadow">
-          <div class="row justify-content-center p-3">
-            <!-- Area Chart -->
-            <div class=" col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Biofarmaka</h6>
-                </div>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Content Row -->
+          <div class="card shadow pb-5" style="height: 200%;">
+            <div class="row justify-content-center">
+
+              <!-- Area Chart -->
+              <div class="col-lg-5 p-5">
                 <!-- Card Body -->
                 <div class="card-body">
+                  <h4 class="m-0 font-weight-bold text-primary">Biofarmaka</h4>
                   <div class="chart-area">
                     <canvas id="chartBio"></canvas>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Buah</h6>
-                  <!-- Card Header - Dropdown -->
-                </div>
+
+              <div class="col-lg-5 p-5">
                 <!-- Card Body -->
                 <div class="card-body">
+                  <h4 class="m-0 font-weight-bold text-primary">Buah</h4>
                   <div class="chart-area">
                     <canvas id="chartBuah"></canvas>
                   </div>
                 </div>
+
               </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Padi Palawija</h6>
-                </div>
+              <div class="col-lg-5 p-5">
                 <!-- Card Body -->
                 <div class="card-body">
+                  <h4 class="m-0 font-weight-bold text-primary">Padi Palawija</h4>
                   <div class="chart-area">
                     <canvas id="chartPadiPal"></canvas>
                   </div>
                 </div>
+
               </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Sayuran</h6>
-                </div>
+              <div class="col-lg-5 p-5">
                 <!-- Card Body -->
                 <div class="card-body">
+                  <h4 class="m-0 font-weight-bold text-primary">Sayuran</h4>
                   <div class="chart-area">
                     <canvas id="sayurChart"></canvas>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
+          <!-- End Content row -->
         </div>
-        <!-- End Content row -->
+      </div>
     </section>
     <!-- End Hasil Rekap Panen -->
 
@@ -513,83 +503,83 @@
               </div>
             </div>
           </div>
-        <div class="section-title">
-          <h2>Hasil Panen atau Produk Panen Berdasarkan Komoditas</h2>
-        </div>
-        <div class="container">
-          <div class="card mt-5 mb-5 bg-info">
-            <div class="card-header">
-              <div class="card-title">
-                <h4 class="pt-2">Produk Panen dari Petani </h4>
-              </div>
-            </div>
-            <div class="row justify-content-center p-4">
-              <div class="col-lg-12">
-                <div class="form-row justify-content-center">
-                  <div class="form-group">
-                    <form action="<?= base_url('Beranda/produk_komoditas'); ?>" method="post">
-                      <select name="komoditi" id="komoditi" class="form-control-sm">
-                        <option value="<?= set_value('komoditi'); ?>"><?= set_value('komoditi'); ?></option>
-                        <?php foreach ($Allproduk as $alp) : ?>
-                          <option value="<?= $alp->komoditi ?>"><?= $alp->komoditi ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <button class="btn btn-primary">Cari</button>
-                    </form>
-                  </div>
+          <div class="section-title">
+            <h2>Hasil Panen atau Produk Panen Berdasarkan Komoditas</h2>
+          </div>
+          <div class="container">
+            <div class="card mt-5 mb-5 bg-info">
+              <div class="card-header">
+                <div class="card-title">
+                  <h4 class="pt-2">Produk Panen dari Petani </h4>
                 </div>
               </div>
-              <div class="col-lg-12 pt-4 mt-5 mb-5 pb-5 pt-lg-0 content justify-content-center">
-                <?php if ($produk) : ?>
-                  <?php foreach ($produk as $prd) : ?>
-                    <div class="col-md-3">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $prd->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
-                        <div class="card-body">
-                          <p class="card-text">
-                          <h5>panenKomoditas : <td><?= $prd->komoditi ?></td>
-                          </h5>
-                          <h5>Kecamatan : <td><?= $prd->desa ?></td>
-                          </h5>
-                          <h5>Tanggal Panen : <td><?= $prd->tanggal_panen ?></td>
-                          </h5>
-                          <h5 class="detail-price"><?= $prd->harga_panen ?></h5>
-                          </p>
+              <div class="row justify-content-center p-4">
+                <div class="col-lg-12">
+                  <div class="form-row justify-content-center">
+                    <div class="form-group">
+                      <form action="<?= base_url('Beranda/produk_komoditas'); ?>" method="post">
+                        <select name="komoditi" id="komoditi" class="form-control-sm">
+                          <option value="<?= set_value('komoditi'); ?>"><?= set_value('komoditi'); ?></option>
+                          <?php foreach ($Allproduk as $alp) : ?>
+                            <option value="<?= $alp->komoditi ?>"><?= $alp->komoditi ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                        <button class="btn btn-primary">Cari</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 pt-4 mt-5 mb-5 pb-5 pt-lg-0 content justify-content-center">
+                  <?php if ($produk) : ?>
+                    <?php foreach ($produk as $prd) : ?>
+                      <div class="col-md-3">
+                        <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $prd->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
+                          <div class="card-body">
+                            <p class="card-text">
+                            <h5>panenKomoditas : <td><?= $prd->komoditi ?></td>
+                            </h5>
+                            <h5>Kecamatan : <td><?= $prd->desa ?></td>
+                            </h5>
+                            <h5>Tanggal Panen : <td><?= $prd->tanggal_panen ?></td>
+                            </h5>
+                            <h5 class="detail-price"><?= $prd->harga_panen ?></h5>
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  <?php endforeach; ?>
-                <?php else : ?>
-                  <?php foreach ($Allproduk as $alpr) : ?>
-                    <div class="col-md-3 mb-5">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $alpr->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
-                        <div class="card-body">
-                          <p class="card-text">
-                          <h5>Komoditas : <td><?= $alpr->komoditi ?></td>
-                          </h5>
-                          <h5>Kecamatan : <td><?= $alpr->desa ?></td>
-                          </h5>
-                          <h5>Tanggal Panen : <td><?= $alpr->tanggal_panen ?></td>
-                          </h5>
-                          <h5 class="detail-price"><?= $alpr->harga_panen ?></h5>
-                          </p>
-                          <div class="cart-section">
-                            <div class="row">
-                              <div class="col-md-6 col-sm-12 col-xs-6">
-                                <a href="<?= base_url('auth') ?>" class="AddCart btn btn-info btn-lg">Pesan Sekarang</a>
+                    <?php endforeach; ?>
+                  <?php else : ?>
+                    <?php foreach ($Allproduk as $alpr) : ?>
+                      <div class="col-md-3 mb-5">
+                        <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $alpr->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
+                          <div class="card-body">
+                            <p class="card-text">
+                            <h5>Komoditas : <td><?= $alpr->komoditi ?></td>
+                            </h5>
+                            <h5>Kecamatan : <td><?= $alpr->desa ?></td>
+                            </h5>
+                            <h5>Tanggal Panen : <td><?= $alpr->tanggal_panen ?></td>
+                            </h5>
+                            <h5 class="detail-price"><?= $alpr->harga_panen ?></h5>
+                            </p>
+                            <div class="cart-section">
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                  <a href="<?= base_url('auth') ?>" class="AddCart btn btn-info btn-lg">Pesan Sekarang</a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
     <!-- End About Section -->

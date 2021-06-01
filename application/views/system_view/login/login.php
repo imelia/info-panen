@@ -68,49 +68,48 @@
 
     <!--<h1 style="font-family: CocogooseNarrows">Selamat Datang Di Sistem Informasi "INFO PANEN" <br/></h1> -->
 
-    <div class="kotak_login" style="font-family: streetslab">
-        <div class="text-center">
-            <img src="<?php echo base_url(); ?>/assets7/assets/img/loog.png" class="profile-img" alt="logo images" style="height: 90px; width: 90px; border-radius: 50%;">
-        </div>
-        <h3 class="tulisan_login">INFO PANEN</h3>
-        <p class="tulisan_login">dari petani untuk kita</p>
-        <label></label>
-        <h4 class="tulisan_login">SELAMAT DATANG</h4>
-        <?= $this->session->flashdata('message'); ?>
-        <form action="<?php echo base_url('auth/ceklogin'); ?>" method="POST">
-            <div class="row">
-                <div class="col-md-12">
-                    <label></label>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Silahkan masukkan username" autofocus>
-                        <?php echo form_error('username'); ?>
-                    </div>
-                </div>
+    <div class="card">
+        <div class="kotak_login" style="font-family: streetslab">
+            <div class="text-center">
+                <img src="<?php echo base_url(); ?>/assets7/assets/img/loog.png" class="profile-img" alt="logo images" style="height: 90px; width: 90px; border-radius: 50%;">
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label></label>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Silahkan masukkan password">
-                        <?php echo form_error('password'); ?>
-                    </div>
-                </div>
-            </div>
-
-            <br>
+            <h3 class="tulisan_login">INFO PANEN</h3>
+            <p class="tulisan_login">dari petani untuk kita</p>
             <label></label>
-            <button class="btn btn-lg btn-success btn-block" name="login" id="btn-login" type="submit">
-                Login
-            </button></br>
-            <a href="<?= site_url('register') ?>" class="btn btn-lg btn-success btn-block">Registrasi</a>
-        </form>
-        <?php if (isset($error)) echo "<b><span style='color:red;'>$error</span></b>";
-        if (isset($logout)) echo "<b><span style='color:red;'>$logout</span></b>"; ?>
+            <h4 class="tulisan_login">SELAMAT DATANG</h4>
+            <?= $this->session->flashdata('message'); ?>
+            <form action="<?php echo base_url('auth/ceklogin'); ?>" method="POST">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label></label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Silahkan masukkan username" autofocus>
+                            <?php echo form_error('username'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label></label>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Silahkan masukkan password">
+                            <?php echo form_error('password'); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <label></label>
+                <button class="btn btn-lg btn-success btn-block" name="login" id="btn-login" type="submit">
+                    Login
+                </button></br>
+                <a href="<?= site_url('register') ?>" class="btn btn-lg btn-success btn-block">Registrasi</a>
+            </form>
+            <?php if (isset($error)) echo "<b><span style='color:red;'>$error</span></b>";
+            if (isset($logout)) echo "<b><span style='color:red;'>$logout</span></b>"; ?>
+        </div>
     </div>
     <div id="error" style="margin-top: 10px"></div>
-    </div>
-    </div>
-    </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
