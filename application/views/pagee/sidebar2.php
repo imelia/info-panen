@@ -10,7 +10,7 @@
             <br>
             <div class="text-center">
                 <div class="sidebar-brand-icon">
-                    <img src="<?php echo base_url('assets8/images/icon.png'); ?>" alt="Image" class="img-profile rounded-circle justify-content-center text-center" style="width:135px; height:135px;">
+                    <img src="<?php echo base_url('assets8/images/icon.png'); ?>" alt="Image" class="img-profile rounded-circle justify-content-center text-center" style="width:50%; height:50%;">
                 </div>
             </div>
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo site_url('dash'); ?>">

@@ -29,7 +29,7 @@ class Auth extends CI_Controller
       } elseif ($d->id_akses == 'petani') {
         redirect('dash_petani');
       } elseif ($d->id_akses == 'pembeli') {
-        redirect('Vtanam_panen');
+        redirect('VTanam_panen');
       }
     } else {
       //pesan yang muncul jika terdapat error dimasukkan pada session flashdata

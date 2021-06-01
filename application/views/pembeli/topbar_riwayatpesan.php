@@ -14,10 +14,10 @@
                 <div class="site-mobile">
                     <ul>
                         <li>
-                            <a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a>
+                            <a href="<?php echo site_url('VTanam_panen'); ?>" class="nav-link">Produk Panen</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+                            <a href="<?php echo site_url('VTanam_panen/detail_cart'); ?>" class="nav-link">
                                 <?php
                                 $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
                                 ?>
@@ -25,23 +25,23 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+                            <a href="<?php echo site_url('VTanam_panen/riwayat_pesan'); ?>" class="nav-link">
                                 Riwayat Pesanan
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+                            <a href="<?php echo site_url('VTanam_panen/laporan_pembeli'); ?>" class="nav-link">
                                 Laporan
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('auth/logout'); ?>" class="nav-link" onclick="window.confirm()">
+                            <a href="<?php echo base_url('Auth/logout'); ?>" class="nav-link" onclick="window.confirm()">
                                 Logout
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
                         <li>
-                            <a class="btn btn-info text-white" href="<?= base_url('Vtanam_panen/my_profile'); ?>" class="nav-link">
+                            <a class="btn btn-info text-white" href="<?= base_url('VTanam_panen/my_profile'); ?>" class="nav-link">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
@@ -65,10 +65,10 @@
 
                                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                     <li>
-                                        <a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a>
+                                        <a href="<?php echo site_url('VTanam_panen'); ?>" class="nav-link">Produk Panen</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+                                        <a href="<?php echo site_url('VTanam_panen/detail_cart'); ?>" class="nav-link">
                                             <?php
                                             $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
                                             ?>
@@ -76,17 +76,17 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+                                        <a href="<?php echo site_url('VTanam_panen/riwayat_pesan'); ?>" class="nav-link">
                                             Riwayat Pesanan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+                                        <a href="<?php echo site_url('VTanam_panen/laporan_pembeli'); ?>" class="nav-link">
                                             Laporan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url('auth/logout'); ?>" onclick="window.confirm()">
+                                        <a href="<?php echo base_url('Auth/logout'); ?>" onclick="window.confirm()">
                                             <i class="fas fa-sign-out-alt"></i>
                                             Logout
                                         </a>

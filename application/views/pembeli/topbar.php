@@ -64,10 +64,10 @@
         <div class="site-mobile">
           <ul class="main-menu">
             <li class="main-menu">
-              <a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a>
+              <a href="<?php echo site_url('VTanam_panen'); ?>" class="nav-link">Produk Panen</a>
             </li>
             <li>
-              <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+              <a href="<?php echo site_url('VTanam_panen/detail_cart'); ?>" class="nav-link">
                 <?php
                 $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
                 ?>
@@ -75,12 +75,12 @@
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+              <a href="<?php echo site_url('VTanam_panen/riwayat_pesan'); ?>" class="nav-link">
                 Riwayat Pesanan
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+              <a href="<?php echo site_url('VTanam_panen/laporan_pembeli'); ?>" class="nav-link">
                 Laporan
               </a>
             </li>
@@ -91,7 +91,7 @@
               </a>
             </li>
             <li>
-              <a class="btn bg-info ml-2 text-white" href="<?= base_url('Vtanam_panen/my_profile'); ?>" class="nav-link">
+              <a class="btn bg-info ml-2 text-white" href="<?= base_url('VTanam_panen/my_profile'); ?>" class="nav-link">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                 Profile
               </a>
@@ -114,9 +114,9 @@
             <div class="col-12 col-md-10 d-xl-block">
               <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                  <li><a href="<?php echo site_url('Vtanam_panen'); ?>" class="nav-link">Produk Panen</a></li>
+                  <li><a href="<?php echo site_url('VTanam_panen'); ?>" class="nav-link">Produk Panen</a></li>
                   <li>
-                    <a href="<?php echo site_url('Vtanam_panen/detail_cart'); ?>" class="nav-link">
+                    <a href="<?php echo site_url('VTanam_panen/detail_cart'); ?>" class="nav-link">
                       <?php
                       $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
                       ?>
@@ -124,23 +124,23 @@
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo site_url('Vtanam_panen/riwayat_pesan'); ?>" class="nav-link">
+                    <a href="<?php echo site_url('VTanam_panen/riwayat_pesan'); ?>" class="nav-link">
                       Riwayat Pesanan
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo site_url('Vtanam_panen/laporan_pembeli'); ?>" class="nav-link">
+                    <a href="<?php echo site_url('VTanam_panen/laporan_pembeli'); ?>" class="nav-link">
                       Laporan
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo base_url('auth/logout'); ?>" onclick="window.confirm()">
+                    <a href="<?php echo base_url('Auth/logout'); ?>" onclick="window.confirm()">
                       <i class="fas fa-sign-out-alt"></i>
                       Logout
                     </a>
                   </li>
                   <li>
-                    <a class="bg-info rounded-circle ml-5" href="<?= base_url('Vtanam_panen/my_profile'); ?>">
+                    <a class="bg-info rounded-circle ml-5" href="<?= base_url('VTanam_panen/my_profile'); ?>">
                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                       Profile
                     </a>
