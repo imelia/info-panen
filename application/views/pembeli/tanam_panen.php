@@ -37,7 +37,7 @@
                       ?>
                       <tr class="card shadow mb-5 p-5 text-center">
                         <td>
-                          <div class="card" style="width: 26rem;">
+                          <div class="card mx-auto" style="width: 5rem;">
                             <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $data->gambar_panen; ?>" alt="Card image cap">
                           </div>
                         </td>
@@ -75,6 +75,7 @@
                                     <p class="card-text">Tanggal Tanam : <span class="text-muted"><?= $data->tanggal_tanam ?></span> </p>
                                     <p class="card-text">Tanggal Panen : <span class="text-muted"><?= $data->tanggal_panen ?></span> </p>
                                     <p class="card-text">Status Panen : <span class="text-muted"><?= $data->status_panen ?></span> </p>
+                                    <p class="card-text">Stok Panen : <span class="text-muted"><?= $data->stok_tanam ?></span> </p>
                                     <p class="card-text">Hasil Panen : <span class="text-muted"><?= $data->hasil_panen . "kg" ?></span> </p>
                                     <p class="card-text">Harga Panen : <span class="text-muted"><?= "Rp " . number_format($data->harga_panen, 2, ',', '.'); ?></span> </p>
                                     <p class="card-text">Kondisi Panen : <span class="text-muted"><?= $data->kondisi_panen ?></span> </p>
@@ -88,18 +89,23 @@
                           </div>
                         </td>
                         <td>
-                          <?php
-                          if ($data->stok_tanam > 0) : ?>
+                          <div class="row">
+                            <div class="col-sm-6 pb-3">
+                              <?php
+                              if ($data->stok_tanam > 0) : ?>
 
-                            <a href="<?= base_url('VTanam_panen/add_cart/' . $data->id_tanam_panen) ?>" class="btn btn-danger btn-sm">Pesan Sekarang</a>
+                                <a href="<?= base_url('VTanam_panen/add_cart/' . $data->id_tanam_panen) ?>" class="btn btn-info btn-sm">Pesan Sekarang</a>
 
-                          <?php else : ?>
+                              <?php else : ?>
 
-                            <a href="<?= base_url('VTanam_panen/add_cart/' . $data->id_tanam_panen) ?>" class="btn btn-danger btn-sm disabled">Pesan Sekarang</a>
+                                <a href="<?= base_url('VTanam_panen/add_cart/' . $data->id_tanam_panen) ?>" class="btn btn-info btn-sm disabled">Pesan Sekarang</a>
 
-                          <?php endif; ?>
-
-                          <a href="https://api.whatsapp.com/send?phone=<?= $data->no_telp; ?>&text=Hai%20Pak%20Petani,%20saya%20ingin%20ingin%20memesan%20panen%20<?= $data->komoditi; ?>%20,%20Apakah%20masih%20ada%20?" target="_blank"><span class="btn btn-sm btn-success">Hubungi Petani !</span></a>
+                              <?php endif; ?>
+                            </div>
+                            <div class="col-sm-6">
+                              <a href="https://api.whatsapp.com/send?phone=<?= $data->no_telp; ?>&text=Hai%20Pak%20Petani,%20saya%20ingin%20ingin%20memesan%20panen%20<?= $data->komoditi; ?>%20,%20Apakah%20masih%20ada%20?" target="_blank"><span class="btn btn-sm btn-success">Hubungi Petani !</span></a>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     <?php

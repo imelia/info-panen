@@ -6,9 +6,9 @@ class Beranda2 extends CI_Controller
     {
 
         parent::__construct();
-        if (!$this->session->userdata('username')) {
-            redirect('auth');
-        }
+        // if (!$this->session->userdata('username')) {
+        //     redirect('auth');
+        // }
         $this->load->model('Model_komoditas'); //load model model_upldgbr yang berada di folder model
         $this->load->model('Model_berita'); //load model model_upldgbr yang berada di folder model
         $this->load->model('Model_tanam'); //load model model_upldgbr yang berada di folder model
@@ -49,6 +49,10 @@ class Beranda2 extends CI_Controller
         $komoditi = $this->input->post('komoditi');
         $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
         $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+        $data['countPetani'] = $this->Model_tanam->getCountPetani();
+        $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+        $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
         $this->load->view('system_view/beranda2', $data); //tampilan awal ketika controller upload di akses
     }
     public function komoditi_wilayah()
@@ -76,6 +80,10 @@ class Beranda2 extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda2', $data);
         }
     }
@@ -105,6 +113,10 @@ class Beranda2 extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda2', $data);
         }
     }
@@ -135,6 +147,10 @@ class Beranda2 extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda2', $data);
         }
     }

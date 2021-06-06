@@ -12,10 +12,38 @@ class Auth extends CI_Controller
   }
   public function index()
   {
+    if ($this->session->userdata('username')) {
+      $data['role'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+      // echo '<pre>';
+      // print_r($data['role']);
+      // echo '</pre>';
+      // die;
+      if ($data['role']['id_akses'] == 'admin') {
+        redirect('admin');
+      } elseif ($data['role']['id_akses'] == 'petani') {
+        redirect('petani');
+      } elseif ($data['role']['id_akses'] == 'pembeli') {
+        redirect('pembeli');
+      }
+    }
     $this->load->view('system_view/login/login');
   }
   function ceklogin()
   {
+    if ($this->session->userdata('username')) {
+      $data['role'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+      // echo '<pre>';
+      // print_r($data['role']);
+      // echo '</pre>';
+      // die;
+      if ($data['role']['id_akses'] == 'admin') {
+        redirect('admin');
+      } elseif ($data['role']['id_akses'] == 'petani') {
+        redirect('petani');
+      } elseif ($data['role']['id_akses'] == 'pembeli') {
+        redirect('pembeli');
+      }
+    }
 
     $username = $this->input->post('username');
     $password = $this->input->post('password');
