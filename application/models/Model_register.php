@@ -7,7 +7,12 @@ class Model_register extends CI_model
     {
         return $this->db->get('login_anggota')->result_array();
     }
-
+    public function getAllPetani()
+    {
+        $query = "SELECT * FROM data_daftar_petani
+                    JOIN login_anggota ON data_daftar_petani.id_anggota = login_anggota.id_anggota";
+        return $this->db->query($query)->result();
+    }
     public function getAllRegisterById($id)
     {
         $options = array('id_anggota' => $id);
