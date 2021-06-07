@@ -6,9 +6,9 @@ class Beranda extends CI_Controller
     {
 
         parent::__construct();
-        if (!$this->session->userdata('username')) {
-            redirect('auth');
-        }
+        // if (!$this->session->userdata('username')) {
+        //     redirect('auth');
+        // }
         $this->load->model('Model_komoditas'); //load model yang berada di folder model
         $this->load->model('Model_berita'); //load modelyang berada di folder model
         $this->load->model('Model_tanam'); //load model yang berada di folder model
@@ -31,7 +31,7 @@ class Beranda extends CI_Controller
         $data['show_caro'] = $this->Model_beranda->show_carousel();
         $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
         $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-        $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
+        // $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
         $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
         $wilayah = $this->input->post('wilayah');
@@ -64,7 +64,7 @@ class Beranda extends CI_Controller
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
             $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
+            // $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');
@@ -80,6 +80,10 @@ class Beranda extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda', $data);
         }
     }
@@ -95,7 +99,7 @@ class Beranda extends CI_Controller
             $data['show_caro'] = $this->Model_beranda->show_carousel();
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
             $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
+            // $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');
@@ -111,6 +115,10 @@ class Beranda extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda', $data);
         }
     }
@@ -128,7 +136,7 @@ class Beranda extends CI_Controller
             $data['query'] = $this->Model_komoditas->get_allimage(); //query dari model
 
             $id_anggota = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
-            $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
+            // $data['tanam'] = $this->Model_tanam->get_allimage($id_anggota['id_anggota']); //query dari model
             $data['qr'] = $this->Model_berita->get_allimage(); //query dari model
 
             $wilayah = $this->input->post('wilayah');
@@ -144,6 +152,10 @@ class Beranda extends CI_Controller
             $komoditi = $this->input->post('komoditi');
             $data['produk'] = $this->Model_beranda->getFormTanamSpecify($komoditi);
             $data['Allproduk'] = $this->Model_beranda->getFormTanam();
+
+            $data['countPetani'] = $this->Model_tanam->getCountPetani();
+            $data['countPembeli'] = $this->Model_tanam->getCountPembeli();
+            $data['countTransaksi'] = $this->Model_tanam->getCountTransaksi();
             $this->load->view('system_view/beranda', $data);
         }
     }

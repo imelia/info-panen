@@ -10,6 +10,20 @@ class Register extends CI_Controller
     }
     public function index()
     {
+        if ($this->session->userdata('username')) {
+            $data['role'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            // echo '<pre>';
+            // print_r($data['role']);
+            // echo '</pre>';
+            // die;
+            if ($data['role']['id_akses'] == 'admin') {
+                redirect('admin');
+            } elseif ($data['role']['id_akses'] == 'petani') {
+                redirect('petani');
+            } elseif ($data['role']['id_akses'] == 'pembeli') {
+                redirect('pembeli');
+            }
+        }
         $data['title'] = 'Halaman Registrasi';
         $data['register'] = $this->Model_register->getAllRegister();
 
@@ -17,6 +31,20 @@ class Register extends CI_Controller
     }
     public function proses()
     {
+        if ($this->session->userdata('username')) {
+            $data['role'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+            // echo '<pre>';
+            // print_r($data['role']);
+            // echo '</pre>';
+            // die;
+            if ($data['role']['id_akses'] == 'admin') {
+                redirect('admin');
+            } elseif ($data['role']['id_akses'] == 'petani') {
+                redirect('petani');
+            } elseif ($data['role']['id_akses'] == 'pembeli') {
+                redirect('pembeli');
+            }
+        }
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('username', 'username', 'required');
