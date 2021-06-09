@@ -26,9 +26,9 @@
                 } ?>
                 <div class="card-header ">
                     <h4 class="card-title">DATA PETANI</h4>
-                    <!--<div class="pull-right">
-                        <a href="<?= site_url('petani/add') ?>" class="btn btn-primary"> + Tambah Data</a>
-                    </div>-->
+                    <div class="pull-right">
+                        <a href="<?= site_url('data/tambah') ?>" class="btn btn-primary"> + Tambah Data</a>
+                    </div>
 
                 </div>
                 <!-- DataTales Example -->
