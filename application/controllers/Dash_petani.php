@@ -151,11 +151,11 @@ class Dash_petani extends CI_Controller
         $this->form_validation->set_rules('username', 'Username', 'required|trim', [
             'required' => 'Kolom %s input tidak boleh kosong',
         ]);
-        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[12]', [
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[14]', [
             'required' => 'Kolom input tidak boleh kosong',
             'numeric' => 'Kolom harus berisi angka !',
             'min_length' => 'Kolom harus berisi minimal 12 karakter !',
-            'max_length' => 'Kolom harus berisi maximal 12 karakter !',
+            'max_length' => 'Kolom harus berisi maximal 14 karakter !',
         ]);
         $this->form_validation->set_rules('no_rekening', 'No Rekening', 'required|trim', [
             'required' => 'Kolom %s input tidak boleh kosong',
@@ -216,13 +216,13 @@ class Dash_petani extends CI_Controller
             } else {
                 $data = array(
                     'no_telp'               => $no_telp,
-                    'no$no_rekening'        => $no_rekening,
+                    'no_rekening'        => $no_rekening,
                     'alamat'                => $alamat,
                 );
                 // print_r($data);
                 // print_r($id);
                 // hapus foto pada direktori
-                $this->Model_petani->update2($data, $where);
+                $this->Model_petani->updateAnggota($data, $where);
                 $this->session->set_flashdata(
                     'message',
                     '<div class="alert alert-success" role="alert"> Selamat akun anda terupdate 

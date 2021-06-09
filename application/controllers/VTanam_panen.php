@@ -36,7 +36,7 @@ class VTanam_panen extends CI_Controller
         );
 
         $this->cart->insert($data);
-        redirect('Vtanam_panen');
+        redirect('VTanam_panen');
     }
 
     public function detail_cart()
@@ -47,7 +47,7 @@ class VTanam_panen extends CI_Controller
     public function delAll_order()
     {
         $this->cart->destroy();
-        redirect('Vtanam_panen');
+        redirect('VTanam_panen');
     }
     public function hapus($rowid = '')
     {
@@ -136,7 +136,7 @@ class VTanam_panen extends CI_Controller
                             </button>
                         </div>'
                     );
-                    redirect(base_url('Vtanam_panen/riwayat_pesan'), 'refresh');
+                    redirect(base_url('VTanam_panen/riwayat_pesan'), 'refresh');
                 }
             }
         } else {
@@ -306,7 +306,7 @@ class VTanam_panen extends CI_Controller
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>');
-                    redirect(base_url('Vtanam_panen/riwayat_pesan'));
+                    redirect(base_url('VTanam_panen/riwayat_pesan'));
                 }
             }
             // if (!empty($_FILES['bukti_bayar']['name'])) {
@@ -407,11 +407,11 @@ class VTanam_panen extends CI_Controller
         $this->form_validation->set_rules('username', 'Username', 'required|trim', [
             'required' => 'Kolom %s input tidak boleh kosong',
         ]);
-        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[12]', [
+        $this->form_validation->set_rules('no_telp', 'No Telpon', 'required|trim|numeric|min_length[12]|max_length[14]', [
             'required' => 'Kolom input tidak boleh kosong',
             'numeric' => 'Kolom harus berisi angka !',
             'min_length' => 'Kolom harus berisi minimal 12 karakter !',
-            'max_length' => 'Kolom harus berisi maximal 12 karakter !',
+            'max_length' => 'Kolom harus berisi maximal 14 karakter !',
         ]);
         $this->form_validation->set_rules('no_rekening', 'No Rekening', 'required|trim', [
             'required' => 'Kolom %s input tidak boleh kosong',
