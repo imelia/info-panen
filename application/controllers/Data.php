@@ -51,4 +51,25 @@ class Data extends CI_Controller
             echo "<script>window.location='" . site_url('data') . "';</script>";
         }
     }
+    public function delete() //DELETE USER STILL COMPLEX ALGORITHM
+    {
+        $where =  $this->input->get('id');
+        $tb['petani'] = $this->db->get_where('data_daftar_petani', ['id_daftar_petani' => $this->input->get('id')])->row_array();
+
+        //get gambar yang lama
+
+        $old_image = $tb['petani']['ktp'];
+        if ($old_image != 'default.png') {
+            @unlink(FCPATH . 'uploads/ktp/' . $old_image);
+        }
+
+        $this->db->delete('data_daftar_petani', ['id_anggota' => $where]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Hapus Data Petani Berhasil
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
+        redirect('Data');
+    }
 }

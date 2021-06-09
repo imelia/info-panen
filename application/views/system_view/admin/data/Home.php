@@ -50,6 +50,7 @@
                                         <th>No Rekening</th>
                                         <th>Nama Bank</th>
                                         <th>Atas Nama</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +69,22 @@
                                             <td><?= $data->no_rekening ?></td>
                                             <td><?= $data->nama_bank ?></td>
                                             <td><?= $data->atas_nama ?></td>
+                                            <td>
+                                                <div class="row justify-content-center">
+                                                    <!-- <div class="col-xxl-6 pr-1">
+                                                        <a href="<?= base_url('Data/update/') . $data->id_daftar_petani ?>" class="badge badge-primary" role="badge" data-id="<?= $datusr['id']; ?>" data-toggle="modal">
+                                                            <i class="fa fa-user-alt"></i> Active
+                                                        </a>
+                                                    </div> -->
+
+                                                    <form action="<?= base_url('Data/delete'); ?>" method="get">
+                                                        <button type="submit" class="btn btn-danger" role="button">
+                                                            <i class="fa fa-trash"></i>
+                                                            <input type="hidden" name="id" id="id" value="<?= $data->id_anggota; ?>">
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php
                                     } ?>

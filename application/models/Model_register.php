@@ -44,6 +44,7 @@ class Model_register extends CI_model
 
         $this->db->insert('login_anggota', $params);
     }
+
     function getAll()
     {
         $this->db->select('*');
