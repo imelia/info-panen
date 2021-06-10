@@ -68,10 +68,12 @@
             </li>
             <li>
               <a href="<?php echo site_url('VTanam_panen/detail_cart'); ?>" class="nav-link">
-                <?php
-                $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
-                ?>
-                <?= $keranjang; ?>
+                <?php if ($user['username'] == $this->session->userdata('username')) : ?>
+                  <?php
+                  $keranjang = 'Keranjang : ' . $this->cart->total_items() . ' items';
+                  ?>
+                  <?= $keranjang; ?>
+                <?php endif; ?>
               </a>
             </li>
             <li>

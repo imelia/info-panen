@@ -46,60 +46,62 @@
                                     <tbody class="card p-3">
                                         <?php
                                         $no = 1;
-                                        foreach ($this->cart->contents() as $items) :  ?>
+                                        if ($user['username'] == $this->session->userdata('username')) :
+                                            foreach ($this->cart->contents() as $items) :  ?>
 
-                                            <tr class="text-center shadow mb-5 d-flex align-items-center justify-content-between">
-                                                <td>
-                                                    <?= $no++; ?>
-                                                </td>
-                                                <td>
-                                                    <div class="card" style="width: 7rem;">
-                                                        <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $items['image']; ?>" alt="Card image cap">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="p-2 text-center">
-                                                        <h4 class="card-title">
-                                                            <?= $items['name']; ?>
-                                                        </h4>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="p-2 text-center">
-                                                        <p class="card-text">
-                                                            <?= $items['qty'] . 'Kg'; ?>
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="p-2 text-center">
-                                                        <p class="card-text">
-                                                            <?= "Rp" . number_format($items['price'], 2, '.', ','); ?>
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="p-2 text-center">
-                                                        <p class="card-text">
-                                                            <?= $items['subtotal']; ?>
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="p-2">
-                                                        <a href="<?= base_url('VTanam_panen/hapus/' . $items['rowid']); ?>" class="btn btn-sm btn-primary"> Hapus
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td class="invisible">
-                                                    <div class="mt-5 pt-5">
-                                                        <a href="<?= base_url('VTanam_panen/checkout'); ?>" class="btn btn-sm btn-warning" disabled>
-                                                            Checkout Panen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                <tr class="text-center shadow mb-5 d-flex align-items-center justify-content-between">
+                                                    <td>
+                                                        <?= $no++; ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="card" style="width: 7rem;">
+                                                            <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $items['image']; ?>" alt="Card image cap">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="p-2 text-center">
+                                                            <h4 class="card-title">
+                                                                <?= $items['name']; ?>
+                                                            </h4>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="p-2 text-center">
+                                                            <p class="card-text">
+                                                                <?= $items['qty'] . 'Kg'; ?>
+                                                            </p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="p-2 text-center">
+                                                            <p class="card-text">
+                                                                <?= "Rp" . number_format($items['price'], 2, '.', ','); ?>
+                                                            </p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="p-2 text-center">
+                                                            <p class="card-text">
+                                                                <?= $items['subtotal']; ?>
+                                                            </p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="p-2">
+                                                            <a href="<?= base_url('VTanam_panen/hapus/' . $items['rowid']); ?>" class="btn btn-sm btn-primary"> Hapus
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="invisible">
+                                                        <div class="mt-5 pt-5">
+                                                            <a href="<?= base_url('VTanam_panen/checkout'); ?>" class="btn btn-sm btn-warning" disabled>
+                                                                Checkout Panen
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                     <tr class="card">
                                         <td colspan="4"> Total Pesanan</td>

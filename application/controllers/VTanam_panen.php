@@ -42,7 +42,8 @@ class VTanam_panen extends CI_Controller
     public function detail_cart()
     {
         // $data['query'] = $this->Model_tanam->get_allimage();
-        $this->load->view('pembeli/keranjang');
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
+        $this->load->view('pembeli/keranjang', $data);
     }
     public function delAll_order()
     {
