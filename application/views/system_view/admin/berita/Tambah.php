@@ -32,7 +32,9 @@
         <div class="row">
             <div class="col-md-12">
                 <form action="<?= base_url() ?>berita/insert" method="post" enctype="multipart/form-data">
-                    <?= $this->session->flashdata('pesan') ?>
+                        <?php if (NULL !== $this->session->flashdata('message')) {
+                            echo $this->session->flashdata('message');
+                        } ?>
                     <div class="card card-plain table-plain-bg">
                         <div class="card-header ">
                             <h4 class="card-title">FORM TAMBAH DATA</h4>

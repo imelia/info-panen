@@ -31,8 +31,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                    
-                            <?php if ( NULL !== $this->session->flashdata('message')){echo $this->session->flashdata('message');} ?>
                             <div class="card card-plain table-plain-bg">
                                 <div class="card-header ">
                                     <h4 class="card-title">EDIT DATA</h4>
@@ -44,6 +42,9 @@
                                 <div class="card-body table-full-width table-responsive">
                                 
                                 <form action="<?=base_url()?>komoditas/updatedata" method="post" enctype="multipart/form-data">
+                                <?php if (NULL !== $this->session->flashdata('message')) {
+                                    echo $this->session->flashdata('message');
+                                } ?>
                                 <div class="row">
                                       <div class="col-md-12">
                                       <label>Gambar</label>

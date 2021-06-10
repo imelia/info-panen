@@ -57,11 +57,27 @@ class Berita extends CI_Controller
                 $this->Model_berita->get_insert2($data); //akses model untuk menyimpan ke database
 
                 //pesan yang muncul jika berhasil diupload pada session flashdata
-                $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Tambah data berhasil !!</div></div>");
+                //pesan yang muncul jika terdapat error dimasukkan pada session flashdata
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert"> Sukses Tambah Data
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
                 redirect('berita'); //jika berhasil maka akan ditampilkan view upload
             } else {
                 //pesan yang muncul jika terdapat error dimasukkan pada session flashdata
-                $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal tambah data !!</div></div>");
+                //pesan yang muncul jika terdapat error dimasukkan pada session flashdata
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-danger" role="alert"> Gagal upload gambar 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
                 redirect('berita/add'); //jika gagal maka akan ditampilkan form upload
             }
         }
