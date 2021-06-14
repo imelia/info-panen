@@ -134,6 +134,33 @@
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 <script src="<?= base_url('assets5/js/script.js') ?>"></script>
+<script type="text/javascript">
+  // tampil();
+  // function tampil() {
+  //   if (vi.length > 0) {
+  //     let us = new Date(vi[0].value).getTime();
+  //   }
+  // }
+
+  // let tujuan = document.getElementById("hello");
+
+  // const hitungMundur = setInterval(function() {
+  //   const now = new Date().getTime();
+
+
+  //   let selisih = later - now;
+
+  //   let menit = Math.floor(selisih % (1000 * 60 * 60) / (1000 * 60));
+  //   let detik = Math.floor(selisih % (1000 * 60) / 1000);
+
+  //   let teks = document.getElementById('teks');
+  //   teks.innerHTML = 'Menit : ' + menit + ' Detik : ' + detik;
+  // }, 1000);
+  // let later = new Date(tujuan[0].value).getTime();
+  // // console.log(detik);
+  // // console.log(now);
+  // console.log(later);
+</script>
 </body>
 
 </html>

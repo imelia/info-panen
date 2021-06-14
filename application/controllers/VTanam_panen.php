@@ -17,6 +17,7 @@ class VTanam_panen extends CI_Controller
 
     public function index($page = NULL, $offset = '', $key = NULL)
     {
+        $data['user'] = $this->db->get_where('login_anggota', ['username' => $this->session->userdata('username')])->row_array();
         $data['query'] = $this->Model_tanam->get_dataShop(); //query dari model
 
         $this->load->view('pembeli/tanam_panen', $data); //tampilan awal ketika controller upload di akses
@@ -25,6 +26,7 @@ class VTanam_panen extends CI_Controller
     public function add_cart($id)
     {
         $tanam_panen = $this->Model_tanam->find($id);
+
 
         $data = array(
             'id' => $tanam_panen->id_tanam_panen,
@@ -35,8 +37,27 @@ class VTanam_panen extends CI_Controller
             'id_penjual' => $tanam_panen->id_anggota,
         );
 
-        $this->cart->insert($data);
-        redirect('VTanam_panen');
+
+        $insertmin = array(
+            'panen_id' => $tanam_panen->id_tanam_panen,
+            'nama' => $tanam_panen->komoditi,
+            'jumlah' => 1,
+        );
+
+        $query = $this->cart->insert($data);
+
+        if ($query) {
+            $query1 = $this->db->insert('barang_keluar', $insertmin);
+            if ($query1) {
+                $query2 = $this->db->get_where('barang_keluar', ['panen_id' => $insertmin['panen_id']])->row_array();
+                $this->db->where('id', $query2['id']);
+                $this->db->delete('barang_keluar', $insertmin);
+            }
+            redirect('VTanam_panen');
+        } else {
+            echo 'gagal';
+            redirect('VTanam_panen');
+        }
     }
 
     public function detail_cart()
@@ -48,18 +69,56 @@ class VTanam_panen extends CI_Controller
     public function delAll_order()
     {
         $this->cart->destroy();
+
+        $rowid = $this->input->post('rowid[]');
+        $id = $this->input->post('id[]');
+        $name = $this->input->post('name[]');
+        $qty = $this->input->post('qty[]');
+
+        for ($i = 0; $i < count($rowid); $i++) {
+            $data = array(
+                'panen_id' => $id[$i],
+                'nama' => $name[$i],
+                'jumlah' =>  $qty[$i],
+            );
+            $query = $this->db->insert('barang_masuk', $data);
+            if ($query) {
+                $query1 = $this->db->get_where('barang_masuk', ['panen_id' => $data['panen_id']])->row_array();
+                $this->db->where('id', $query1['id']);
+                $this->db->delete('barang_masuk', $data);
+            }
+            // echo '<pre>';
+            // print_r($data);
+            // die;
+            // echo '</pre>';
+        }
         redirect('VTanam_panen');
     }
-    public function hapus($rowid = '')
+    public function hapus()
     {
-        if ($rowid) {
-            $this->cart->remove($rowid);
+        $rowid = $this->input->post('rowid');
+        $this->cart->remove($rowid);
+
+        $data = [
+            'panen_id' => $this->input->post('id'),
+            'nama' => $this->input->post('name'),
+            'jumlah' =>  $this->input->post('qty'),
+        ];
+
+        $query = $this->db->insert('barang_masuk', $data);
+        if ($query) {
+            $query1 = $this->db->get_where('barang_masuk', ['panen_id' => $data['panen_id']])->row_array();
+            $this->db->where('id', $query1['id']);
+            $this->db->delete('barang_masuk', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Keranjang berhasil dihapus
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>');
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
             redirect(base_url('VTanam_panen/detail_cart'), 'refresh');
+        } else {
+            echo 'gagal';
+            redirect('VTanam_panen');
         }
     }
     public function checkout()
@@ -90,6 +149,8 @@ class VTanam_panen extends CI_Controller
                 $nama_produk = $this->input->post('nama_produk');
                 $id_anggota = $this->input->post('id_anggota');
                 $id_penjual = $this->input->post('id_penjual');
+                $id_produk = $this->input->post('id_produk');
+                $qty = $this->input->post('qty');
                 $price = $this->input->post('price');
                 for ($i = 0; $i < count($id_anggota); $i++) {
                     $data = array(
@@ -99,10 +160,14 @@ class VTanam_panen extends CI_Controller
                         'nama_pembeli' => $this->input->post('username'),
                         'nama_produk' => $nama_produk[$i],
                         'role' => $this->input->post('id_akses'),
+                        'time' => date('H:i:s', strtotime('+6 minute', strtotime(date('H:i:s')))),
+                        'jumlah' => $qty[$i],
+                        'id_produk' => $id_produk[$i],
                         'id_penjual' => $id_penjual[$i],
                     );
                     // echo '<pre>';
                     // print_r($data);
+                    // die;
                     // echo '</pre>';
                     $query1 = $this->db->insert('header_transaksi', $data);
                     $id_header[$i] = $this->db->insert_id();
