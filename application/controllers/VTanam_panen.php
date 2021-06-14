@@ -160,7 +160,7 @@ class VTanam_panen extends CI_Controller
                         'nama_pembeli' => $this->input->post('username'),
                         'nama_produk' => $nama_produk[$i],
                         'role' => $this->input->post('id_akses'),
-                        'time' => date('H:i:s', strtotime('+6 minute', strtotime(date('H:i:s')))),
+                        'time' => date('Y-m-d', strtotime('+2 day', strtotime(date('Y-m-d'))) - (60 * 60 * 24)),
                         'jumlah' => $qty[$i],
                         'id_produk' => $id_produk[$i],
                         'id_penjual' => $id_penjual[$i],

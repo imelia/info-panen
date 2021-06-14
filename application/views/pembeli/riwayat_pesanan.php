@@ -54,18 +54,19 @@
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    $now = date('H:i:s', strtotime(date('H:i:s')));
-                                                    $later = date('H:i:s', strtotime($ht['time']));
+                                                    $now = date("Y-m-d");
+                                                    $active_time = $ht['time'];
 
-                                                    $selisih = strtotime($later) - strtotime($now);
+                                                    $exp = date('Y-m-d', strtotime($ht['time']));
 
-                                                    // echo date('i:s', $selisih);
+                                                    $trials = strtotime($active_time) - strtotime($now);
+                                                    // echo date('d-M-Y', strtotime($now));
 
                                                     if ($ht['status_bayar'] == 1) :
                                                         echo 'Berhasil Dipesan';
                                                     ?>
                                                         <?php else :
-                                                        if ($now >= $later) :
+                                                        if ($now >= $exp) :
                                                             $data = [
                                                                 'panen_id' => $ht['id_produk'],
                                                                 'nama' => $ht['nama_produk'],
@@ -114,10 +115,12 @@
                                                                 <?php endif;
                                                                 echo 'Cancel Done'; ?>
                                                             <?php else :
-                                                                echo 'Waktu Cancel : ' . date('i:s', $selisih); ?>
+                                                                echo 'Waktu Cancel : ' . $trials / (24 * 60 * 60) . " Hari lagi" . " - Tanggal " . date('d, M Y', strtotime($active_time));
+                                                            ?>
                                                             <?php endif; ?>
                                                         <?php else :
-                                                            echo 'Waktu Cancel : ' . date('i:s', $selisih); ?>
+                                                            echo 'Waktu Cancel : ' . $trials / (24 * 60 * 60) . " Hari lagi" . " - Tanggal " . date('d, M Y', strtotime($active_time));
+                                                        ?>
                                                             <form action="<?= base_url('Vtanam_panen/konfirmasi') ?>" method="post">
                                                                 <input type="hidden" name="id_header_transaksi" value="<?= $ht['id_header_transaksi']; ?>">
                                                                 <input type="hidden" name="id_penjual" value="<?= $ht['id_penjual']; ?>">
