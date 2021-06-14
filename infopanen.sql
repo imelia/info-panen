@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jun 2021 pada 02.21
+-- Waktu pembuatan: 14 Jun 2021 pada 05.06
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.3.15
 
@@ -181,9 +181,9 @@ CREATE TABLE `form_tanam_panen` (
 --
 
 INSERT INTO `form_tanam_panen` (`id_tanam_panen`, `desa`, `gambar_panen`, `komoditi`, `stok_tanam`, `tanggal_tanam`, `tanggal_panen`, `status_panen`, `hasil_panen`, `harga_panen`, `kondisi_panen`, `keterangan`, `id_anggota`) VALUES
-(19, 'Sumber', 'prod-3.jpg', 'Biofarmaka', 9, '2021-05-10', '2021-05-13', 'Belum Panen', '6000', 1000, 'Baik', 'Baik tahan hama', 21),
-(20, 'Sukapura', 'letter_B1.png', 'Kunyit', 11, '2021-06-02', '2021-06-03', 'Belum Panen', '120', 1250, 'Baik', 'Baik tahan hama', 20),
-(21, 'Kuripan', 'letter_J1.png', 'Biofarmaka', 34, '2021-06-02', '2021-06-03', 'Belum Panen', '312', 2450, 'Baik', 'Baik tahan hama', 20),
+(19, 'Sumber', 'prod-3.jpg', 'Biofarmaka', 5, '2021-05-10', '2021-05-13', 'Belum Panen', '6000', 1000, 'Baik', 'Baik tahan hama', 21),
+(20, 'Sukapura', 'letter_B1.png', 'Kunyit', 7, '2021-06-02', '2021-06-03', 'Belum Panen', '120', 1250, 'Baik', 'Baik tahan hama', 20),
+(21, 'Kuripan', 'letter_J1.png', 'Biofarmaka', 30, '2021-06-02', '2021-06-03', 'Belum Panen', '312', 2450, 'Baik', 'Baik tahan hama', 20),
 (22, 'Leces', 'letter_A1.png', 'Biofarmaka', 22, '2021-06-12', '2021-06-12', 'Panen', '400', 13000, 'Fresh', 'Baik tahan hama', 20),
 (23, 'Tegalsiwalan', 'letter_P.png', 'Kunyit', 42, '2021-06-12', '2021-06-13', 'Panen', '140', 15000, 'Fresh', 'Masih Segar dan utuh', 21);
 
@@ -230,22 +230,14 @@ CREATE TABLE `header_transaksi` (
   `rekening_pembayaran` varchar(255) DEFAULT NULL,
   `rekening_pelanggan` varchar(255) DEFAULT NULL,
   `bukti_bayar` varchar(255) DEFAULT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
-  `time` varchar(120) DEFAULT NULL,
+  `tanggal_post` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tanggal_update` datetime DEFAULT NULL,
+  `time` date DEFAULT NULL,
   `id_penjual` int(11) NOT NULL,
   `id_rekening` int(11) DEFAULT NULL,
   `tanggal_bayar` varchar(255) DEFAULT NULL,
   `nama_bank` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `header_transaksi`
---
-
-INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_anggota`, `id_produk`, `jumlah`, `jumlah_transaksi`, `jumlah_bayar`, `status_bayar`, `nama_pembeli`, `nama_produk`, `role`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `tanggal`, `time`, `id_penjual`, `id_rekening`, `tanggal_bayar`, `nama_bank`) VALUES
-(17, 15, 19, 1, 1000, 1000, 1, 'viqih', 'Biofarmaka', 3, '4545678712344432', 'Viqih Ardiansyah', 'letter_S1.png', '2021-06-13 17:38:32', '00:44:32', 21, 21, '14-06-2021', 'BRI'),
-(19, 18, 19, 1, 1000, 0, 0, 'feri', 'Biofarmaka', 3, NULL, NULL, NULL, '2021-06-13 18:10:18', '01:16:18', 21, NULL, NULL, NULL),
-(20, 18, 20, 1, 1250, 0, 0, 'feri', 'Kunyit', 3, NULL, NULL, NULL, '2021-06-13 18:10:18', '01:16:18', 20, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -527,15 +519,6 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `id_anggota`, `id_produk`, `nama_product`, `harga`, `jumlah`, `total_harga`, `id_penjual`, `id_header_transaksi`) VALUES
-(17, 15, 19, 'Biofarmaka', 1000, 1, 2250, 0, 17),
-(19, 18, 19, 'Biofarmaka', 1000, 1, 2250, 0, 19),
-(20, 18, 20, 'Kunyit', 1250, 1, 2250, 0, 20);
-
---
 -- Indexes for dumped tables
 --
 
@@ -680,13 +663,13 @@ ALTER TABLE `akses`
 -- AUTO_INCREMENT untuk tabel `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `berita`
@@ -722,7 +705,7 @@ ALTER TABLE `harga`
 -- AUTO_INCREMENT untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
-  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `kecamatan`
@@ -794,7 +777,7 @@ ALTER TABLE `tanaman_sayuran`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
