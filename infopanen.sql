@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 09:31 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Waktu pembuatan: 14 Jun 2021 pada 02.21
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akses`
+-- Struktur dari tabel `akses`
 --
 
 CREATE TABLE `akses` (
@@ -33,7 +34,7 @@ CREATE TABLE `akses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `akses`
+-- Dumping data untuk tabel `akses`
 --
 
 INSERT INTO `akses` (`id_akses`, `nama_akses`) VALUES
@@ -44,7 +45,55 @@ INSERT INTO `akses` (`id_akses`, `nama_akses`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `berita`
+-- Struktur dari tabel `barang_keluar`
+--
+
+CREATE TABLE `barang_keluar` (
+  `id` int(11) NOT NULL,
+  `panen_id` int(11) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Trigger `barang_keluar`
+--
+DELIMITER $$
+CREATE TRIGGER `t_keluar` AFTER INSERT ON `barang_keluar` FOR EACH ROW BEGIN
+	UPDATE form_tanam_panen SET stok_tanam = stok_tanam - NEW.jumlah WHERE id_tanam_panen = NEW.panen_id;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `barang_masuk`
+--
+
+CREATE TABLE `barang_masuk` (
+  `id` int(11) NOT NULL,
+  `panen_id` int(11) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Trigger `barang_masuk`
+--
+DELIMITER $$
+CREATE TRIGGER `t_masuk` AFTER INSERT ON `barang_masuk` FOR EACH ROW BEGIN
+	UPDATE form_tanam_panen SET stok_tanam = stok_tanam + NEW.jumlah WHERE id_tanam_panen = NEW.panen_id;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `berita`
 --
 
 CREATE TABLE `berita` (
@@ -57,7 +106,7 @@ CREATE TABLE `berita` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `berita`
+-- Dumping data untuk tabel `berita`
 --
 
 INSERT INTO `berita` (`id_berita`, `nama_gambar`, `judul`, `sumber`, `tanggal`, `link`) VALUES
@@ -68,7 +117,7 @@ INSERT INTO `berita` (`id_berita`, `nama_gambar`, `judul`, `sumber`, `tanggal`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daftar_pembeli`
+-- Struktur dari tabel `daftar_pembeli`
 --
 
 CREATE TABLE `daftar_pembeli` (
@@ -82,7 +131,7 @@ CREATE TABLE `daftar_pembeli` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_daftar_petani`
+-- Struktur dari tabel `data_daftar_petani`
 --
 
 CREATE TABLE `data_daftar_petani` (
@@ -96,20 +145,19 @@ CREATE TABLE `data_daftar_petani` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_daftar_petani`
+-- Dumping data untuk tabel `data_daftar_petani`
 --
 
 INSERT INTO `data_daftar_petani` (`id_daftar_petani`, `ktp`, `komoditas`, `luas_sawah`, `alamat_sawah`, `desa_kelurahan`, `id_anggota`) VALUES
 (5, 'file_1620155115.png', 'Jeruk', '12Ha', 'Jl Kuncingan', 'Majakencinga', 16),
 (6, 'letter_L.png', 'Buah', '144Ha', 'Jl Kemiri Sedaya', 'Kilimanuk', 17),
 (7, 'letter_E.png', 'Buah', '122Ha', 'Jl Kemiri Sedaya', 'Kilimanuk', 19),
-(8, 'avatar3.png', 'Jeruk', '12Ha', 'Jl Kuncingan', 'Majakencing', 20),
-(9, 'avatar2.png', 'Buah', '144Ha', 'Jl Kemiri Sedaya', 'Kilimanuks', 21);
+(8, 'avatar3.png', 'Jeruk', '12Ha', 'Jl Kuncingan', 'Majakencing', 20);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `form_tanam_panen`
+-- Struktur dari tabel `form_tanam_panen`
 --
 
 CREATE TABLE `form_tanam_panen` (
@@ -129,20 +177,20 @@ CREATE TABLE `form_tanam_panen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `form_tanam_panen`
+-- Dumping data untuk tabel `form_tanam_panen`
 --
 
 INSERT INTO `form_tanam_panen` (`id_tanam_panen`, `desa`, `gambar_panen`, `komoditi`, `stok_tanam`, `tanggal_tanam`, `tanggal_panen`, `status_panen`, `hasil_panen`, `harga_panen`, `kondisi_panen`, `keterangan`, `id_anggota`) VALUES
-(17, 'Sukapura', 'file_1622481574.png', 'Biofarmaka', 5, '2021-05-11', '2021-05-13', 'Belum Panen', '1000', 4500, 'Baik', 'Baik tahan hama', 0),
-(18, 'Sukapura', 'file_1622481638.png', 'Sayuran', 3, '2021-05-11', '2021-05-13', 'Belum Panen', '1400', 5700, 'Baik', 'Baik tahan hama', 0),
-(19, 'Sumber', 'prod-3.jpg', 'Biofarmaka', 6, '2021-05-10', '2021-05-13', 'Belum Panen', '6000', 1000, 'Baik', 'Baik tahan hama', 21),
-(20, 'Sukapura', 'letter_B1.png', 'Kunyit', 2, '2021-06-02', '2021-06-03', 'Belum Panen', '120', 1250, 'Baik', 'Baik tahan hama', 20),
-(21, 'Kuripan', 'letter_J1.png', 'Biofarmaka', 34, '2021-06-02', '2021-06-03', 'Belum Panen', '312', 2450, 'Baik', 'Baik tahan hama', 20);
+(19, 'Sumber', 'prod-3.jpg', 'Biofarmaka', 9, '2021-05-10', '2021-05-13', 'Belum Panen', '6000', 1000, 'Baik', 'Baik tahan hama', 21),
+(20, 'Sukapura', 'letter_B1.png', 'Kunyit', 11, '2021-06-02', '2021-06-03', 'Belum Panen', '120', 1250, 'Baik', 'Baik tahan hama', 20),
+(21, 'Kuripan', 'letter_J1.png', 'Biofarmaka', 34, '2021-06-02', '2021-06-03', 'Belum Panen', '312', 2450, 'Baik', 'Baik tahan hama', 20),
+(22, 'Leces', 'letter_A1.png', 'Biofarmaka', 22, '2021-06-12', '2021-06-12', 'Panen', '400', 13000, 'Fresh', 'Baik tahan hama', 20),
+(23, 'Tegalsiwalan', 'letter_P.png', 'Kunyit', 42, '2021-06-12', '2021-06-13', 'Panen', '140', 15000, 'Fresh', 'Masih Segar dan utuh', 21);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `harga`
+-- Struktur dari tabel `harga`
 --
 
 CREATE TABLE `harga` (
@@ -156,7 +204,7 @@ CREATE TABLE `harga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `harga`
+-- Dumping data untuk tabel `harga`
 --
 
 INSERT INTO `harga` (`id_harga`, `harga`, `komoditas`, `pasar`, `kecamatan`, `keterangan`, `tanggal_update`) VALUES
@@ -165,13 +213,14 @@ INSERT INTO `harga` (`id_harga`, `harga`, `komoditas`, `pasar`, `kecamatan`, `ke
 -- --------------------------------------------------------
 
 --
--- Table structure for table `header_transaksi`
+-- Struktur dari tabel `header_transaksi`
 --
 
 CREATE TABLE `header_transaksi` (
   `id_header_transaksi` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
   `id_anggota` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `jumlah_transaksi` int(11) NOT NULL,
   `jumlah_bayar` int(11) NOT NULL,
   `status_bayar` int(11) NOT NULL,
@@ -181,8 +230,8 @@ CREATE TABLE `header_transaksi` (
   `rekening_pembayaran` varchar(255) DEFAULT NULL,
   `rekening_pelanggan` varchar(255) DEFAULT NULL,
   `bukti_bayar` varchar(255) DEFAULT NULL,
-  `tanggal_post` datetime DEFAULT NULL,
-  `tanggal_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` varchar(120) DEFAULT NULL,
   `id_penjual` int(11) NOT NULL,
   `id_rekening` int(11) DEFAULT NULL,
   `tanggal_bayar` varchar(255) DEFAULT NULL,
@@ -190,22 +239,18 @@ CREATE TABLE `header_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `header_transaksi`
+-- Dumping data untuk tabel `header_transaksi`
 --
 
-INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_user`, `id_anggota`, `jumlah_transaksi`, `jumlah_bayar`, `status_bayar`, `nama_pembeli`, `nama_produk`, `role`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `tanggal_post`, `tanggal_update`, `id_penjual`, `id_rekening`, `tanggal_bayar`, `nama_bank`) VALUES
-(144, 0, 15, 1000, 1000, 1, 'viqih', 'Biofarmaka', 3, '0021890714517871', 'Viqih Ardiansyah', 'letter_T4.png', NULL, '2021-05-31 17:48:05', 21, 21, '01-06-2021', 'BRI'),
-(145, 0, 15, 1250, 0, 0, 'viqih', 'Kunyit', 3, NULL, NULL, NULL, NULL, '2021-05-31 17:33:10', 20, NULL, NULL, NULL),
-(146, 0, 15, 2450, 0, 0, 'viqih', 'Biofarmaka', 3, NULL, NULL, NULL, NULL, '2021-05-31 17:33:10', 20, NULL, NULL, NULL),
-(147, 0, 15, 1000, 0, 0, 'viqih', 'Biofarmaka', 3, NULL, NULL, NULL, NULL, '2021-05-31 17:48:33', 21, NULL, NULL, NULL),
-(148, 0, 15, 2450, 0, 0, 'viqih', 'Biofarmaka', 3, NULL, NULL, NULL, NULL, '2021-05-31 17:48:33', 20, NULL, NULL, NULL),
-(149, 0, 18, 2450, 2450, 1, 'feri', 'Biofarmaka', 3, '998686433221324', 'Imelia Rosita', 'apple-touch-icon.png', NULL, '2021-05-31 18:03:14', 20, 20, '01-06-2021', 'BRI'),
-(150, 0, 18, 1000, 1000, 1, 'feri', 'Biofarmaka', 3, '998686433221324', 'Imelia Rosita', 'apple-touch-icon1.png', NULL, '2021-05-31 19:35:11', 21, 21, '01-06-2021', 'BRI');
+INSERT INTO `header_transaksi` (`id_header_transaksi`, `id_anggota`, `id_produk`, `jumlah`, `jumlah_transaksi`, `jumlah_bayar`, `status_bayar`, `nama_pembeli`, `nama_produk`, `role`, `rekening_pembayaran`, `rekening_pelanggan`, `bukti_bayar`, `tanggal`, `time`, `id_penjual`, `id_rekening`, `tanggal_bayar`, `nama_bank`) VALUES
+(17, 15, 19, 1, 1000, 1000, 1, 'viqih', 'Biofarmaka', 3, '4545678712344432', 'Viqih Ardiansyah', 'letter_S1.png', '2021-06-13 17:38:32', '00:44:32', 21, 21, '14-06-2021', 'BRI'),
+(19, 18, 19, 1, 1000, 0, 0, 'feri', 'Biofarmaka', 3, NULL, NULL, NULL, '2021-06-13 18:10:18', '01:16:18', 21, NULL, NULL, NULL),
+(20, 18, 20, 1, 1250, 0, 0, 'feri', 'Kunyit', 3, NULL, NULL, NULL, '2021-06-13 18:10:18', '01:16:18', 20, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kecamatan`
+-- Struktur dari tabel `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -214,7 +259,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kecamatan`
+-- Dumping data untuk tabel `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
@@ -242,7 +287,7 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komoditas`
+-- Struktur dari tabel `komoditas`
 --
 
 CREATE TABLE `komoditas` (
@@ -253,16 +298,16 @@ CREATE TABLE `komoditas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `komoditas`
+-- Dumping data untuk tabel `komoditas`
 --
 
 INSERT INTO `komoditas` (`id_komoditas`, `gambar`, `nama_komoditas`, `nama_tanaman`) VALUES
-(9, 'letter_J.png', 'Biofarmaka', 'Kunyit');
+(9, 'file_1623258028.png', 'Biofarmaka', 'Kunyit');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_anggota`
+-- Struktur dari tabel `login_anggota`
 --
 
 CREATE TABLE `login_anggota` (
@@ -280,7 +325,7 @@ CREATE TABLE `login_anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `login_anggota`
+-- Dumping data untuk tabel `login_anggota`
 --
 
 INSERT INTO `login_anggota` (`id_anggota`, `id_akses`, `username`, `password`, `image`, `no_telp`, `alamat`, `no_rekening`, `atas_nama`, `nama_bank`, `date_created`) VALUES
@@ -288,12 +333,13 @@ INSERT INTO `login_anggota` (`id_anggota`, `id_akses`, `username`, `password`, `
 (15, 'pembeli', 'viqih', '123', 'file_1620174270.png', '087566234111', 'JL Sundari RT 06', '0021987654541298', '', '', 1620147938),
 (18, 'pembeli', 'feri', '123', 'file_1620173809.png', '087566237332', 'JL Macau Payau', '0007818134813415', '', '', 1620172239),
 (20, 'petani', 'Ely99', '123', 'file_1620595051.png', '087566788900', 'JL Ely segundang', '0007818134541222', 'Ely Susilowati', 'BRI', 1620579027),
-(21, 'petani', 'sagita77', '123', 'file_1620595226.png', '087566909876', 'JL Sagita segundang', '0007818134813415', 'Sagita Watiasih', 'BRI', 1620580959);
+(21, 'petani', 'sagita77', '123', 'file_1620595226.png', '087566909876', 'JL Sagita segundang', '0007818134813415', 'Sagita Watiasih', 'BRI', 1620580959),
+(41, 'pembeli', 'Fila', '123', 'default.png', '', '', '', '', '', 1623508306);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekening`
+-- Struktur dari tabel `rekening`
 --
 
 CREATE TABLE `rekening` (
@@ -309,7 +355,7 @@ CREATE TABLE `rekening` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `riwayat_pemesanan_pembeli`
+-- Struktur dari tabel `riwayat_pemesanan_pembeli`
 --
 
 CREATE TABLE `riwayat_pemesanan_pembeli` (
@@ -325,7 +371,7 @@ CREATE TABLE `riwayat_pemesanan_pembeli` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_panen`
+-- Struktur dari tabel `status_panen`
 --
 
 CREATE TABLE `status_panen` (
@@ -334,7 +380,7 @@ CREATE TABLE `status_panen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `status_panen`
+-- Dumping data untuk tabel `status_panen`
 --
 
 INSERT INTO `status_panen` (`id_status_panen`, `status`) VALUES
@@ -344,7 +390,7 @@ INSERT INTO `status_panen` (`id_status_panen`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status_pesan`
+-- Struktur dari tabel `status_pesan`
 --
 
 CREATE TABLE `status_pesan` (
@@ -355,7 +401,7 @@ CREATE TABLE `status_pesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tanaman_biofarmaka`
+-- Struktur dari tabel `tanaman_biofarmaka`
 --
 
 CREATE TABLE `tanaman_biofarmaka` (
@@ -372,7 +418,7 @@ CREATE TABLE `tanaman_biofarmaka` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tanaman_biofarmaka`
+-- Dumping data untuk tabel `tanaman_biofarmaka`
 --
 
 INSERT INTO `tanaman_biofarmaka` (`id_tbiofarmaka`, `id`, `komoditi_biofarmaka`, `luas_panen`, `luas_tanam`, `provitas`, `produksi_biofarmaka`, `harga_biofarmaka`, `tahun`, `id_anggota`) VALUES
@@ -382,7 +428,7 @@ INSERT INTO `tanaman_biofarmaka` (`id_tbiofarmaka`, `id`, `komoditi_biofarmaka`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tanaman_buah`
+-- Struktur dari tabel `tanaman_buah`
 --
 
 CREATE TABLE `tanaman_buah` (
@@ -400,7 +446,7 @@ CREATE TABLE `tanaman_buah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tanaman_buah`
+-- Dumping data untuk tabel `tanaman_buah`
 --
 
 INSERT INTO `tanaman_buah` (`id_tbuah`, `nama_tanaman`, `jumlah_tanaman`, `tanaman_baru`, `tanaman_menghasilkan`, `tanaman_produktif`, `produksi_buah`, `provitas`, `harga`, `tahun`, `id_anggota`) VALUES
@@ -410,7 +456,7 @@ INSERT INTO `tanaman_buah` (`id_tbuah`, `nama_tanaman`, `jumlah_tanaman`, `tanam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tanaman_padi_palawija`
+-- Struktur dari tabel `tanaman_padi_palawija`
 --
 
 CREATE TABLE `tanaman_padi_palawija` (
@@ -425,7 +471,7 @@ CREATE TABLE `tanaman_padi_palawija` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tanaman_padi_palawija`
+-- Dumping data untuk tabel `tanaman_padi_palawija`
 --
 
 INSERT INTO `tanaman_padi_palawija` (`id_tpadi`, `nama_kecamatan`, `tanam`, `panen`, `provitas`, `produksi`, `tahun`, `id_anggota`) VALUES
@@ -436,7 +482,7 @@ INSERT INTO `tanaman_padi_palawija` (`id_tpadi`, `nama_kecamatan`, `tanam`, `pan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tanaman_sayuran`
+-- Struktur dari tabel `tanaman_sayuran`
 --
 
 CREATE TABLE `tanaman_sayuran` (
@@ -454,7 +500,7 @@ CREATE TABLE `tanaman_sayuran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tanaman_sayuran`
+-- Dumping data untuk tabel `tanaman_sayuran`
 --
 
 INSERT INTO `tanaman_sayuran` (`id_tsayur`, `komoditi`, `luas_tanam`, `luas_panen`, `produksi_habis_dibongkar`, `produksi_belum_dibongkar`, `total`, `harga_min`, `harga_max`, `tahun`, `id_anggota`) VALUES
@@ -465,7 +511,7 @@ INSERT INTO `tanaman_sayuran` (`id_tsayur`, `komoditi`, `luas_tanam`, `luas_pane
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -481,254 +527,274 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_anggota`, `id_produk`, `nama_product`, `harga`, `jumlah`, `total_harga`, `id_penjual`, `id_header_transaksi`) VALUES
-(120, 15, 19, 'Biofarmaka', 1000, 1, 4700, 0, 144),
-(121, 15, 20, 'Kunyit', 1250, 1, 4700, 0, 145),
-(122, 15, 21, 'Biofarmaka', 2450, 1, 4700, 0, 146),
-(123, 15, 19, 'Biofarmaka', 1000, 1, 3450, 0, 147),
-(124, 15, 21, 'Biofarmaka', 2450, 1, 3450, 0, 148),
-(125, 18, 21, 'Biofarmaka', 2450, 1, 2450, 0, 149),
-(126, 18, 19, 'Biofarmaka', 1000, 1, 1000, 0, 150);
+(17, 15, 19, 'Biofarmaka', 1000, 1, 2250, 0, 17),
+(19, 18, 19, 'Biofarmaka', 1000, 1, 2250, 0, 19),
+(20, 18, 20, 'Kunyit', 1250, 1, 2250, 0, 20);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `akses`
+-- Indeks untuk tabel `akses`
 --
 ALTER TABLE `akses`
   ADD PRIMARY KEY (`id_akses`);
 
 --
--- Indexes for table `berita`
+-- Indeks untuk tabel `barang_keluar`
+--
+ALTER TABLE `barang_keluar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `barang_masuk`
+--
+ALTER TABLE `barang_masuk`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `berita`
 --
 ALTER TABLE `berita`
   ADD PRIMARY KEY (`id_berita`);
 
 --
--- Indexes for table `daftar_pembeli`
+-- Indeks untuk tabel `daftar_pembeli`
 --
 ALTER TABLE `daftar_pembeli`
   ADD PRIMARY KEY (`id_pembeli`);
 
 --
--- Indexes for table `data_daftar_petani`
+-- Indeks untuk tabel `data_daftar_petani`
 --
 ALTER TABLE `data_daftar_petani`
   ADD PRIMARY KEY (`id_daftar_petani`);
 
 --
--- Indexes for table `form_tanam_panen`
+-- Indeks untuk tabel `form_tanam_panen`
 --
 ALTER TABLE `form_tanam_panen`
   ADD PRIMARY KEY (`id_tanam_panen`);
 
 --
--- Indexes for table `harga`
+-- Indeks untuk tabel `harga`
 --
 ALTER TABLE `harga`
   ADD PRIMARY KEY (`id_harga`);
 
 --
--- Indexes for table `header_transaksi`
+-- Indeks untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
   ADD PRIMARY KEY (`id_header_transaksi`);
 
 --
--- Indexes for table `kecamatan`
+-- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`);
 
 --
--- Indexes for table `komoditas`
+-- Indeks untuk tabel `komoditas`
 --
 ALTER TABLE `komoditas`
   ADD PRIMARY KEY (`id_komoditas`);
 
 --
--- Indexes for table `login_anggota`
+-- Indeks untuk tabel `login_anggota`
 --
 ALTER TABLE `login_anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indexes for table `rekening`
+-- Indeks untuk tabel `rekening`
 --
 ALTER TABLE `rekening`
   ADD PRIMARY KEY (`id_rekening`),
   ADD UNIQUE KEY `nomor_rekening` (`nomor_rekening`);
 
 --
--- Indexes for table `riwayat_pemesanan_pembeli`
+-- Indeks untuk tabel `riwayat_pemesanan_pembeli`
 --
 ALTER TABLE `riwayat_pemesanan_pembeli`
   ADD PRIMARY KEY (`id_riwayat_pembeli`);
 
 --
--- Indexes for table `status_panen`
+-- Indeks untuk tabel `status_panen`
 --
 ALTER TABLE `status_panen`
   ADD PRIMARY KEY (`id_status_panen`);
 
 --
--- Indexes for table `status_pesan`
+-- Indeks untuk tabel `status_pesan`
 --
 ALTER TABLE `status_pesan`
   ADD PRIMARY KEY (`id_status_pesan`);
 
 --
--- Indexes for table `tanaman_biofarmaka`
+-- Indeks untuk tabel `tanaman_biofarmaka`
 --
 ALTER TABLE `tanaman_biofarmaka`
   ADD PRIMARY KEY (`id_tbiofarmaka`);
 
 --
--- Indexes for table `tanaman_buah`
+-- Indeks untuk tabel `tanaman_buah`
 --
 ALTER TABLE `tanaman_buah`
   ADD PRIMARY KEY (`id_tbuah`);
 
 --
--- Indexes for table `tanaman_padi_palawija`
+-- Indeks untuk tabel `tanaman_padi_palawija`
 --
 ALTER TABLE `tanaman_padi_palawija`
   ADD PRIMARY KEY (`id_tpadi`);
 
 --
--- Indexes for table `tanaman_sayuran`
+-- Indeks untuk tabel `tanaman_sayuran`
 --
 ALTER TABLE `tanaman_sayuran`
   ADD PRIMARY KEY (`id_tsayur`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `akses`
+-- AUTO_INCREMENT untuk tabel `akses`
 --
 ALTER TABLE `akses`
   MODIFY `id_akses` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `berita`
+-- AUTO_INCREMENT untuk tabel `barang_keluar`
+--
+ALTER TABLE `barang_keluar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT untuk tabel `barang_masuk`
+--
+ALTER TABLE `barang_masuk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT untuk tabel `berita`
 --
 ALTER TABLE `berita`
   MODIFY `id_berita` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `daftar_pembeli`
+-- AUTO_INCREMENT untuk tabel `daftar_pembeli`
 --
 ALTER TABLE `daftar_pembeli`
   MODIFY `id_pembeli` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `data_daftar_petani`
+-- AUTO_INCREMENT untuk tabel `data_daftar_petani`
 --
 ALTER TABLE `data_daftar_petani`
-  MODIFY `id_daftar_petani` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_daftar_petani` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `form_tanam_panen`
+-- AUTO_INCREMENT untuk tabel `form_tanam_panen`
 --
 ALTER TABLE `form_tanam_panen`
-  MODIFY `id_tanam_panen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_tanam_panen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `harga`
+-- AUTO_INCREMENT untuk tabel `harga`
 --
 ALTER TABLE `harga`
   MODIFY `id_harga` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `header_transaksi`
+-- AUTO_INCREMENT untuk tabel `header_transaksi`
 --
 ALTER TABLE `header_transaksi`
-  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_header_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `kecamatan`
+-- AUTO_INCREMENT untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id_kecamatan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `komoditas`
+-- AUTO_INCREMENT untuk tabel `komoditas`
 --
 ALTER TABLE `komoditas`
   MODIFY `id_komoditas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `login_anggota`
+-- AUTO_INCREMENT untuk tabel `login_anggota`
 --
 ALTER TABLE `login_anggota`
-  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `rekening`
+-- AUTO_INCREMENT untuk tabel `rekening`
 --
 ALTER TABLE `rekening`
   MODIFY `id_rekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `riwayat_pemesanan_pembeli`
+-- AUTO_INCREMENT untuk tabel `riwayat_pemesanan_pembeli`
 --
 ALTER TABLE `riwayat_pemesanan_pembeli`
   MODIFY `id_riwayat_pembeli` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `status_panen`
+-- AUTO_INCREMENT untuk tabel `status_panen`
 --
 ALTER TABLE `status_panen`
   MODIFY `id_status_panen` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `status_pesan`
+-- AUTO_INCREMENT untuk tabel `status_pesan`
 --
 ALTER TABLE `status_pesan`
   MODIFY `id_status_pesan` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tanaman_biofarmaka`
+-- AUTO_INCREMENT untuk tabel `tanaman_biofarmaka`
 --
 ALTER TABLE `tanaman_biofarmaka`
   MODIFY `id_tbiofarmaka` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tanaman_buah`
+-- AUTO_INCREMENT untuk tabel `tanaman_buah`
 --
 ALTER TABLE `tanaman_buah`
   MODIFY `id_tbuah` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tanaman_padi_palawija`
+-- AUTO_INCREMENT untuk tabel `tanaman_padi_palawija`
 --
 ALTER TABLE `tanaman_padi_palawija`
   MODIFY `id_tpadi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `tanaman_sayuran`
+-- AUTO_INCREMENT untuk tabel `tanaman_sayuran`
 --
 ALTER TABLE `tanaman_sayuran`
   MODIFY `id_tsayur` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
