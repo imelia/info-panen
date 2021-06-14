@@ -358,6 +358,7 @@ class VTanam_panen extends CI_Controller
                         'rekening_pelanggan' => $this->input->post('rekening_pelanggan'),
                         'id_rekening' => $this->input->post('id_rekening'),
                         'tanggal_bayar' => $this->input->post('tanggal_bayar'),
+                        'tanggal_update' => date('Y-m-d H:i:s'),
                         'nama_bank' => $this->input->post('nama_bank')
                     );
 
