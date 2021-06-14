@@ -44,7 +44,7 @@
                                     </tbody>
                                 </table>
                                 <?php
-                                echo form_open_multipart(base_url('Vtanam_panen/konfirm_bayar/' . $header_transaksi->id_header_transaksi));
+                                echo form_open_multipart(base_url('VTanam_panen/konfirm_bayar/' . $header_transaksi->id_header_transaksi));
                                 ?>
                                 <table class="table table-borderless card">
                                     <tbody>

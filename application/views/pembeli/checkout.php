@@ -78,7 +78,7 @@
                             </td>
                         </tr>
                     </table>
-                    <form action="<?= base_url('Vtanam_panen/checkout'); ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url('VTanam_panen/checkout'); ?>" method="POST" enctype="multipart/form-data">
                         <?php foreach ($keranjang as $item) : ?>
                             <input type="hidden" name="id_anggota[]" value="<?= $pembeli['id_anggota']; ?>">
                             <input type="hidden" name="id_produk[]" value="<?= $item['id']; ?>">

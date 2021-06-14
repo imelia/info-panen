@@ -47,7 +47,7 @@
                                                 <td><?= ($ht['status_bayar'] == 1) ? 'Confirmed' : 'Pending'; ?></td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="<?= base_url('Vtanam_panen/laporan/' . $ht['id_header_transaksi']); ?>" class="btn btn-success btn-sm mr-2">
+                                                        <a href="<?= base_url('VTanam_panen/laporan/' . $ht['id_header_transaksi']); ?>" class="btn btn-success btn-sm mr-2">
                                                             <i class="fa fa-eye"></i> Detail
                                                         </a>
                                                     </div>
@@ -97,11 +97,11 @@
                                                                         ?>
                                                                             <?php if ($query4) : ?>
                                                                                 <?php if ($ht['status_bayar'] == 1) : ?>
-                                                                                    <a href="<?= site_url('Vtanam_panen/konfirmasi/' . $ht['id_header_transaksi']); ?>" class="btn badge-primary btn-sm disabled">
+                                                                                    <a href="<?= site_url('VTanam_panen/konfirmasi/' . $ht['id_header_transaksi']); ?>" class="btn badge-primary btn-sm disabled">
                                                                                         <i class="fa fa-upload"></i> Bayar
                                                                                     </a>
                                                                                 <?php else : ?>
-                                                                                    <form action="<?= base_url('Vtanam_panen/konfirmasi') ?>" method="post">
+                                                                                    <form action="<?= base_url('VTanam_panen/konfirmasi') ?>" method="post">
                                                                                         <input type="hidden" name="id_header_transaksi" value="<?= $ht['id_header_transaksi']; ?>">
                                                                                         <input type="hidden" name="id_penjual" value="<?= $ht['id_penjual']; ?>">
                                                                                         <button type="submit" role="button" class="btn badge-primary btn-sm" value="<?= $ht['id_penjual']; ?>">
@@ -121,7 +121,7 @@
                                                         <?php else :
                                                             echo 'Waktu Cancel : ' . $trials / (24 * 60 * 60) . " Hari lagi" . " - Tanggal " . date('d, M Y', strtotime($active_time));
                                                         ?>
-                                                            <form action="<?= base_url('Vtanam_panen/konfirmasi') ?>" method="post">
+                                                            <form action="<?= base_url('VTanam_panen/konfirmasi') ?>" method="post">
                                                                 <input type="hidden" name="id_header_transaksi" value="<?= $ht['id_header_transaksi']; ?>">
                                                                 <input type="hidden" name="id_penjual" value="<?= $ht['id_penjual']; ?>">
                                                                 <button type="submit" role="button" class="btn badge-primary btn-sm" value="<?= $ht['id_penjual']; ?>">

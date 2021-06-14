@@ -40,7 +40,7 @@
                                                 <td><?= $lp['jumlah']; ?></td>
                                                 <!-- <td><?= $lp['status_bayar']; ?></td> -->
                                                 <!-- <td class="invisible">
-                                                    <a href="<?= base_url('Vtanam_panen/detail_riwayat/' . $ht['id_header_transaksi']); ?>" class="btn btn-success btn-sm">
+                                                    <a href="<?= base_url('VTanam_panen/detail_riwayat/' . $ht['id_header_transaksi']); ?>" class="btn btn-success btn-sm">
                                                         <i class="fa fa-eye"></i> Detail
                                                     </a>
                                                 </td> -->
