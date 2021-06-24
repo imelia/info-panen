@@ -461,125 +461,127 @@
             </div>
           </div>
         </div>
-        <!-- ======= Petunjuk Section ======= -->
-        <section class="site-section" id="about-section">
-          <div class="container">
+      </div>
+    </section>
+    <!-- ======= Petunjuk Section ======= -->
+    <section class="site-section" id="about-section">
+      <div class="container">
 
-            <div class="row large-gutters">
-              <div class="col-lg-6 mb-5">
+        <div class="row large-gutters">
+          <div class="col-lg-6 mb-5">
 
-                <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="<?= base_url('assets8/images/values-1.png') ?>" alt="Image" class="img-fluid"></div>
-                </div>
-              </div>
-              <div class="col-lg-6 ml-auto">
-                <h1>
-                  <div class="section-title">Petunjuk Pemesanan</div>
-                </h1>
-                <h1>
-                  <p class="section-title">Cara untuk pemesanan sebagai berikut :</p>
-                </h1>
-
-                <ul class="list-unstyled ul-check success">
-                  <h3>
-                    <li>1. Login terlebih dahulu jika sudah punya akun, apabila belum memiliki akun pilih menu registrasi</li>
-                    </h1>
-                    <h3>
-                      <li>2. Pilih menu produk panen</li>
-                    </h3>
-                    <h3>
-                      <li>3. Klik menu pesan sekarang. Kemudian anda harus menghubungi nomor handphone yang sudah tersedia di menu detail menyanyakan terkait dengan transaksi pengiriman.</li>
-                    </h3>
-                    <h3>
-                      <li>4. Check Out pesanan di menu keranjang dengan klik menu bayar panen</li>
-                    </h3>
-                    <h3>
-                      <li>5. Setelah check out pesanan, klik menu riwayat pesanan untuk mengkonfirmasi pembayaran</li>
-                    </h3>
-                    <h3>
-                      <li>6. Lihat menu laporan untuk melihat riwayat pesanan dan pembayaran</li>
-                    </h3>
-                </ul>
-              </div>
+            <div class="owl-carousel slide-one-item with-dots">
+              <div><img src="<?= base_url('assets8/images/values-1.png') ?>" alt="Image" class="img-fluid"></div>
             </div>
           </div>
-          <div class="section-title">
-            <h2>Hasil Panen atau Produk Panen Berdasarkan Komoditas</h2>
+          <div class="col-lg-6 ml-auto">
+            <h1>
+              <div class="section-title">Petunjuk Pemesanan</div>
+            </h1>
+            <h1>
+              <p class="section-title">Cara untuk pemesanan sebagai berikut :</p>
+            </h1>
+
+            <ul class="list-unstyled ul-check success">
+              <h3>
+                <li>1. Login terlebih dahulu jika sudah punya akun, apabila belum memiliki akun pilih menu registrasi</li>
+                </h1>
+                <h3>
+                  <li>2. Pilih menu produk panen</li>
+                </h3>
+                <h3>
+                  <li>3. Klik menu pesan sekarang. Kemudian anda harus menghubungi nomor handphone yang sudah tersedia di menu detail menyanyakan terkait dengan transaksi pengiriman.</li>
+                </h3>
+                <h3>
+                  <li>4. Check Out pesanan di menu keranjang dengan klik menu bayar panen</li>
+                </h3>
+                <h3>
+                  <li>5. Setelah check out pesanan, klik menu riwayat pesanan untuk mengkonfirmasi pembayaran</li>
+                </h3>
+                <h3>
+                  <li>6. Lihat menu laporan untuk melihat riwayat pesanan dan pembayaran</li>
+                </h3>
+            </ul>
           </div>
-          <div class="container">
-            <div class="card mt-5 mb-5 bg-info">
-              <div class="card-header">
-                <div class="card-title">
-                  <h4 class="pt-2">Produk Panen dari Petani </h4>
+        </div>
+      </div>
+      <div class="section-title">
+        <h2>Hasil Panen atau Produk Panen Berdasarkan Komoditas</h2>
+      </div>
+      <div class="container">
+        <div class="card mt-5 mb-5 bg-info">
+          <div class="card-header">
+            <div class="card-title">
+              <h4 class="pt-2">Produk Panen dari Petani </h4>
+            </div>
+          </div>
+          <div class="row justify-content-center p-4">
+            <div class="col-lg-12">
+              <div class="form-row justify-content-center">
+                <div class="form-group">
+                  <form action="<?= base_url('Beranda/produk_komoditas'); ?>" method="post">
+                    <select name="komoditi" id="komoditi" class="form-control-sm">
+                      <option value="<?= set_value('komoditi'); ?>"><?= set_value('komoditi'); ?></option>
+                      <?php foreach ($Allproduk as $alp) : ?>
+                        <option value="<?= $alp->komoditi ?>"><?= $alp->komoditi ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <button class="btn btn-primary">Cari</button>
+                  </form>
                 </div>
               </div>
-              <div class="row justify-content-center p-4">
-                <div class="col-lg-12">
-                  <div class="form-row justify-content-center">
-                    <div class="form-group">
-                      <form action="<?= base_url('Beranda/produk_komoditas'); ?>" method="post">
-                        <select name="komoditi" id="komoditi" class="form-control-sm">
-                          <option value="<?= set_value('komoditi'); ?>"><?= set_value('komoditi'); ?></option>
-                          <?php foreach ($Allproduk as $alp) : ?>
-                            <option value="<?= $alp->komoditi ?>"><?= $alp->komoditi ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                        <button class="btn btn-primary">Cari</button>
-                      </form>
+            </div>
+            <div class="col-lg-12 pt-4 mt-5 mb-5 pb-5 pt-lg-0 content justify-content-center">
+              <?php if ($produk) : ?>
+                <?php foreach ($produk as $prd) : ?>
+                  <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $prd->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
+                      <div class="card-body">
+                        <p class="card-text">
+                        <h5>panenKomoditas : <td><?= $prd->komoditi ?></td>
+                        </h5>
+                        <h5>Kecamatan : <td><?= $prd->desa ?></td>
+                        </h5>
+                        <h5>Tanggal Panen : <td><?= $prd->tanggal_panen ?></td>
+                        </h5>
+                        <h5 class="detail-price"><?= $prd->harga_panen ?></h5>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-12 pt-4 mt-5 mb-5 pb-5 pt-lg-0 content justify-content-center">
-                  <?php if ($produk) : ?>
-                    <?php foreach ($produk as $prd) : ?>
-                      <div class="col-md-3">
-                        <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $prd->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
-                          <div class="card-body">
-                            <p class="card-text">
-                            <h5>panenKomoditas : <td><?= $prd->komoditi ?></td>
-                            </h5>
-                            <h5>Kecamatan : <td><?= $prd->desa ?></td>
-                            </h5>
-                            <h5>Tanggal Panen : <td><?= $prd->tanggal_panen ?></td>
-                            </h5>
-                            <h5 class="detail-price"><?= $prd->harga_panen ?></h5>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    <?php endforeach; ?>
-                  <?php else : ?>
-                    <?php foreach ($Allproduk as $alpr) : ?>
-                      <div class="col-md-3 mb-5">
-                        <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $alpr->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
-                          <div class="card-body">
-                            <p class="card-text">
-                            <h5>Komoditas : <td><?= $alpr->komoditi ?></td>
-                            </h5>
-                            <h5>Kecamatan : <td><?= $alpr->desa ?></td>
-                            </h5>
-                            <h5>Tanggal Panen : <td><?= $alpr->tanggal_panen ?></td>
-                            </h5>
-                            <h5 class="detail-price"><?= $alpr->harga_panen ?></h5>
-                            </p>
-                            <div class="cart-section">
-                              <div class="row">
-                                <div class="col-md-6 col-sm-12 col-xs-6">
-                                  <a href="<?= base_url('auth') ?>" class="AddCart btn btn-info btn-lg">Pesan Sekarang</a>
-                                </div>
-                              </div>
+                <?php endforeach; ?>
+              <?php else : ?>
+                <?php foreach ($Allproduk as $alpr) : ?>
+                  <div class="col-md-3 mb-5">
+                    <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="<?= base_url() ?>/uploads/panen/<?= $alpr->gambar_panen; ?>" alt="Card image cap" height="200px" width="200px">
+                      <div class="card-body">
+                        <p class="card-text">
+                        <h5>Komoditas : <td><?= $alpr->komoditi ?></td>
+                        </h5>
+                        <h5>Kecamatan : <td><?= $alpr->desa ?></td>
+                        </h5>
+                        <h5>Tanggal Panen : <td><?= $alpr->tanggal_panen ?></td>
+                        </h5>
+                        <h5 class="detail-price"><?= $alpr->harga_panen ?></h5>
+                        </p>
+                        <div class="cart-section">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-6">
+                              <a href="<?= base_url('auth') ?>" class="AddCart btn btn-info btn-lg">Pesan Sekarang</a>
                             </div>
                           </div>
                         </div>
                       </div>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
-                </div>
-              </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </div>
           </div>
+        </div>
+      </div>
       </div>
     </section>
     <!-- End About Section -->
@@ -587,17 +589,17 @@
 
     <!-- ======= About Section ======= -->
     <!--<section id="about" class="about">
-      <!--<div class="container" data-aos="fade-up">
+      <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Pemesan</h2>
         </div>
 
-        <!-- Content Row -->
+         Content Row -->
     <!--<div class="row justify-content-center">
           <div id="demo" class="carousel slide" data-ride="carousel">
 
-            <!-- Indicators -->
+             Indicators -->
     <!--<ul class="carousel-indicators">
               <?php
               $i = 0;
@@ -612,7 +614,7 @@
               } ?>
             </ul>
 
-            <!-- The slideshow -->
+            The slideshow -->
     <div class="carousel-inner">
       <?php
       $i = 0;
@@ -632,7 +634,7 @@
             } ?>
             </div>
 
-            <!-- Left and right controls -->
+           Left and right controls -->
         <!--<a class="carousel-control-prev" href="#demo" data-slide="prev">
               <span class="carousel-control-prev-icon"></span>
             </a>
@@ -642,7 +644,7 @@
 
           </div>
         </div>
-        <!-- End Content row -->
+        End Content row -->
         </section>
         <!-- End About Section -->
 
