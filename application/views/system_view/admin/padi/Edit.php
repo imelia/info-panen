@@ -140,10 +140,6 @@
     <?php $this->load->view('pagee/footer'); ?>
 
     </body>
-    < type="text/javascript">
-        $(document).ready(function() {
-        $("#table-ah").dataTable();
-        });
-    </>
+    <script type="text/javascript">$(document).ready(function(){$("#table-ah").dataTable();});</script>
 
 </html>

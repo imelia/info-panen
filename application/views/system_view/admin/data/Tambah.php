@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12">
                 <form action="<?php echo base_url('data/proses'); ?>" method="POST" class="form1">
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-12">
                             <label>Akses</label>
                             <div class="form-group">
@@ -85,7 +85,7 @@
                         </div>
                         <br>
                     </div>
-                </form>
+                </form>-->
 
 
                 <!-- Form Petani -->
