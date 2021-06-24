@@ -60,6 +60,7 @@
                                     <label>Harga (Rp)</label>
                                     <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                     <div class="form-group">
+                                        <input type="hidden" name="id_harga" id="id_harga" value="<?= $row->id_harga; ?>">
                                         <input type="text" name="harga" value="<?= $this->input->post('harga') ?? $row->harga ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
                                         <?= form_error('tanam') ?>
                                     </div>
