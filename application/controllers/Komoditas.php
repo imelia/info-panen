@@ -142,8 +142,10 @@ class Komoditas extends CI_Controller
         }
     }
     // delete
-    public function deletedata($id, $gambar)
+    public function deletedata()
     {
+        $gambar = $this->input->post('image');
+        $id = $this->input->post('id');
         $path = './uploads/komoditas/';
         @unlink($path . $gambar);
 
