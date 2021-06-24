@@ -16,15 +16,14 @@
     <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
-	</script>
-<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+            return false;
+        return true;
+    }
+</script>
 <script>
     function hapus_confirm() {
         var msg;
@@ -49,87 +48,87 @@
                     <div class="card-header ">
                         <h4 class="card-title">EDIT DATA</h4>
                         <div class="pull-right">
-                            <a href="<?= site_url('padi') ?>" class="tombol"><i class="fa fa-undo"></i>KEMBALI</a>
+                            <a href="<?= site_url('harga') ?>" class="tombol"><i class="fa fa-undo"></i>KEMBALI</a>
                         </div>
                         <p class="card-category"></p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
 
-                        <form action="<?= base_url() ?>padi/edit" method="post">
-                        <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Harga (Rp)</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
-                                            <div class="form-group">
-                                                <input type="text" name="harga" value="<?= $this->input->post('harga') ?? $row->harga ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control" >
-                                                <?= form_error('tanam') ?>
-                                            </div>
-                                        </div>
+                        <form action="<?= base_url() ?>harga/edit" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Harga (Rp)</label>
+                                    <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
+                                    <div class="form-group">
+                                        <input type="text" name="harga" value="<?= $this->input->post('harga') ?? $row->harga ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
+                                        <?= form_error('tanam') ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Komoditas</label>
-                                            <div class="form-group">
-                                                <select class="form-control" name="komoditas" value="<?= $this->input->post('komoditas') ?? $row->komoditas ?>" required>
-                                                    <option value="<?= $row->komoditas ?>"><?= $row->komoditas ?></option>
-                                                    <?php foreach ($listKom as $list) : ?>
-                                                        <option value="<?= $list['nama_komoditas']; ?>"><?= $list['nama_komoditas']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Komoditas</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="komoditas" value="<?= $this->input->post('komoditas') ?? $row->komoditas ?>" required>
+                                            <option value="<?= $row->komoditas ?>"><?= $row->komoditas ?></option>
+                                            <?php foreach ($listKom as $list) : ?>
+                                                <option value="<?= $list['nama_komoditas']; ?>"><?= $list['nama_komoditas']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Pasar</label>
-                                            <div class="form-group">
-                                                <input type="text" name="pasar" value="<?= $this->input->post('pasar') ?? $row->pasar ?>" class="form-control">
-                                                <?= form_error('pasar') ?>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Pasar</label>
+                                    <div class="form-group">
+                                        <input type="text" name="pasar" value="<?= $this->input->post('pasar') ?? $row->pasar ?>" class="form-control">
+                                        <?= form_error('pasar') ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Kecamatan</label>
-                                            <div class="form-group">
-                                            <select class="form-control" name="kecamatan" value="<?= $this->input->post('kecamatan') ?? $row->kecamatan ?>" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Kecamatan</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="kecamatan" value="<?= $this->input->post('kecamatan') ?? $row->kecamatan ?>" required>
                                             <option value="<?= $row->kecamatan ?>"><?= $row->kecamatan ?></option>
                                             <?php foreach ($listKec as $list) : ?>
                                                 <option value="<?= $list['nama_kecamatan']; ?>"><?= $list['nama_kecamatan']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Keterangan</label>
-                                            <div class="form-group">
-                                                <input type="text" name="keterangan" value="<?= $this->input->post('keterangan') ?? $row->keterangan ?>" class="form-control">
-                                                <?= form_error('keterangan') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Tanggal Update</label>
-                                            <div class="form-group">
-                                                <input type="date" name="tanggal_update" value="<?= $this->input->post('tanggal_update') ?? $row->tanggal_update ?>" class="form-control">
-                                                <?= form_error('tanggal_update') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" onclick="return update_confirm()" class="btn btn-success btn-flat">Update</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Keterangan</label>
+                                    <div class="form-group">
+                                        <input type="text" name="keterangan" value="<?= $this->input->post('keterangan') ?? $row->keterangan ?>" class="form-control">
+                                        <?= form_error('keterangan') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Tanggal Update</label>
+                                    <div class="form-group">
+                                        <input type="date" name="tanggal_update" value="<?= $this->input->post('tanggal_update') ?? $row->tanggal_update ?>" class="form-control">
+                                        <?= form_error('tanggal_update') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" onclick="return update_confirm()" class="btn btn-success btn-flat">Update</button>
+                            </div>
                     </div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+</div>
 <!-- End of Main Content -->
 <!-- Load modal-->
 
