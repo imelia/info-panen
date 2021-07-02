@@ -65,7 +65,7 @@
                                     foreach ($harga as $harga) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $harga['harga']. "/Kg"; ?></td>
+                                            <td><?= $harga['harga'] . "/Kg"; ?></td>
                                             <td><?= $harga['komoditas']; ?></td>
                                             <td><?= $harga['pasar']; ?></td>
                                             <td><?= $harga['kecamatan']; ?></td>

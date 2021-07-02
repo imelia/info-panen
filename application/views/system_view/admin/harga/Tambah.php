@@ -17,14 +17,14 @@
     <?php $this->load->view('pagee/topbar2'); ?>
 </head>
 <script>
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
-	</script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+            return false;
+        return true;
+    }
+</script>
 
 <script>
     function hapus_confirm() {
@@ -55,79 +55,79 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body table-full-width table-responsive">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Harga (Rp)</label>
-                                            <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
-                                            <div class="form-group">
-                                                <input type="text" name="harga" value="<?= set_value('harga') ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control" >
-                                                <?= form_error('tanam') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Komoditas</label>
-                                            <div class="form-group">
-                                                <select class="form-control" name="komoditas" value="<?= set_value('komoditas') ?>" required>
-                                                    <?php foreach ($listKom as $row) : ?>
-                                                        <option value="<?= $row['nama_komoditas']; ?>"><?= $row['nama_komoditas']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Pasar</label>
-                                            <div class="form-group">
-                                                <input type="text" name="pasar" value="<?= set_value('pasar') ?>" class="form-control">
-                                                <?= form_error('pasar') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Kecamatan</label>
-                                            <div class="form-group">
-                                                <select class="form-control" name="kecamatan" value="<?= set_value('kecamatan') ?>" required>
-                                                    <?php foreach ($listKec as $row) : ?>
-                                                        <option value="<?= $row['nama_kecamatan']; ?>"><?= $row['nama_kecamatan']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Keterangan</label>
-                                            <div class="form-group">
-                                                <input type="text" name="keterangan" value="<?= set_value('keterangan') ?>" class="form-control">
-                                                <?= form_error('keterangan') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Tanggal Update</label>
-                                            <div class="form-group">
-                                                <input type="date" name="tanggal_update" value="<?= set_value('tanggal_update') ?>" class="form-control">
-                                                <?= form_error('tanggal_update') ?>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Harga (Rp)</label>
+                                    <h6><i><b>*Hanya boleh diisi dengan angka </b></i></h6>
                                     <div class="form-group">
-                                        <button type="submit" onclick="return hapus_confirm()" class="btn btn-primary">Simpan</button>
+                                        <input type="text" name="harga" value="<?= set_value('harga') ?>" id="rupiah" onkeypress="return hanyaAngka(event)" class="form-control">
+                                        <?= form_error('tanam') ?>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Komoditas</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="komoditas" value="<?= set_value('komoditas') ?>" required>
+                                            <?php foreach ($listKom as $row) : ?>
+                                                <option value="<?= $row['nama_komoditas']; ?>"><?= $row['nama_komoditas']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Pasar</label>
+                                    <div class="form-group">
+                                        <input type="text" name="pasar" value="<?= set_value('pasar') ?>" class="form-control">
+                                        <?= form_error('pasar') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Kecamatan</label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="kecamatan" value="<?= set_value('kecamatan') ?>" required>
+                                            <?php foreach ($listKec as $row) : ?>
+                                                <option value="<?= $row['nama_kecamatan']; ?>"><?= $row['nama_kecamatan']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <label>Keterangan</label>
+                                    <div class="form-group">
+                                        <input type="text" name="keterangan" value="<?= set_value('keterangan') ?>" class="form-control">
+                                        <?= form_error('keterangan') ?>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Tanggal Update</label>
+                                    <div class="form-group">
+                                        <input type="date" name="tanggal_update" value="<?= set_value('tanggal_update') ?>" class="form-control">
+                                        <?= form_error('tanggal_update') ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" onclick="return hapus_confirm()" class="btn btn-primary">Simpan</button>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+</div>
 <!-- End of Main Content -->
 <!-- Load modal-->
 <?php $this->load->view('pagee/modal'); ?>

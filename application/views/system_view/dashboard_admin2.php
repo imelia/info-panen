@@ -39,8 +39,15 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <p class="btn btn-sm btn-info p-2 text-white">Produksi : <span>Sisi Kiri</span></p>
                     <div class="chart-area">
-                        <canvas id="chartBio"></canvas>
+                        <canvas id="chartBio">
+                        </canvas>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="btn btn-sm btn-info p-2 ml-5 text-white text-center">Komoditi : <span>Sisi Bawah</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,8 +60,14 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <p class="btn btn-sm btn-info p-2 text-white">Produksi : <span>Sisi Kiri</span></p>
                     <div class="chart-area">
                         <canvas id="chartBuah"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <p class="btn btn-sm btn-info p-2 ml-5 text-white text-center">Komoditi : <span>Sisi Bawah</span></p>
                     </div>
                 </div>
             </div>
@@ -67,8 +80,14 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <p class="btn btn-sm btn-info p-2 text-white">Produksi : <span>Sisi Kiri</span></p>
                     <div class="chart-area">
                         <canvas id="chartPadiPal"></canvas>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="btn btn-sm btn-info p-2 ml-5 text-white text-center">Tahun : <span>Sisi Bawah</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,8 +100,14 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <p class="btn btn-sm btn-info p-2 text-white">Produksi : <span>Sisi Kiri</span></p>
                     <div class="chart-area">
                         <canvas id="sayurChart"></canvas>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="btn btn-sm btn-info p-2 ml-5 text-white text-center">Tahun : <span>Sisi Bawah</span></p>
+                        </div>
                     </div>
                 </div>
             </div>

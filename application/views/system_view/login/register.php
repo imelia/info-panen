@@ -82,7 +82,6 @@
                     <div class="form-group">
                         <select class="form-control" name="id_akses" required>
                             <option value="">Pilih akses</option>
-                            <option value="admin" <?= 'id_akses' == 1 ? "selected" : null ?>>admin</option>
                             <option value="pembeli" <?= 'id_akses' == 3 ? "selected" : null ?>>pembeli</option>
                         </select>
                     </div>
