@@ -45,8 +45,12 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="btn btn-sm"><small class="text-danger">*Keterangan muncul berdasarkan data terakhir yang diinputkan, sehingga history akan selalu terupdate per tanggalnya</small></p>
+                            </div>
+                        </div>
                         <div class="table-responsive">
-
                             <table class="table table-bordered" id="harga" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>

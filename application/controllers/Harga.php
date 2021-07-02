@@ -86,7 +86,7 @@ class Harga extends CI_Controller
         $this->form_validation->set_rules('komoditas', 'komoditas', 'required');
         $this->form_validation->set_rules('pasar', 'pasar', 'required');
         $this->form_validation->set_rules('kecamatan', 'kecamatan', 'required');
-        $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+        // $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
         $this->form_validation->set_rules('tanggal_update', 'tanggal_update', 'required');
 
         $this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
@@ -97,17 +97,61 @@ class Harga extends CI_Controller
                 $data['listKom'] = $this->Model_harga->listKomoditas();
                 $data['listKec'] = $this->Model_harga->listKecamatan();
                 $this->load->view('system_view/admin/harga/Edit', $data);
-            } else {
-                echo "<script>alert('Data Berhasil Di Simpan');";
-                echo "window.location='" . site_url('harga') . "';</script>";
             }
         } else {
-            $post = $this->input->post(null, TRUE);
-            $this->Model_harga->edit($post);
-            if ($this->db->affected_rows() > 0) {
+            $data['harga'] = $this->db->get_where('harga', ['komoditas' => $this->input->post('komoditas')])->row_array();
+
+            if ($data['harga']['komoditas'] == $this->input->post('komoditas')) {
+                if ($data['harga']['harga'] > $this->input->post('harga')) {
+                    $id = $this->input->post('id_harga');
+                    $data1 = [
+                        'harga' => $this->input->post('harga'),
+                        'komoditas' => $this->input->post('komoditas'),
+                        'pasar' => $this->input->post('pasar'),
+                        'kecamatan' => $this->input->post('kecamatan'),
+                        'keterangan' => 'Turun',
+                        'tanggal_update' => $this->input->post('tanggal_update'),
+                    ];
+                    // print_r($data1);
+                    // print_r($id);
+                    // die;
+                    $this->db->where('id_harga', $id);
+                    $this->db->update('harga', $data1);
+                    echo "<script>alert('Data Berhasil Di Simpan');</script>";
+                    echo "<script>window.location='" . site_url('harga') . "';</script>";
+                } else {
+                    $id = $this->input->post('id_harga');
+                    $data2 = [
+                        'harga' => $this->input->post('harga'),
+                        'komoditas' => $this->input->post('komoditas'),
+                        'pasar' => $this->input->post('pasar'),
+                        'kecamatan' => $this->input->post('kecamatan'),
+                        'keterangan' => 'Naik',
+                        'tanggal_update' => $this->input->post('tanggal_update'),
+                    ];
+                    // print_r($data2);
+                    // print_r($id);
+                    // die;
+                    $this->db->where('id_harga', $id);
+                    $this->db->update('harga', $data2);
+                    echo "<script>alert('Data Berhasil Di Simpan');</script>";
+                    echo "<script>window.location='" . site_url('harga') . "';</script>";
+                }
+            } else {
+                $id = $this->input->post('id_harga');
+                $data3 = [
+                    'harga' => $this->input->post('harga'),
+                    'komoditas' => $this->input->post('komoditas'),
+                    'pasar' => $this->input->post('pasar'),
+                    'kecamatan' => $this->input->post('kecamatan'),
+                    'keterangan' => 'Data Baru',
+                    'tanggal_update' => $this->input->post('tanggal_update'),
+                ];
+                $this->db->where('id_harga', $id);
+                $this->db->update('harga', $data3);
                 echo "<script>alert('Data Berhasil Di Simpan');</script>";
+                echo "<script>window.location='" . site_url('harga') . "';</script>";
             }
-            echo "<script>window.location='" . site_url('harga') . "';</script>";
         }
     }
 
